@@ -14,7 +14,7 @@ const Hero = () => {
           <p className="text-brand-dark/80 text-lg mb-8 max-w-md mx-auto md:mx-0">
             Discover the authentic taste of premium quality Kulu Badu, sourced directly from the finest gardens to your kitchen.
           </p>
-          <button className="bg-brand-orange text-white px-8 py-3 rounded-full font-medium hover:opacity-90 transition shadow-lg shadow-brand-orange/30">
+          <button className="bg-brand-orange text-white px-8 py-3 rounded-full font-medium hover:bg-[#E6B754] transition shadow-lg shadow-brand-orange/30">
             Shop Spices
           </button>
         </div>

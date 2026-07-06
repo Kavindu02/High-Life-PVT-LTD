@@ -7,21 +7,21 @@ const Collection = () => {
       name: "Ceylon Cinnamon",
       description: "True cinnamon sticks",
       price: "$12.45",
-      image: "/images/cinnamon.png",
+      image: "/cinnamon.png",
     },
     {
       id: 2,
       name: "Turmeric Powder",
       description: "Pure and vibrant",
       price: "$8.20",
-      image: "/images/turmeric.png",
+      image: "/turmeric.png",
     },
     {
       id: 3,
       name: "Black Pepper",
       description: "Rich and aromatic",
       price: "$9.50",
-      image: "/images/pepper.png",
+      image: "/pepper.png",
     }
   ];
 
@@ -55,7 +55,7 @@ const Collection = () => {
                     <span className="text-[10px] text-[#2a2a2a]/50 uppercase tracking-widest mb-1">Price</span>
                     <span className="text-lg font-bold text-[#2a2a2a] leading-none">{product.price}</span>
                   </div>
-                  <button className="bg-[#2a2a2a] text-white px-6 py-2.5 rounded-full text-xs font-bold tracking-wider hover:bg-brand-orange transition shadow-md border border-transparent">
+                  <button className="bg-[#2a2a2a] text-white px-6 py-2.5 rounded-full text-xs font-bold tracking-wider hover:bg-[#E6B754] transition shadow-md border border-transparent">
                     ORDER
                   </button>
                 </div>

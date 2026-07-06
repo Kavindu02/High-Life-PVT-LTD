@@ -12,7 +12,7 @@ const About = () => {
         {/* Left Side: Image */}
         <div className="w-full md:w-1/2 pr-0 md:pr-8 mb-12 md:mb-0">
           <img 
-            src="/images/about_box.png" 
+            src="/about_box.png" 
             alt="Handpicked Spices Box" 
             className="w-full h-auto object-cover shadow-2xl rounded-sm"
           />
@@ -35,7 +35,7 @@ const About = () => {
               Though it is one mission but not adapted like business, the product is entirely pure with its quality control and is under the strict supervision of family. This is the reason that no other products of the same type could take the place of this.
             </p>
             
-            <a href="#collection" className="mt-4 relative top-12 inline-block w-fit bg-[#2a2a2a] text-white text-xs font-bold px-8 py-3 rounded-full hover:bg-brand-orange transition tracking-wider shadow-lg border-2 border-white/20">
+            <a href="#collection" className="mt-4 relative top-12 inline-block w-fit bg-[#2a2a2a] text-white text-xs font-bold px-8 py-3 rounded-full hover:bg-[#E6B754] transition tracking-wider shadow-lg border-2 border-white/20">
               OUR COLLECTION
             </a>
           </div>

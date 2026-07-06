@@ -9,7 +9,7 @@ const Blog = () => {
         {/* Right Side: Image */}
         <div className="w-full md:w-1/2 flex items-center justify-center">
           <img
-            src="/images/blog_image.png"
+            src="/blog_image.png"
             alt="Sri Lankan Spices Story"
             className="w-full h-auto object-cover"
           />
