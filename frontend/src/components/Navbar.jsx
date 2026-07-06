@@ -11,8 +11,8 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-brand-yellow/90 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <div className="text-2xl font-serif font-bold text-brand-dark cursor-pointer flex items-center gap-2" onClick={() => scrollToSection('home')}>
-          <span>@HighLife</span>
+        <div className="cursor-pointer flex items-center" onClick={() => scrollToSection('home')}>
+          <img src="/images/logo.png" alt="High Life Logo" className="h-10 md:h-12 w-auto object-contain mix-blend-multiply" />
         </div>
         <ul className="hidden md:flex space-x-8 text-sm font-medium text-brand-dark">
           <li className="cursor-pointer hover:text-brand-orange transition" onClick={() => scrollToSection('home')}>Home</li>

@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-yellow: #F8E693;
-  --color-brand-light-yellow: #fef8db;
+  --color-brand-yellow: #e6b753;
+  --color-brand-light-yellow: #f8eed6;
   --color-brand-cream: #FBF5EB;
-  --color-brand-dark: #2a1f1a;
-  --color-brand-brown: #965a1e;
-  --color-brand-orange: #d17124;
+  --color-brand-dark: #2a2315;
+  --color-brand-brown: #b9964e;
+  --color-brand-orange: #d6993a;
   --font-serif: "Playfair Display", serif;
   --font-sans: "Inter", sans-serif;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Blog = () => {
   return (
-    <section id="blog" className="w-full relative bg-[#B69F73]">
+    <section id="blog" className="w-full relative" style={{ background: 'linear-gradient(to bottom right, #B69F73 50%, #FBF5EB 50%)' }}>
 
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row-reverse relative z-10 pt-24 pb-24 px-6 gap-12 md:gap-0">
 
