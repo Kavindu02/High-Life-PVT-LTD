@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-brown: #3e2723;
+  --color-brand-light-brown: #5d4037;
+  --color-brand-beige: #d7ccc8;
+  --color-brand-cream: #efebe9;
+  --color-brand-sand: #e4dfd5;
+  --color-brand-card: #d3cabc;
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+body {
+  @apply bg-brand-cream text-brand-brown font-sans m-0 p-0;
+  scroll-behavior: smooth;
+}
+
+html {
+  scroll-behavior: smooth;
+}
