@@ -19,3 +19,7 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+button, [role="button"], a {
+  cursor: pointer !important;
+}

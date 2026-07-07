@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Collection = () => {
+const Collection = ({ onProductClick }) => {
   const products = [
     {
       id: 1,
@@ -35,7 +35,11 @@ const Collection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {products.map((product) => (
-            <div key={product.id} className="bg-[#fcf5e5] rounded-3xl p-6 shadow-sm hover:shadow-xl transition-shadow flex flex-col group border border-[#f5e8cd]">
+            <div 
+              key={product.id} 
+              className="bg-[#fcf5e5] rounded-3xl p-6 shadow-sm hover:shadow-xl transition-shadow flex flex-col group border border-[#f5e8cd] cursor-pointer"
+              onClick={() => onProductClick && onProductClick(product)}
+            >
               <div className="w-full h-56 mb-4 flex items-center justify-center overflow-hidden rounded-xl">
                 <img 
                   src={product.image} 
@@ -50,13 +54,9 @@ const Collection = () => {
                 
                 <div className="w-full h-px bg-brand-dark/5 mb-4"></div>
                 
-                <div className="flex items-center justify-between w-full mt-auto">
-                  <div className="flex flex-col">
-                    <span className="text-[10px] text-[#2a2a2a]/50 uppercase tracking-widest mb-1">Price</span>
-                    <span className="text-lg font-bold text-[#2a2a2a] leading-none">{product.price}</span>
-                  </div>
-                  <button className="bg-[#2a2a2a] text-white px-6 py-2.5 rounded-full text-xs font-bold tracking-wider hover:bg-[#E6B754] transition shadow-md border border-transparent">
-                    ORDER
+                <div className="flex items-center w-full mt-auto">
+                  <button className="w-full bg-[#2a2a2a] text-white px-6 py-3 rounded-full text-xs font-bold tracking-wider hover:bg-[#E6B754] transition shadow-md border border-transparent">
+                    BUY NOW
                   </button>
                 </div>
               </div>
