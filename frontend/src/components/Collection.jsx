@@ -60,7 +60,7 @@ const Collection = ({ onProductClick }) => {
       id: 4,
       name: "Turmeric Powder",
       description: "Pure and vibrant turmeric powder",
-      image: "/kahakudu_hero.png",
+      image: "/kahakudu_minimalist.png",
       images: [
         "/kahakudu_hero.png",
         "/kahakudu_flatlay.png",
