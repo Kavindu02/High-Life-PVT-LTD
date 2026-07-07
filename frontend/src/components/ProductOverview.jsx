@@ -11,7 +11,9 @@ const ProductOverview = ({ product, onBack }) => {
     setActiveImageIndex(0);
   }, [product]);
 
-  const productImages = product.images || [product.image, product.image, product.image, product.image];
+  const productImages = product.images 
+    ? [product.image, ...product.images.filter(img => img !== product.image)]
+    : [product.image, product.image, product.image, product.image];
 
   const handleQuantityChange = (type) => {
     if (type === 'decrease' && quantity > 1) {
