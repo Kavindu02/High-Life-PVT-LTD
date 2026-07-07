@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="bg-[#2A2A2A] text-[#fcf5e5] pt-20 pb-10 px-6 border-t-[4px] border-[#E6B754]">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          
+
           {/* Brand & About */}
           <div className="lg:col-span-1">
             <img src="/logo.png" alt="High Life Logo" className="-ml-14 h-20 w-auto mb-6 object-contain transform scale-[2.5] origin-left" />
@@ -27,7 +27,7 @@ const Footer = () => {
               </a>
             </div>
           </div>
-          
+
           {/* Quick Links */}
           <div>
             <h4 className="text-sm font-bold text-white uppercase tracking-[0.2em] mb-6">Explore</h4>
@@ -41,7 +41,7 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-          
+
           {/* Contact Info */}
           <div>
             <h4 className="text-sm font-bold text-white uppercase tracking-[0.2em] mb-6">Contact Info</h4>
@@ -51,13 +51,13 @@ const Footer = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
                 </svg>
-                <span className="group-hover:text-white transition-colors duration-300">123 Spice Route, Colombo, Sri Lanka</span>
+                <span className="group-hover:text-white transition-colors duration-300">Wataraka, Sri Lanka</span>
               </li>
               <li className="flex items-center gap-3 group">
                 <svg className="w-5 h-5 text-[#E6B754] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.896-1.596-5.25-3.95-6.847-6.847l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
                 </svg>
-                <span className="group-hover:text-white transition-colors duration-300">+94 11 234 5678</span>
+                <span className="group-hover:text-white transition-colors duration-300">+94 76 045 4514</span>
               </li>
               <li className="flex items-center gap-3 group">
                 <svg className="w-5 h-5 text-[#E6B754] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -67,15 +67,15 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          
+
           {/* Newsletter */}
           <div>
             <h4 className="text-sm font-bold text-white uppercase tracking-[0.2em] mb-6">Newsletter</h4>
             <p className="text-[#fcf5e5]/60 text-sm mb-4">Subscribe for exclusive offers and updates from our gardens.</p>
             <div className="relative">
-              <input 
-                type="email" 
-                placeholder="Your email address" 
+              <input
+                type="email"
+                placeholder="Your email address"
                 className="w-full bg-[#2a2a2a] text-white text-sm px-4 py-3 rounded-xl border border-white/10 focus:border-[#E6B754] focus:outline-none transition-colors pr-12"
               />
               <button className="absolute right-1.5 top-1.5 bottom-1.5 w-9 bg-[#E6B754] rounded-lg flex items-center justify-center text-white hover:bg-[#E6B754] transition-colors">
@@ -87,7 +87,7 @@ const Footer = () => {
           </div>
 
         </div>
-        
+
         {/* Bottom Bar */}
         <div className="flex flex-col items-center justify-center pt-8 border-t border-white/10 text-xs text-[#fcf5e5]/40 font-medium gap-2">
           <p>© {new Date().getFullYear()} High Life (PVT) LTD. All Rights Reserved.</p>

@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2/promise');
+const bcrypt = require('bcryptjs');
 require('dotenv').config();
 
 const app = express();
@@ -33,6 +34,62 @@ app.get('/api/categories', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Database error' });
+  }
+});
+
+// Endpoint to register a new user
+app.post('/api/register', async (req, res) => {
+  try {
+    const { name, email, mobileNumber, password } = req.body;
+    
+    // Check if user exists
+    const [existingUsers] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
+    if (existingUsers.length > 0) {
+      return res.status(400).json({ error: 'User already exists' });
+    }
+
+    // Hash password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    // Insert user
+    const [result] = await pool.query(
+      'INSERT INTO users (name, email, mobile_number, password) VALUES (?, ?, ?, ?)',
+      [name, email, mobileNumber, hashedPassword]
+    );
+
+    res.status(201).json({ id: result.insertId, name, email, mobileNumber });
+  } catch (err) {
+    console.error('Registration error:', err);
+    res.status(500).json({ error: 'Server error during registration' });
+  }
+});
+
+// Endpoint to login a user
+app.post('/api/login', async (req, res) => {
+  try {
+    const { identifier, email, password } = req.body;
+    const loginId = identifier || email;
+    
+    // Check if user exists
+    const [users] = await pool.query('SELECT * FROM users WHERE email = ? OR name = ?', [loginId, loginId]);
+    if (users.length === 0) {
+      return res.status(400).json({ error: 'Invalid username/email or password' });
+    }
+
+    const user = users[0];
+
+    // Check password
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ error: 'Invalid username/email or password' });
+    }
+
+    // Send back user data
+    res.json({ id: user.id, name: user.name, email: user.email, mobileNumber: user.mobile_number });
+  } catch (err) {
+    console.error('Login error:', err);
+    res.status(500).json({ error: 'Server error during login' });
   }
 });
 

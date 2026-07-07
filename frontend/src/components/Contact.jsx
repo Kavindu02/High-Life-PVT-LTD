@@ -43,7 +43,7 @@ const Contact = () => {
                 </div>
                 <div className="flex flex-col">
                   <p className="text-[10px] text-[#2a2a2a]/50 uppercase tracking-[0.2em] font-bold mb-1">Hotline</p>
-                  <p className="font-bold text-[#2a2a2a] group-hover:text-[#E6B754] transition-colors duration-300 text-lg">+1 (234) 567-890</p>
+                  <p className="font-bold text-[#2a2a2a] group-hover:text-[#E6B754] transition-colors duration-300 text-lg">+94 76 045 4514</p>
                 </div>
               </div>
 
@@ -57,7 +57,7 @@ const Contact = () => {
                 </div>
                 <div className="flex flex-col">
                   <p className="text-[10px] text-[#2a2a2a]/50 uppercase tracking-[0.2em] font-bold mb-1">Address</p>
-                  <p className="font-bold text-[#2a2a2a] group-hover:text-[#E6B754] transition-colors duration-300 text-lg">123 Organic St, NY 10012</p>
+                  <p className="font-bold text-[#2a2a2a] group-hover:text-[#E6B754] transition-colors duration-300 text-lg">Wataraka, Sri Lanka</p>
                 </div>
               </div>
               

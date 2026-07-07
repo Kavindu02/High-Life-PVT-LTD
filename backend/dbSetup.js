@@ -32,6 +32,29 @@ async function setupDatabase() {
     `);
     console.log('Products table created or already exists.');
 
+    // 4.5 Create the users table
+    await connection.query(`
+      CREATE TABLE IF NOT EXISTS users (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL UNIQUE,
+        mobile_number VARCHAR(20),
+        password VARCHAR(255) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+    console.log('Users table created or already exists.');
+
+    try {
+      await connection.query('ALTER TABLE users ADD COLUMN mobile_number VARCHAR(20) AFTER email;');
+      console.log('Added mobile_number column to users table.');
+    } catch (e) {
+      if (e.code !== 'ER_DUP_FIELDNAME') {
+        console.error('Error adding mobile_number column:', e.message);
+      }
+    }
+    console.log('Users table created or already exists.');
+
     // 5. Insert initial seed data if table is empty
     const [rows] = await connection.query('SELECT COUNT(*) as count FROM products');
     if (rows[0].count === 0) {

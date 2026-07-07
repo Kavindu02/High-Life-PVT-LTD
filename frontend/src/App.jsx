@@ -7,12 +7,29 @@ import Blog from './components/Blog';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ProductOverview from './components/ProductOverview';
+import Login from './components/Login';
+import Register from './components/Register';
+import Profile from './components/Profile';
 
 const App = () => {
+  const [currentView, setCurrentView] = useState('home');
+  const [user, setUser] = useState(() => {
+    const saved = localStorage.getItem('user');
+    return saved ? JSON.parse(saved) : null;
+  });
+
   const [selectedProduct, setSelectedProduct] = useState(() => {
     const saved = sessionStorage.getItem('selectedProduct');
     return saved ? JSON.parse(saved) : null;
   });
+
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem('user', JSON.stringify(user));
+    } else {
+      localStorage.removeItem('user');
+    }
+  }, [user]);
 
   useEffect(() => {
     if (selectedProduct) {
@@ -34,14 +51,43 @@ const App = () => {
 
   }, [selectedProduct]);
 
+  const isAuthPage = currentView === 'login' || currentView === 'register';
+
   return (
-    <div className="font-sans min-h-screen bg-brand-cream text-brand-dark">
-      <Navbar onNavigate={() => {
-        setSelectedProduct(null);
-        sessionStorage.removeItem('selectedProduct');
-      }} />
+    <div className={`font-sans min-h-screen ${isAuthPage ? 'bg-[#0a0a0a]' : 'bg-brand-cream text-brand-dark'}`}>
+      {!isAuthPage && (
+        <Navbar 
+          user={user}
+          onNavigate={() => {
+            setSelectedProduct(null);
+            sessionStorage.removeItem('selectedProduct');
+            setCurrentView('home');
+          }} 
+          onNavigateToLogin={() => { setCurrentView('login'); window.scrollTo(0, 0); }}
+          onNavigateToRegister={() => { setCurrentView('register'); window.scrollTo(0, 0); }}
+          onNavigateToProfile={() => { setCurrentView('profile'); window.scrollTo(0, 0); }}
+          onLogout={() => { setUser(null); setCurrentView('login'); window.scrollTo(0, 0); }}
+        />
+      )}
       <main>
-        {selectedProduct ? (
+        {currentView === 'login' ? (
+          <Login 
+            onLogin={(userData) => { setUser(userData); setCurrentView('home'); }} 
+            onNavigateToRegister={() => { setCurrentView('register'); window.scrollTo(0, 0); }}
+            onNavigateToHome={() => { setCurrentView('home'); window.scrollTo(0, 0); }}
+          />
+        ) : currentView === 'register' ? (
+          <Register 
+            onRegister={() => { setCurrentView('login'); window.scrollTo(0, 0); }}
+            onNavigateToLogin={() => { setCurrentView('login'); window.scrollTo(0, 0); }}
+            onNavigateToHome={() => { setCurrentView('home'); window.scrollTo(0, 0); }}
+          />
+        ) : currentView === 'profile' ? (
+          <Profile 
+            user={user} 
+            onLogout={() => { setUser(null); setCurrentView('login'); window.scrollTo(0, 0); }}
+          />
+        ) : selectedProduct ? (
           <ProductOverview product={selectedProduct} onBack={() => {
             setSelectedProduct(null);
             sessionStorage.removeItem('selectedProduct');
@@ -56,7 +102,7 @@ const App = () => {
           </>
         )}
       </main>
-      <Footer />
+      {!isAuthPage && <Footer />}
     </div>
   );
 };
