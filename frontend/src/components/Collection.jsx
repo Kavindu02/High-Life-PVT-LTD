@@ -154,7 +154,7 @@ const Collection = ({ onProductClick }) => {
               <div className="absolute bottom-2 -left-[4%] w-[108%] z-20 flex flex-col items-center">
                 <button className="w-full bg-[#2a2a2a] py-4 text-center shadow-xl shadow-[#2a2a2a]/20 group-hover:bg-gradient-to-r group-hover:from-[#e6b753] group-hover:to-[#d6993a] transition-all duration-500 relative overflow-hidden">
                   <div className="text-[10px] uppercase tracking-widest text-[#9A9286] group-hover:text-white/80 mb-1 font-bold transition-colors">Starting at</div>
-                  <div className="text-2xl font-black tracking-wider text-[#E6B754] group-hover:text-white transition-colors">
+                  <div className="text-2xl font-black tracking-wider text-[#E6B754] group-hover:text-white transition-colors text-shine-light">
                     Rs {product.pricing[product.defaultSize]}
                   </div>
                   <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-r from-[#e6b753] to-[#d6993a] opacity-0 group-hover:opacity-100 transition-opacity duration-300">

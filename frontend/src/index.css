@@ -29,6 +29,29 @@ button, [role="button"], a {
   40%, 100% { transform: translateX(300%) skewX(-30deg); }
 }
 
+@keyframes text-shine-anim {
+  0% { background-position: 200% 50%; }
+  100% { background-position: -200% 50%; }
+}
+
+.text-shine {
+  background: linear-gradient(to right, #3e2f1d 20%, #e6b753 50%, #3e2f1d 80%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: text-shine-anim 9s linear infinite;
+}
+
+.text-shine-light {
+  background: linear-gradient(to right, #e6b753 20%, #ffffff 50%, #e6b753 80%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: text-shine-anim 9s linear infinite;
+}
+
 .btn-shine {
   position: relative;
   overflow: hidden;
@@ -42,6 +65,6 @@ button, [role="button"], a {
   width: 60%;
   height: 100%;
   background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0) 100%);
-  animation: btn-shine-anim 7s ease-in-out infinite;
+  animation: btn-shine-anim 15s ease-in-out infinite;
   pointer-events: none;
 }

@@ -79,7 +79,7 @@ const ProductOverview = ({ product, onBack }) => {
 
             {/* Price */}
             <div className="flex items-end gap-4 mb-6 bg-white/60 backdrop-blur-md w-fit px-6 py-3 rounded-2xl border border-white shadow-sm">
-              <span className="text-3xl font-black text-[#2a2a2a]">{displayPrice}</span>
+              <span className="text-3xl font-black text-shine">{displayPrice}</span>
               <span className="text-base text-[#9A9286] font-bold line-through mb-1">{oldPriceDisplay}</span>
             </div>
 
@@ -124,7 +124,7 @@ const ProductOverview = ({ product, onBack }) => {
             <div className="flex flex-col gap-3 pt-6 border-t-[1.5px] border-[#EADFC8]/60 text-sm">
               <div className="flex items-center">
                 <span className="font-black text-[#2a2a2a] w-24 text-[10px] uppercase tracking-widest">Tags:</span>
-                <span className="text-[#9A9286] font-bold text-xs uppercase tracking-wider">Spices, Organic, Sri Lanka</span>
+                <span className="font-bold text-xs uppercase tracking-wider text-transparent bg-clip-text text-shine inline-block w-fit">Spices, Organic, Sri Lanka</span>
               </div>
               <div className="flex items-center mt-1">
                 <span className="font-black text-[#2a2a2a] w-24 text-[10px] uppercase tracking-widest">Share:</span>
