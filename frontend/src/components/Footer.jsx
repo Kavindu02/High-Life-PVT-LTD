@@ -2,14 +2,14 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#2A2A2A] text-[#fcf5e5] pt-20 pb-10 px-6 border-t-[4px] border-[#E6B754]">
+    <footer className="bg-[#2A2A2A] text-[#fcf5e5] pt-12 pb-6 px-6 border-t-[4px] border-[#E6B754]">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-8">
 
           {/* Brand & About */}
           <div className="lg:col-span-1">
-            <img src="/logo.png" alt="High Life Logo" className="-ml-14 h-20 w-auto mb-6 object-contain transform scale-[2.5] origin-left" />
-            <p className="text-[#fcf5e5]/60 text-sm leading-relaxed mb-8">
+            <img src="/logo.png" alt="High Life Logo" className="-ml-14 h-20 w-auto mb-4 object-contain transform scale-[2.5] origin-left" />
+            <p className="text-[#fcf5e5]/60 text-sm leading-relaxed mb-6">
               Providing you with the most authentic, rich, and vibrant spices straight from the finest gardens. Elevate your culinary journey with our expertly curated blends.
             </p>
             <div className="flex space-x-4">
@@ -30,8 +30,8 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-sm font-bold text-white uppercase tracking-[0.2em] mb-6">Explore</h4>
-            <ul className="space-y-3">
+            <h4 className="text-sm font-bold text-white uppercase tracking-[0.2em] mb-4">Explore</h4>
+            <ul className="space-y-2">
               {['Home', 'About Us', 'Collection', 'Blog', 'Contact Us'].map((link) => (
                 <li key={link}>
                   <a href={`#${link.toLowerCase().replace(' ', '')}`} className="text-[#fcf5e5]/60 hover:text-[#E6B754] hover:translate-x-1 inline-block transition-all duration-300 text-sm">
@@ -44,8 +44,8 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-sm font-bold text-white uppercase tracking-[0.2em] mb-6">Contact Info</h4>
-            <ul className="space-y-4 text-[#fcf5e5]/60 text-sm">
+            <h4 className="text-sm font-bold text-white uppercase tracking-[0.2em] mb-4">Contact Info</h4>
+            <ul className="space-y-3 text-[#fcf5e5]/60 text-sm">
               <li className="flex items-start gap-3 group">
                 <svg className="w-5 h-5 text-[#E6B754] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -70,7 +70,7 @@ const Footer = () => {
 
           {/* Newsletter */}
           <div>
-            <h4 className="text-sm font-bold text-white uppercase tracking-[0.2em] mb-6">Newsletter</h4>
+            <h4 className="text-sm font-bold text-white uppercase tracking-[0.2em] mb-4">Newsletter</h4>
             <p className="text-[#fcf5e5]/60 text-sm mb-4">Subscribe for exclusive offers and updates from our gardens.</p>
             <div className="relative">
               <input
@@ -89,7 +89,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col items-center justify-center pt-8 border-t border-white/10 text-xs text-[#fcf5e5]/40 font-medium gap-2">
+        <div className="flex flex-col items-center justify-center pt-4 border-t border-white/10 text-xs text-[#fcf5e5]/40 font-medium gap-2">
           <p>© {new Date().getFullYear()} High Life (PVT) LTD. All Rights Reserved.</p>
           <p>
             Developed by <a href="https://www.syntechcraft.com/" target="_blank" rel="noopener noreferrer" className="text-[#E6B754] hover:text-white transition-colors">Syntechcraft</a>

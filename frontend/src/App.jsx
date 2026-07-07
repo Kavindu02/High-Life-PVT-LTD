@@ -56,13 +56,13 @@ const App = () => {
   return (
     <div className={`font-sans min-h-screen ${isAuthPage ? 'bg-[#0a0a0a]' : 'bg-brand-cream text-brand-dark'}`}>
       {!isAuthPage && (
-        <Navbar 
+        <Navbar
           user={user}
           onNavigate={() => {
             setSelectedProduct(null);
             sessionStorage.removeItem('selectedProduct');
             setCurrentView('home');
-          }} 
+          }}
           onNavigateToLogin={() => { setCurrentView('login'); window.scrollTo(0, 0); }}
           onNavigateToRegister={() => { setCurrentView('register'); window.scrollTo(0, 0); }}
           onNavigateToProfile={() => { setCurrentView('profile'); window.scrollTo(0, 0); }}
@@ -71,20 +71,20 @@ const App = () => {
       )}
       <main>
         {currentView === 'login' ? (
-          <Login 
-            onLogin={(userData) => { setUser(userData); setCurrentView('home'); }} 
+          <Login
+            onLogin={(userData) => { setUser(userData); setCurrentView('home'); }}
             onNavigateToRegister={() => { setCurrentView('register'); window.scrollTo(0, 0); }}
             onNavigateToHome={() => { setCurrentView('home'); window.scrollTo(0, 0); }}
           />
         ) : currentView === 'register' ? (
-          <Register 
+          <Register
             onRegister={() => { setCurrentView('login'); window.scrollTo(0, 0); }}
             onNavigateToLogin={() => { setCurrentView('login'); window.scrollTo(0, 0); }}
             onNavigateToHome={() => { setCurrentView('home'); window.scrollTo(0, 0); }}
           />
         ) : currentView === 'profile' ? (
-          <Profile 
-            user={user} 
+          <Profile
+            user={user}
             onLogout={() => { setUser(null); setCurrentView('login'); window.scrollTo(0, 0); }}
           />
         ) : selectedProduct ? (
