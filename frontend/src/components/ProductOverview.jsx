@@ -11,7 +11,7 @@ const ProductOverview = ({ product, onBack }) => {
     setActiveImageIndex(0);
   }, [product]);
 
-  const productImages = [product.image, product.image, product.image, product.image]; // Mocking multiple images
+  const productImages = product.images || [product.image, product.image, product.image, product.image];
 
   const handleQuantityChange = (type) => {
     if (type === 'decrease' && quantity > 1) {
@@ -21,17 +21,20 @@ const ProductOverview = ({ product, onBack }) => {
     }
   };
 
-  // Mock sizes for spices since the original had ml for serum
-  const sizes = ['50g', '100g', '250g', '500g'];
+  const availableSizes = Object.keys(product.pricing);
 
-  const basePriceNum = parseFloat(product.price.replace(/[^0-9.]/g, ''));
-  const sizeMultipliers = { '50g': 0.5, '100g': 1, '250g': 2.5, '500g': 5 };
-  const currentPriceNum = basePriceNum * (sizeMultipliers[selectedSize] || 1);
-  const displayPrice = `$${currentPriceNum.toFixed(2)}`;
-  const oldPriceDisplay = `$${(currentPriceNum * 1.25).toFixed(2)}`;
+  useEffect(() => {
+    if (product && product.defaultSize) {
+      setSelectedSize(product.defaultSize);
+    }
+  }, [product]);
+
+  const currentPriceNum = product.pricing[selectedSize] || product.pricing[product.defaultSize];
+  const displayPrice = `Rs ${currentPriceNum}`;
+  const oldPriceDisplay = `Rs ${Math.round(currentPriceNum * 1.25)}`;
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-12 bg-brand-cream pt-32">
+    <div className="max-w-7xl mx-auto px-6 py-12 bg-[#FAF5EC] pt-32">
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
         {/* Left Column - Images */}
@@ -52,20 +55,20 @@ const ProductOverview = ({ product, onBack }) => {
           </div>
 
           {/* Main Image */}
-          <div className="flex-1 aspect-[4/5] md:aspect-square bg-[#fcf5e5] rounded-[2rem] border-0 shadow-sm relative overflow-hidden group">
-            <img src={productImages[activeImageIndex]} alt={product.name} className="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-700" />
+          <div className="flex-1 aspect-[4/5] md:aspect-square bg-[#fcf5e5] rounded-[2rem] border border-[#f5e8cd] shadow-lg relative overflow-hidden group">
+            <div className="absolute top-6 left-6 w-12 h-12 border-t-2 border-l-2 border-[#EADFC8] rounded-tl-xl pointer-events-none"></div>
+            <div className="absolute bottom-6 right-6 w-12 h-12 border-b-2 border-r-2 border-[#EADFC8] rounded-br-xl pointer-events-none"></div>
+            <img src={productImages[activeImageIndex]} alt={product.name} className="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-700 relative z-10" />
           </div>
         </div>
 
         {/* Right Column - Details */}
         <div className="flex flex-col pt-4">
-          <p className="text-sm text-[#2a2a2a]/50 uppercase tracking-widest mb-2 font-bold">Premium Spices</p>
-          <div className="flex items-center gap-4 mb-3">
+          <p className="text-[11px] text-[#9A9286] font-bold uppercase tracking-widest mb-2">Premium Spices</p>
+          <div className="flex flex-wrap items-center gap-4 mb-3">
             <h1 className="text-4xl md:text-5xl font-extrabold text-[#2a2a2a]">{product.name}</h1>
             <span className="bg-[#e6b753]/20 text-[#d6993a] px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap">In Stock</span>
           </div>
-
-
 
           {/* Price */}
           <div className="flex items-end gap-3 mb-6">
@@ -79,15 +82,15 @@ const ProductOverview = ({ product, onBack }) => {
 
           {/* Size Selection */}
           <div className="mb-8">
-            <h3 className="text-sm font-bold text-[#2a2a2a] mb-3">Size/Weight</h3>
+            <h3 className="text-[11px] font-bold tracking-widest text-[#9A9286] uppercase mb-3">Size/Weight</h3>
             <div className="flex flex-wrap gap-3">
-              {sizes.map((size) => (
+              {availableSizes.map((size) => (
                 <button
                   key={size}
                   onClick={() => setSelectedSize(size)}
-                  className={`px-5 py-2 rounded-full text-sm font-bold border transition-all ${selectedSize === size
-                      ? 'border-[#2a2a2a] bg-[#2a2a2a] text-white'
-                      : 'border-[#2a2a2a]/20 text-[#2a2a2a] hover:border-[#2a2a2a]'
+                  className={`px-5 py-2.5 rounded-full text-[11px] font-bold tracking-widest uppercase border transition-all ${selectedSize === size
+                      ? 'border-[#2A2A2A] bg-[#2A2A2A] text-white'
+                      : 'border-[#EADFC8] text-[#2a2a2a] hover:border-[#2A2A2A]'
                     }`}
                 >
                   {size}
@@ -98,7 +101,6 @@ const ProductOverview = ({ product, onBack }) => {
 
           {/* Actions */}
           <div className="flex flex-wrap items-center gap-4 mb-10">
-
             <button className="bg-gradient-to-r from-[#2a2a2a] to-[#4a4a4a] text-white px-8 py-3 rounded-full font-bold shadow-[0_4px_15px_rgba(42,42,42,0.3)] hover:shadow-[0_6px_20px_rgba(42,42,42,0.5)] hover:-translate-y-0.5 transition-all duration-300 flex-1 md:flex-none">
               Add To Cart
             </button>
@@ -106,7 +108,6 @@ const ProductOverview = ({ product, onBack }) => {
             <button className="bg-gradient-to-r from-[#e6b753] to-[#b9964e] text-[#2a2315] px-8 py-3 rounded-full font-bold shadow-[0_4px_15px_rgba(230,183,83,0.4)] hover:shadow-[0_6px_20px_rgba(230,183,83,0.6)] hover:-translate-y-0.5 transition-all duration-300 flex-1 md:flex-none">
               Buy Now
             </button>
-
           </div>
 
           {/* Meta Info */}
