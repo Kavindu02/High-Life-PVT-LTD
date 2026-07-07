@@ -87,24 +87,24 @@ const Collection = ({ onProductClick }) => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {products.map((product) => (
-            <div 
-              key={product.id} 
+            <div
+              key={product.id}
               className="mt-16 mb-6 relative flex flex-col items-center cursor-pointer group"
               onClick={() => onProductClick && onProductClick(product)}
             >
               {/* Main Light Card */}
               <div className="bg-white/70 backdrop-blur-lg flex-1 w-full rounded-t-2xl pb-20 pt-16 px-5 flex flex-col items-center relative z-10 shadow-xl border border-white/50">
-                
+
 
 
                 {/* Overlapping Product Image */}
                 <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-48 h-48 z-30 group-hover:-translate-y-3 group-hover:scale-110 transition-all duration-500">
                   <img src={product.image} alt={product.name} className="w-full h-full object-contain drop-shadow-2xl mix-blend-multiply rounded-[32px]" />
                 </div>
-                
+
                 {/* Dashed Border Container */}
                 <div className="w-full border-[1.5px] border-dashed border-[#EADFC8] rounded-xl p-5 pt-20 flex flex-col items-center relative h-full bg-white/30">
-                  
+
                   {/* Title */}
                   <h3 className="text-[#2A2A2A] text-[15px] xl:text-base font-black tracking-wide uppercase mb-1 text-center whitespace-nowrap">
                     {product.name}
@@ -152,13 +152,13 @@ const Collection = ({ onProductClick }) => {
 
               {/* Bottom Wrap Banner */}
               <div className="absolute bottom-2 -left-[4%] w-[108%] z-20 flex flex-col items-center">
-                <button className="w-full bg-[#2a2a2a] btn-shine py-4 text-center shadow-xl shadow-[#2a2a2a]/20 group-hover:bg-gradient-to-r group-hover:from-[#e6b753] group-hover:to-[#d6993a] transition-all duration-500 relative overflow-hidden">
+                <button className="w-full bg-[#2a2a2a] py-4 text-center shadow-xl shadow-[#2a2a2a]/20 group-hover:bg-gradient-to-r group-hover:from-[#e6b753] group-hover:to-[#d6993a] transition-all duration-500 relative overflow-hidden">
                   <div className="text-[10px] uppercase tracking-widest text-[#9A9286] group-hover:text-white/80 mb-1 font-bold transition-colors">Starting at</div>
                   <div className="text-2xl font-black tracking-wider text-[#E6B754] group-hover:text-white transition-colors">
                     Rs {product.pricing[product.defaultSize]}
                   </div>
                   <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-r from-[#e6b753] to-[#d6993a] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                     <span className="text-sm font-black uppercase tracking-widest text-white">View Details</span>
+                    <span className="text-sm font-black uppercase tracking-widest text-white">View Details</span>
                   </div>
                 </button>
                 {/* Wrap Shadows */}
