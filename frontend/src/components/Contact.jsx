@@ -108,7 +108,7 @@ const Contact = () => {
               
               <button 
                 type="button" 
-                className="bg-[#2a2a2a] text-white px-8 py-3.5 rounded-full text-xs font-bold tracking-wider hover:bg-[#E6B754] transition shadow-md border border-transparent mt-4 self-start"
+                className="bg-[#2a2a2a] btn-shine text-white px-8 py-3.5 rounded-full text-xs font-bold tracking-wider hover:bg-[#E6B754] transition shadow-md border border-transparent mt-4 self-start"
               >
                 SEND MESSAGE
               </button>

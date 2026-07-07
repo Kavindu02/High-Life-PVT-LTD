@@ -49,7 +49,7 @@ const Hero = () => {
               Discover the authentic taste of premium quality spices. Sourced directly from the finest gardens to your kitchen. Experience true richness and elevate your culinary journey.
             </p>
             <div className="w-full flex justify-start md:justify-end pr-0 md:pr-10">
-              <button className="bg-[#B69F73] text-white px-6 py-2.5 rounded-sm font-medium hover:bg-[#968058] transition-all duration-300 flex items-center gap-2 shadow-md">
+              <button className="bg-[#B69F73] btn-shine text-white px-6 py-2.5 rounded-sm font-medium hover:bg-[#968058] transition-all duration-300 flex items-center gap-2 shadow-md">
                 Shop now 
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
               </button>

@@ -75,7 +75,7 @@ const Login = ({ onLogin, onNavigateToRegister, onNavigateToHome }) => {
               <button 
                 type="submit" 
                 disabled={loading} 
-                className="w-full sm:w-auto bg-[#2A2A2A] text-white font-bold text-[11px] tracking-widest py-4 px-10 rounded-[20px] hover:bg-black transition-colors uppercase"
+                className="w-full sm:w-auto bg-[#2A2A2A] btn-shine text-white font-bold text-[11px] tracking-widest py-4 px-10 rounded-[20px] hover:bg-black transition-colors uppercase"
               >
                 {loading ? 'SIGNING IN...' : 'SIGN IN'}
               </button>

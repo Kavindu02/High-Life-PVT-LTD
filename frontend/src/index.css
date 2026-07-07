@@ -23,3 +23,25 @@ html {
 button, [role="button"], a {
   cursor: pointer !important;
 }
+
+@keyframes btn-shine-anim {
+  0% { transform: translateX(-200%) skewX(-30deg); }
+  40%, 100% { transform: translateX(300%) skewX(-30deg); }
+}
+
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0) 100%);
+  animation: btn-shine-anim 7s ease-in-out infinite;
+  pointer-events: none;
+}
