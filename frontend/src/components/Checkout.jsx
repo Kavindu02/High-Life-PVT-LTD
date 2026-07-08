@@ -15,7 +15,7 @@ const Checkout = ({ cartItems }) => {
     phone2: '',
     orderNotes: '',
     shippingMethod: 'koombiyo',
-    paymentMethod: 'payhere'
+    paymentMethod: ''
   });
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentSuccessful, setPaymentSuccessful] = useState(false);
@@ -51,8 +51,8 @@ const Checkout = ({ cartItems }) => {
   const total = subtotal;
 
   const handlePlaceOrder = async () => {
-    if (!formData.firstName || !formData.email || !formData.address || !formData.district || !formData.city || !formData.postalCode || !formData.phone1) {
-      alert("Please fill in all required delivery details.");
+    if (!formData.firstName || !formData.email || !formData.address || !formData.district || !formData.city || !formData.postalCode || !formData.phone1 || !formData.paymentMethod) {
+      alert("Please fill in all required delivery details and select a payment method.");
       return;
     }
 
@@ -223,13 +223,17 @@ const Checkout = ({ cartItems }) => {
               <div className="mb-10">
                 <h3 className="font-black text-[#2a2a2a] mb-4 text-[15px]">Payment Method</h3>
                 <div className="flex flex-col gap-3">
-                  <label className={`flex items-center justify-between p-4 border rounded-xl cursor-pointer transition-all ${formData.paymentMethod === 'payhere' ? 'border-red-500 bg-[#FAF5EC]' : 'border-[#EADFC8] bg-white hover:border-[#B69F73]'}`}>
+                  <div 
+                    onClick={() => handleChange({ target: { name: 'paymentMethod', value: formData.paymentMethod === 'payhere' ? '' : 'payhere' } })}
+                    className={`flex flex-col items-start gap-3 p-4 border rounded-xl cursor-pointer transition-all ${formData.paymentMethod === 'payhere' ? 'border-[#B69F73] bg-[#FAF5EC]' : 'border-[#EADFC8] bg-white hover:border-[#B69F73]'}`}
+                  >
                     <div className="flex items-center gap-3">
-                      <input type="radio" name="paymentMethod" value="payhere" checked={formData.paymentMethod === 'payhere'} onChange={handleChange} className="w-4 h-4 text-red-500 focus:ring-red-500 accent-red-500 border-gray-300" />
+                      <div className={`w-5 h-5 rounded-full shrink-0 transition-colors ${formData.paymentMethod === 'payhere' ? 'bg-green-500' : 'border-2 border-[#EADFC8]'}`}>
+                      </div>
                       <span className="font-bold text-[#2a2a2a] text-[15px] max-sm:text-[13px]">Bank Card / Bank Account - PayHere</span>
                     </div>
                     
-                    <div className="flex items-center gap-1.5 shrink-0">
+                    <div className="flex items-center gap-1.5 shrink-0 pl-8">
                       {/* Visa */}
                       <div className="bg-[#1434CB] rounded px-1.5 py-1 flex items-center justify-center w-8 sm:w-10 h-5 sm:h-6">
                         <svg viewBox="0 0 38 12" className="h-2 sm:h-2.5 text-white" fill="currentColor">
@@ -250,10 +254,10 @@ const Checkout = ({ cartItems }) => {
                       </div>
                       {/* +2 */}
                       <div className="bg-white border border-gray-200 rounded flex items-center justify-center h-5 sm:h-6 min-w-[20px] sm:min-w-[24px]">
-                        <span className="text-[9px] sm:text-[10px] font-bold text-red-500">+2</span>
+                        <span className="text-[9px] sm:text-[10px] font-bold text-[#B69F73]">+2</span>
                       </div>
                     </div>
-                  </label>
+                  </div>
                 </div>
               </div>
               

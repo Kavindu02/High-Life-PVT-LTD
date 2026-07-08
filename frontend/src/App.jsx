@@ -43,6 +43,7 @@ const App = () => {
     return saved ? JSON.parse(saved) : [];
   });
 
+  const [buyNowItem, setBuyNowItem] = useState(null);
   const [isSideCartOpen, setIsSideCartOpen] = useState(false);
 
   useEffect(() => {
@@ -149,6 +150,7 @@ const App = () => {
           }, 100);
         }}
         onCheckout={() => {
+          setBuyNowItem(null);
           setIsSideCartOpen(false);
           setCurrentView('checkout');
           window.scrollTo(0, 0);
@@ -203,15 +205,28 @@ const App = () => {
                 }
               }, 100);
             }}
-            onCheckout={() => { setCurrentView('checkout'); window.scrollTo(0, 0); }}
+            onCheckout={() => { setBuyNowItem(null); setCurrentView('checkout'); window.scrollTo(0, 0); }}
           />
         ) : currentView === 'checkout' ? (
-          <Checkout cartItems={cartItems} />
+          <Checkout cartItems={buyNowItem || cartItems} />
         ) : selectedProduct ? (
-          <ProductOverview product={selectedProduct} onAddToCart={handleAddToCart} onBack={() => {
-            setSelectedProduct(null);
-            sessionStorage.removeItem('selectedProduct');
-          }} />
+          <ProductOverview 
+            product={selectedProduct} 
+            onAddToCart={handleAddToCart} 
+            onBack={() => {
+              setSelectedProduct(null);
+              sessionStorage.removeItem('selectedProduct');
+            }}
+            onCheckout={(productToBuy) => { 
+              if (productToBuy) {
+                setBuyNowItem([productToBuy]);
+              } else {
+                setBuyNowItem(null);
+              }
+              setCurrentView('checkout'); 
+              window.scrollTo(0, 0); 
+            }}
+          />
         ) : (
           <>
             <Hero />

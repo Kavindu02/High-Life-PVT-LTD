@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const ProductOverview = ({ product, onAddToCart, onBack }) => {
+const ProductOverview = ({ product, onAddToCart, onBack, onCheckout }) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState('100g'); // Default size for spices
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -129,7 +129,11 @@ const ProductOverview = ({ product, onAddToCart, onBack }) => {
                   Add To Cart
                 </button>
 
-              <button className="bg-gradient-to-r btn-shine from-[#e6b753] to-[#d6993a] text-white px-8 py-3.5 rounded-xl font-black uppercase tracking-widest text-xs shadow-[0_10px_20px_rgba(230,183,83,0.3)] hover:shadow-[0_15px_30px_rgba(230,183,83,0.4)] hover:-translate-y-1 transition-all duration-300 flex-1 md:flex-none">
+              <button 
+                onClick={() => {
+                  if (onCheckout) onCheckout({ product, size: selectedSize, quantity });
+                }}
+                className="bg-gradient-to-r btn-shine from-[#e6b753] to-[#d6993a] text-white px-8 py-3.5 rounded-xl font-black uppercase tracking-widest text-xs shadow-[0_10px_20px_rgba(230,183,83,0.3)] hover:shadow-[0_15px_30px_rgba(230,183,83,0.4)] hover:-translate-y-1 transition-all duration-300 flex-1 md:flex-none">
                 Buy Now
               </button>
             </div>
