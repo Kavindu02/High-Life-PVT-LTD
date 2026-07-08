@@ -10,9 +10,19 @@ import ProductOverview from './components/ProductOverview';
 import Login from './components/Login';
 import Register from './components/Register';
 import Profile from './components/Profile';
+import Cart from './components/Cart';
+import SideCart from './components/SideCart';
+import Checkout from './components/Checkout';
 
 const App = () => {
-  const [currentView, setCurrentView] = useState('home');
+  const [currentView, setCurrentView] = useState(() => {
+    const saved = sessionStorage.getItem('currentView');
+    return saved ? saved : 'home';
+  });
+
+  useEffect(() => {
+    sessionStorage.setItem('currentView', currentView);
+  }, [currentView]);
   const [user, setUser] = useState(() => {
     const saved = localStorage.getItem('user');
     return saved ? JSON.parse(saved) : null;
@@ -22,6 +32,13 @@ const App = () => {
     const saved = sessionStorage.getItem('selectedProduct');
     return saved ? JSON.parse(saved) : null;
   });
+
+  const [cartItems, setCartItems] = useState(() => {
+    const saved = localStorage.getItem('cartItems');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  const [isSideCartOpen, setIsSideCartOpen] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -38,6 +55,26 @@ const App = () => {
       sessionStorage.removeItem('selectedProduct');
     }
   }, [selectedProduct]);
+
+  useEffect(() => {
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
+
+  const handleAddToCart = (product, size, quantity = 1) => {
+    setCartItems(prev => {
+      // product.id might not exist, but let's assume they have id or name. Let's use name as fallback.
+      const productId = product.id || product.name;
+      const existing = prev.find(item => (item.product.id || item.product.name) === productId && item.size === size);
+      if (existing) {
+        return prev.map(item => 
+          (item.product.id || item.product.name) === productId && item.size === size 
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        );
+      }
+      return [...prev, { product, size, quantity }];
+    });
+  };
 
   useEffect(() => {
     if ('scrollRestoration' in history) {
@@ -57,7 +94,10 @@ const App = () => {
     <div className={`font-sans min-h-screen ${isAuthPage ? 'bg-[#0a0a0a]' : 'bg-brand-cream text-brand-dark'}`}>
       {!isAuthPage && (
         <Navbar
+          currentView={currentView}
           user={user}
+          cartItems={cartItems}
+          isProductOverview={!!selectedProduct}
           onNavigate={() => {
             setSelectedProduct(null);
             sessionStorage.removeItem('selectedProduct');
@@ -66,9 +106,36 @@ const App = () => {
           onNavigateToLogin={() => { setCurrentView('login'); window.scrollTo(0, 0); }}
           onNavigateToRegister={() => { setCurrentView('register'); window.scrollTo(0, 0); }}
           onNavigateToProfile={() => { setCurrentView('profile'); window.scrollTo(0, 0); }}
+          onOpenSideCart={() => setIsSideCartOpen(true)}
           onLogout={() => { setUser(null); setCurrentView('login'); window.scrollTo(0, 0); }}
         />
       )}
+      <SideCart 
+        isOpen={isSideCartOpen} 
+        onClose={() => setIsSideCartOpen(false)} 
+        cartItems={cartItems} 
+        setCartItems={setCartItems}
+        onViewFullCart={() => {
+          setIsSideCartOpen(false);
+          setCurrentView('cart');
+          window.scrollTo(0, 0);
+        }}
+        onContinueShopping={() => {
+          setIsSideCartOpen(false);
+          setCurrentView('home');
+          setTimeout(() => {
+            const element = document.getElementById('collection');
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+            }
+          }, 100);
+        }}
+        onCheckout={() => {
+          setIsSideCartOpen(false);
+          setCurrentView('checkout');
+          window.scrollTo(0, 0);
+        }}
+      />
       <main>
         {currentView === 'login' ? (
           <Login
@@ -87,8 +154,25 @@ const App = () => {
             user={user}
             onLogout={() => { setUser(null); setCurrentView('login'); window.scrollTo(0, 0); }}
           />
+        ) : currentView === 'cart' ? (
+          <Cart
+            cartItems={cartItems}
+            setCartItems={setCartItems}
+            onNavigateToHome={() => { 
+              setCurrentView('home'); 
+              setTimeout(() => {
+                const element = document.getElementById('collection');
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                }
+              }, 100);
+            }}
+            onCheckout={() => { setCurrentView('checkout'); window.scrollTo(0, 0); }}
+          />
+        ) : currentView === 'checkout' ? (
+          <Checkout cartItems={cartItems} />
         ) : selectedProduct ? (
-          <ProductOverview product={selectedProduct} onBack={() => {
+          <ProductOverview product={selectedProduct} onAddToCart={handleAddToCart} onBack={() => {
             setSelectedProduct(null);
             sessionStorage.removeItem('selectedProduct');
           }} />

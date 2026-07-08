@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const ProductOverview = ({ product, onBack }) => {
+const ProductOverview = ({ product, onAddToCart, onBack }) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState('100g'); // Default size for spices
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -110,15 +110,30 @@ const ProductOverview = ({ product, onBack }) => {
             </div>
 
             {/* Actions */}
-            <div className="flex flex-wrap items-center gap-3 mb-8">
-              <button className="bg-[#2a2a2a] btn-shine text-white px-8 py-3.5 rounded-xl font-black uppercase tracking-widest text-xs shadow-[0_10px_20px_rgba(42,42,42,0.2)] hover:bg-black hover:-translate-y-1 transition-all duration-300 flex-1 md:flex-none">
-                Add To Cart
-              </button>
+            <div className="flex flex-col gap-5 mb-8">
+              {/* Quantity Selector */}
+              <div className="flex items-center gap-4">
+                <span className="text-[11px] font-black tracking-widest text-[#2a2a2a] uppercase">Quantity</span>
+                <div className="flex items-center bg-white/80 border border-[#EADFC8]/60 rounded-xl overflow-hidden shadow-sm">
+                  <button onClick={() => handleQuantityChange('decrease')} className="px-4 py-2 text-[#9A9286] hover:bg-white hover:text-[#2a2a2a] transition-colors font-bold text-lg">-</button>
+                  <span className="px-4 font-black text-sm text-[#2a2a2a] w-12 text-center">{quantity}</span>
+                  <button onClick={() => handleQuantityChange('increase')} className="px-4 py-2 text-[#9A9286] hover:bg-white hover:text-[#2a2a2a] transition-colors font-bold text-lg">+</button>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-3">
+                <button 
+                  onClick={() => onAddToCart && onAddToCart(product, selectedSize, quantity)}
+                  className="bg-[#2a2a2a] btn-shine text-white px-8 py-3.5 rounded-xl font-black uppercase tracking-widest text-xs shadow-[0_10px_20px_rgba(42,42,42,0.2)] hover:bg-black hover:-translate-y-1 transition-all duration-300 flex-1 md:flex-none"
+                >
+                  Add To Cart
+                </button>
 
               <button className="bg-gradient-to-r btn-shine from-[#e6b753] to-[#d6993a] text-white px-8 py-3.5 rounded-xl font-black uppercase tracking-widest text-xs shadow-[0_10px_20px_rgba(230,183,83,0.3)] hover:shadow-[0_15px_30px_rgba(230,183,83,0.4)] hover:-translate-y-1 transition-all duration-300 flex-1 md:flex-none">
                 Buy Now
               </button>
             </div>
+          </div>
 
             {/* Meta Info */}
             <div className="flex flex-col gap-3 pt-6 border-t-[1.5px] border-[#EADFC8]/60 text-sm">
