@@ -122,8 +122,8 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
                   className="cursor-pointer relative overflow-hidden group py-2"
                   onClick={() => scrollToSection(lowerItem)}
                 >
-                  <span className={`relative z-10 transition-colors duration-300 ${isActive ? 'text-[#B69F73]' : 'group-hover:text-[#B69F73]'}`}>{item}</span>
-                  <span className={`absolute bottom-0 left-0 w-full h-[2px] bg-[#B69F73] transition-transform duration-300 ease-out ${isActive ? 'translate-x-0' : 'transform -translate-x-[101%] group-hover:translate-x-0'}`}></span>
+                  <span className={`relative z-10 transition-colors duration-300 ${isActive ? 'text-[#E6B754]' : 'group-hover:text-[#E6B754]'}`}>{item}</span>
+                  <span className={`absolute bottom-0 left-0 w-full h-[2px] bg-[#E6B754] transition-transform duration-300 ease-out ${isActive ? 'translate-x-0' : 'transform -translate-x-[101%] group-hover:translate-x-0'}`}></span>
                 </li>
               );
             })}
@@ -131,9 +131,9 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
         </div>
 
         {/* Search (Moved to Center) */}
-        <form onSubmit={handleSearch} className="hidden md:flex items-center border border-white/10 bg-white/10 backdrop-blur-sm px-4 py-2 w-64 rounded-full hover:border-[#B69F73]/50 hover:bg-white/20 transition-all duration-300 shadow-sm">
+        <form onSubmit={handleSearch} className="hidden md:flex items-center border border-white/10 bg-white/10 backdrop-blur-sm px-4 py-2 w-64 rounded-full hover:border-[#E6B754]/50 hover:bg-white/20 transition-all duration-300 shadow-sm">
           <button type="submit" className="focus:outline-none">
-            <svg className="w-4 h-4 text-[#FBF5EB]/50 hover:text-[#B69F73] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+            <svg className="w-4 h-4 text-[#FBF5EB]/50 hover:text-[#E6B754] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
           </button>
           <input
             type="text"
@@ -144,7 +144,7 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
           />
           <div className="w-px h-3 bg-white/20 mx-2"></div>
           <button type="submit" className="focus:outline-none group">
-            <svg className="w-4 h-4 text-[#FBF5EB]/50 cursor-pointer group-hover:text-[#B69F73] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
+            <svg className="w-4 h-4 text-[#FBF5EB]/50 cursor-pointer group-hover:text-[#E6B754] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
           </button>
         </form>
 
@@ -154,7 +154,7 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="hover:shadow-[0_0_15px_rgba(182,159,115,0.4)] transition-all duration-300 flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-[#B69F73] to-[#8a7652] text-white border border-[#FBF5EB]"
+                className="hover:shadow-[0_0_15px_rgba(230,183,84,0.4)] transition-all duration-300 flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-[#E6B754] to-[#8a7652] text-white border border-[#FBF5EB]"
               >
                 <span className="font-bold text-xs">{user.name.charAt(0).toUpperCase()}</span>
               </button>
@@ -168,7 +168,7 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
                   </div>
                   <button
                     onClick={() => { setIsDropdownOpen(false); onNavigateToProfile(); }}
-                    className="flex items-center gap-3 w-full text-left px-4 py-2.5 text-[11px] font-bold tracking-widest text-[#2a2a2a] hover:bg-[#FBF5EB] hover:text-[#B69F73] transition-colors"
+                    className="flex items-center gap-3 w-full text-left px-4 py-2.5 text-[11px] font-bold tracking-widest text-[#2a2a2a] hover:bg-[#FBF5EB] hover:text-[#E6B754] transition-colors"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
                     PROFILE
@@ -187,7 +187,7 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
             <div className="flex items-center">
               <button
                 onClick={onNavigateToLogin}
-                className="group flex items-center gap-2 px-6 py-2.5 bg-[#FBF5EB] text-[#2a2a2a] rounded-full text-[10px] font-bold tracking-widest hover:bg-[#B69F73] hover:text-white transition-all duration-300 shadow-[0_4px_14px_0_rgba(0,0,0,0.1)] hover:shadow-[0_6px_20px_rgba(182,159,115,0.25)] hover:-translate-y-0.5"
+                className="group flex items-center gap-2 px-6 py-2.5 bg-[#FBF5EB] text-[#2a2a2a] rounded-full text-[10px] font-bold tracking-widest hover:bg-[#E6B754] hover:text-white transition-all duration-300 btn-shine hover:-translate-y-0.5"
               >
                 <span>LOG IN</span>
                 <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
@@ -195,10 +195,10 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
             </div>
           )}
 
-          <button onClick={onOpenSideCart} className={`transition-colors relative group p-2 hover:text-[#B69F73]`}>
+          <button onClick={onOpenSideCart} className={`transition-colors relative group p-2 hover:text-[#E6B754]`}>
             <svg className={`w-5 h-5 transition-transform duration-300 group-hover:scale-110`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
             {cartItemCount > 0 && (
-              <span className="absolute top-0 -right-1 min-w-[14px] h-[14px] flex items-center justify-center bg-[#B69F73] rounded-full text-[#FBF5EB] text-[8px] font-bold px-1 border border-[#2A2A2A]">
+              <span className="absolute top-0 -right-1 min-w-[14px] h-[14px] flex items-center justify-center bg-[#E6B754] rounded-full text-[#FBF5EB] text-[8px] font-bold px-1 border border-[#2A2A2A]">
                 {cartItemCount}
               </span>
             )}
