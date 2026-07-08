@@ -13,9 +13,14 @@ import Profile from './components/Profile';
 import Cart from './components/Cart';
 import SideCart from './components/SideCart';
 import Checkout from './components/Checkout';
+import AdminDashboard from './components/AdminDashboard';
 
 const App = () => {
   const [currentView, setCurrentView] = useState(() => {
+    if (window.location.hash === '#admin' || window.location.hash === '#/admin') {
+      window.history.replaceState(null, '', window.location.pathname);
+      return 'admin';
+    }
     const saved = sessionStorage.getItem('currentView');
     return saved ? saved : 'home';
   });
@@ -66,8 +71,8 @@ const App = () => {
       const productId = product.id || product.name;
       const existing = prev.find(item => (item.product.id || item.product.name) === productId && item.size === size);
       if (existing) {
-        return prev.map(item => 
-          (item.product.id || item.product.name) === productId && item.size === size 
+        return prev.map(item =>
+          (item.product.id || item.product.name) === productId && item.size === size
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
@@ -88,7 +93,20 @@ const App = () => {
 
   }, [selectedProduct]);
 
-  const isAuthPage = currentView === 'login' || currentView === 'register';
+  const [adminUser, setAdminUser] = useState(() => {
+    const saved = localStorage.getItem('adminUser');
+    return saved ? JSON.parse(saved) : null;
+  });
+
+  useEffect(() => {
+    if (adminUser) {
+      localStorage.setItem('adminUser', JSON.stringify(adminUser));
+    } else {
+      localStorage.removeItem('adminUser');
+    }
+  }, [adminUser]);
+
+  const isAuthPage = currentView === 'login' || currentView === 'register' || currentView === 'admin';
 
   return (
     <div className={`font-sans min-h-screen ${isAuthPage ? 'bg-[#0a0a0a]' : 'bg-brand-cream text-brand-dark'}`}>
@@ -110,10 +128,10 @@ const App = () => {
           onLogout={() => { setUser(null); setCurrentView('login'); window.scrollTo(0, 0); }}
         />
       )}
-      <SideCart 
-        isOpen={isSideCartOpen} 
-        onClose={() => setIsSideCartOpen(false)} 
-        cartItems={cartItems} 
+      <SideCart
+        isOpen={isSideCartOpen}
+        onClose={() => setIsSideCartOpen(false)}
+        cartItems={cartItems}
         setCartItems={setCartItems}
         onViewFullCart={() => {
           setIsSideCartOpen(false);
@@ -137,9 +155,27 @@ const App = () => {
         }}
       />
       <main>
-        {currentView === 'login' ? (
+        {currentView === 'admin' ? (
+          !adminUser ? (
+            <Login
+              onLogin={(userData) => { setUser(userData); setCurrentView('home'); }}
+              onAdminLogin={(adminData) => { 
+                setAdminUser(adminData); 
+              }}
+              onNavigateToRegister={() => { setCurrentView('register'); window.scrollTo(0, 0); }}
+              onNavigateToHome={() => { setCurrentView('home'); window.scrollTo(0, 0); }}
+            />
+          ) : (
+            <AdminDashboard onLogout={() => { setAdminUser(null); setCurrentView('home'); }} />
+          )
+        ) : currentView === 'login' ? (
           <Login
             onLogin={(userData) => { setUser(userData); setCurrentView('home'); }}
+            onAdminLogin={(adminData) => { 
+              setAdminUser(adminData); 
+              setCurrentView('home');
+              window.open(window.location.origin + '/#admin', '_blank'); 
+            }}
             onNavigateToRegister={() => { setCurrentView('register'); window.scrollTo(0, 0); }}
             onNavigateToHome={() => { setCurrentView('home'); window.scrollTo(0, 0); }}
           />
@@ -158,8 +194,8 @@ const App = () => {
           <Cart
             cartItems={cartItems}
             setCartItems={setCartItems}
-            onNavigateToHome={() => { 
-              setCurrentView('home'); 
+            onNavigateToHome={() => {
+              setCurrentView('home');
               setTimeout(() => {
                 const element = document.getElementById('collection');
                 if (element) {

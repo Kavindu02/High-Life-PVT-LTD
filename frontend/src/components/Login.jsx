@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Login = ({ onLogin, onNavigateToRegister, onNavigateToHome }) => {
+const Login = ({ onLogin, onAdminLogin, onNavigateToRegister, onNavigateToHome }) => {
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -12,7 +12,7 @@ const Login = ({ onLogin, onNavigateToRegister, onNavigateToHome }) => {
     setLoading(true);
 
     try {
-      const res = await fetch('http://localhost:5000/api/login', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ identifier, password })
@@ -24,7 +24,11 @@ const Login = ({ onLogin, onNavigateToRegister, onNavigateToHome }) => {
         throw new Error(data.error || 'Login failed');
       }
 
-      onLogin(data);
+      if (data.role === 'admin') {
+        if (onAdminLogin) onAdminLogin(data);
+      } else {
+        if (onLogin) onLogin(data);
+      }
     } catch (err) {
       setError(err.message);
     } finally {
@@ -87,7 +91,7 @@ const Login = ({ onLogin, onNavigateToRegister, onNavigateToHome }) => {
                     Register
                   </button>
                 </div>
-                <button type="button" onClick={onNavigateToHome} className="text-[11px] text-[#9A9286] hover:text-[#2A2A2A] transition-colors uppercase tracking-widest">
+                <button type="button" onClick={onNavigateToHome} className="text-[11px] text-[#9A9286] hover:text-[#2A2A2A] transition-colors uppercase tracking-widest mt-1">
                   Back to Home
                 </button>
               </div>

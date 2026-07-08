@@ -40,6 +40,7 @@ async function setupDatabase() {
         email VARCHAR(255) NOT NULL UNIQUE,
         mobile_number VARCHAR(20),
         password VARCHAR(255) NOT NULL,
+        is_blocked BOOLEAN DEFAULT false,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
     `);
@@ -53,7 +54,42 @@ async function setupDatabase() {
         console.error('Error adding mobile_number column:', e.message);
       }
     }
-    console.log('Users table created or already exists.');
+    
+    try {
+      await connection.query('ALTER TABLE users ADD COLUMN is_blocked BOOLEAN DEFAULT false AFTER password;');
+      console.log('Added is_blocked column to users table.');
+    } catch (e) {
+      if (e.code !== 'ER_DUP_FIELDNAME') {
+        console.error('Error adding is_blocked column:', e.message);
+      }
+    }
+
+    try {
+      await connection.query('ALTER TABLE users ADD COLUMN role VARCHAR(50) DEFAULT \'user\' AFTER email;');
+      console.log('Added role column to users table.');
+    } catch (e) {
+      if (e.code !== 'ER_DUP_FIELDNAME') {
+        console.error('Error adding role column:', e.message);
+      }
+    }
+
+    // 4.6 Create the orders table
+    await connection.query(`
+      CREATE TABLE IF NOT EXISTS orders (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        customer_name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        mobile_number VARCHAR(20) NOT NULL,
+        location VARCHAR(255) NOT NULL,
+        total_amount VARCHAR(50) NOT NULL,
+        payment_method VARCHAR(50) NOT NULL,
+        status VARCHAR(50) DEFAULT 'Pending',
+        items JSON NOT NULL,
+        payment_slip VARCHAR(255),
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+    console.log('Orders table created or already exists.');
 
     // 5. Insert initial seed data if table is empty
     const [rows] = await connection.query('SELECT COUNT(*) as count FROM products');

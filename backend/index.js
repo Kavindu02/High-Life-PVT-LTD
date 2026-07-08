@@ -71,6 +71,11 @@ app.post('/api/login', async (req, res) => {
     const { identifier, email, password } = req.body;
     const loginId = identifier || email;
     
+    // Check if it's admin
+    if (loginId === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
+      return res.json({ role: 'admin', email: process.env.ADMIN_EMAIL });
+    }
+    
     // Check if user exists
     const [users] = await pool.query('SELECT * FROM users WHERE email = ? OR name = ?', [loginId, loginId]);
     if (users.length === 0) {
@@ -79,6 +84,11 @@ app.post('/api/login', async (req, res) => {
 
     const user = users[0];
 
+    // Check if blocked
+    if (user.is_blocked) {
+      return res.status(403).json({ error: 'Your account has been blocked by the administrator.' });
+    }
+
     // Check password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
@@ -86,10 +96,100 @@ app.post('/api/login', async (req, res) => {
     }
 
     // Send back user data
-    res.json({ id: user.id, name: user.name, email: user.email, mobileNumber: user.mobile_number });
+    res.json({ id: user.id, name: user.name, email: user.email, mobileNumber: user.mobile_number, role: user.role || 'user' });
   } catch (err) {
     console.error('Login error:', err);
     res.status(500).json({ error: 'Server error during login' });
+  }
+});
+
+// --- ADMIN ROUTES ---
+
+// Admin Login
+app.post('/api/admin/login', (req, res) => {
+  const { email, password } = req.body;
+  if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
+    res.json({ message: 'Admin login successful', role: 'admin' });
+  } else {
+    res.status(401).json({ error: 'Invalid admin credentials' });
+  }
+});
+
+// Get all users
+app.get('/api/admin/users', async (req, res) => {
+  try {
+    const [users] = await pool.query('SELECT id, name, email, role, mobile_number, is_blocked, created_at FROM users ORDER BY created_at DESC');
+    res.json(users);
+  } catch (err) {
+    console.error('Error fetching users:', err);
+    res.status(500).json({ error: 'Failed to fetch users' });
+  }
+});
+
+// Toggle role status
+app.put('/api/admin/users/:id/role', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { role } = req.body;
+    await pool.query('UPDATE users SET role = ? WHERE id = ?', [role, id]);
+    res.json({ message: 'User role updated successfully' });
+  } catch (err) {
+    console.error('Error updating user role:', err);
+    res.status(500).json({ error: 'Failed to update user role' });
+  }
+});
+
+// Toggle block status
+app.put('/api/admin/users/:id/block', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { is_blocked } = req.body;
+    await pool.query('UPDATE users SET is_blocked = ? WHERE id = ?', [is_blocked ? 1 : 0, id]);
+    res.json({ message: 'User block status updated successfully' });
+  } catch (err) {
+    console.error('Error updating block status:', err);
+    res.status(500).json({ error: 'Failed to update user block status' });
+  }
+});
+
+// Get all orders
+app.get('/api/admin/orders', async (req, res) => {
+  try {
+    const [orders] = await pool.query('SELECT * FROM orders ORDER BY created_at DESC');
+    res.json(orders);
+  } catch (err) {
+    console.error('Error fetching orders:', err);
+    res.status(500).json({ error: 'Failed to fetch orders' });
+  }
+});
+
+// Update order status
+app.put('/api/admin/orders/:id/status', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+    await pool.query('UPDATE orders SET status = ? WHERE id = ?', [status, id]);
+    res.json({ message: 'Order status updated successfully' });
+  } catch (err) {
+    console.error('Error updating order status:', err);
+    res.status(500).json({ error: 'Failed to update order status' });
+  }
+});
+
+// --- ORDER ROUTES ---
+app.post('/api/orders', async (req, res) => {
+  try {
+    const { customer_name, email, mobile_number, location, total_amount, payment_method, items } = req.body;
+    
+    const [result] = await pool.query(
+      'INSERT INTO orders (customer_name, email, mobile_number, location, total_amount, payment_method, items) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      [customer_name, email, mobile_number, location, total_amount, payment_method, JSON.stringify(items)]
+    );
+
+    res.status(201).json({ message: 'Order placed successfully', orderId: result.insertId });
+  } catch (err) {
+    console.error('Error creating order:', err);
+    res.status(500).json({ error: 'Server error during order creation' });
   }
 });
 

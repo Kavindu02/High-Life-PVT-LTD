@@ -47,6 +47,42 @@ const Checkout = ({ cartItems }) => {
 
   const total = subtotal;
 
+  const handlePlaceOrder = async () => {
+    if (!formData.firstName || !formData.email || !formData.district || !formData.city || !formData.phone1) {
+      alert("Please fill in all required delivery details.");
+      return;
+    }
+
+    const orderData = {
+      customer_name: `${formData.firstName} ${formData.lastName}`.trim(),
+      email: formData.email,
+      mobile_number: formData.phone1,
+      location: `${formData.district}, ${formData.city}`,
+      total_amount: total.toString(),
+      payment_method: formData.paymentMethod,
+      items: cartItems
+    };
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/orders`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(orderData)
+      });
+      
+      if (response.ok) {
+        alert("Order placed successfully!");
+        localStorage.removeItem('cartItems'); // Clear cart
+        window.location.reload();
+      } else {
+        alert("Failed to place order.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Server error. Please try again.");
+    }
+  };
+
   return (
     <div className="w-full bg-[#FAF5EC] min-h-screen pt-32 pb-16 relative font-sans">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -186,7 +222,7 @@ const Checkout = ({ cartItems }) => {
                 </div>
               </div>
               
-              <button className="w-full bg-[#2a2a2a] btn-shine text-white text-[13px] font-bold uppercase px-8 py-4 rounded-full hover:bg-[#E6B754] transition tracking-wider shadow-lg border-2 border-[#EADFC8]/50 flex items-center justify-center gap-2 group">
+              <button onClick={handlePlaceOrder} className="w-full bg-[#2a2a2a] btn-shine text-white text-[13px] font-bold uppercase px-8 py-4 rounded-full hover:bg-[#E6B754] transition tracking-wider shadow-lg border-2 border-[#EADFC8]/50 flex items-center justify-center gap-2 group">
                 PLACE ORDER 
                 <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
               </button>
