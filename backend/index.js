@@ -3,7 +3,7 @@ const cors = require('cors');
 const mysql = require('mysql2/promise');
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
-
+const { sendOrderConfirmation } = require('./emailService');
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -185,6 +185,9 @@ app.post('/api/orders', async (req, res) => {
       'INSERT INTO orders (customer_name, email, mobile_number, location, total_amount, payment_method, items) VALUES (?, ?, ?, ?, ?, ?, ?)',
       [customer_name, email, mobile_number, location, total_amount, payment_method, JSON.stringify(items)]
     );
+
+    // Send email confirmation asynchronously
+    sendOrderConfirmation(req.body, result.insertId);
 
     res.status(201).json({ message: 'Order placed successfully', orderId: result.insertId });
   } catch (err) {

@@ -1,15 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AdminUsers from './AdminUsers';
 import AdminOrders from './AdminOrders';
 
 const AdminDashboard = ({ onLogout }) => {
-  const [activeTab, setActiveTab] = useState('orders');
+  const [activeTab, setActiveTab] = useState(() => {
+    const saved = sessionStorage.getItem('adminActiveTab');
+    return saved ? saved : 'orders';
+  });
+
+  useEffect(() => {
+    sessionStorage.setItem('adminActiveTab', activeTab);
+  }, [activeTab]);
 
   return (
     <div className="min-h-screen bg-[#F9F7F2] flex">
       {/* Sidebar */}
       <div className="w-64 bg-white border-r border-[#EADFC8] p-6 flex flex-col">
-        <h1 className="text-2xl font-black text-[#2a2a2a] mb-10">High Life <br/><span className="text-lg font-medium text-[#888]">Admin Panel</span></h1>
+        <div className="mb-10">
+          <a href="/" target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105">
+            <img src="/logo.png" alt="High Life Logo" className="h-[130px] w-auto object-contain mix-blend-multiply mb-2 -ml-2" />
+          </a>
+          <div className="text-xs font-bold text-[#888] uppercase tracking-[0.2em] ml-2 mt-[-10px]">Admin Panel</div>
+        </div>
         
         <nav className="flex-1 space-y-2">
           <button 
@@ -28,9 +40,9 @@ const AdminDashboard = ({ onLogout }) => {
 
         <button 
           onClick={onLogout}
-          className="mt-auto px-4 py-3 text-red-500 font-bold hover:bg-red-50 rounded-xl transition-colors text-left"
+          className="mt-auto bg-[#2a2a2a] btn-shine text-white text-[11px] font-bold px-6 py-3.5 rounded-full hover:bg-red-500 transition tracking-widest uppercase shadow-lg text-center border-2 border-transparent hover:border-white/20"
         >
-          Logout
+          Log Out
         </button>
       </div>
 

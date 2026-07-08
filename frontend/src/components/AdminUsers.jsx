@@ -93,26 +93,26 @@ const AdminUsers = () => {
                   )}
                 </td>
                 <td className="p-6">
-                  <div className="flex gap-2">
+                  <div className="flex gap-3">
                     <button 
                       onClick={() => handleRoleToggle(user.id, user.role || 'user')}
-                      className={`px-4 py-2 rounded-xl text-sm font-bold transition-colors border ${
+                      className={`btn-shine text-white text-[10px] font-bold px-5 py-2.5 rounded-full transition tracking-wider shadow-md uppercase border-2 border-white/20 ${
                         user.role === 'admin' 
-                          ? 'bg-orange-50 text-orange-600 border-orange-200 hover:bg-orange-100' 
-                          : 'bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100'
+                          ? 'bg-orange-500 hover:bg-orange-600' 
+                          : 'bg-[#2a2a2a] hover:bg-[#E6B754]'
                       }`}
                     >
                       {user.role === 'admin' ? 'Remove Admin' : 'Make Admin'}
                     </button>
                     <button 
                       onClick={() => handleBlockToggle(user.id, user.is_blocked)}
-                      className={`px-4 py-2 rounded-xl text-sm font-bold transition-colors ${
+                      className={`btn-shine text-white text-[10px] font-bold px-5 py-2.5 rounded-full transition tracking-wider shadow-md uppercase border-2 border-white/20 ${
                         user.is_blocked 
-                          ? 'bg-[#2a2a2a] text-white hover:bg-black' 
-                          : 'bg-red-50 text-red-500 hover:bg-red-100 border border-red-200'
+                          ? 'bg-green-500 hover:bg-green-600' 
+                          : 'bg-red-500 hover:bg-red-600'
                       }`}
                     >
-                      {user.is_blocked ? 'Unblock User' : 'Block User'}
+                      {user.is_blocked ? 'Unblock' : 'Block'}
                     </button>
                   </div>
                 </td>
