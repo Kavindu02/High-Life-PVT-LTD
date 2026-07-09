@@ -112,8 +112,8 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
           </div>
 
           {/* Links */}
-          <ul className="flex items-center space-x-6 lg:space-x-10 text-[9px] lg:text-[10px] font-bold tracking-[0.2em] text-[#FBF5EB]">
-            {['HOME', 'ABOUT', 'COLLECTION', 'BLOG', 'CONTACT'].map((item) => {
+          <ul className="flex items-center space-x-6 lg:space-x-10 text-sm text-[#FBF5EB]">
+            {['Home', 'About', 'Collection', 'Blog', 'Contact'].map((item) => {
               const lowerItem = item.toLowerCase();
               const isActive = activeSection === lowerItem;
               return (
@@ -168,17 +168,17 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
                   </div>
                   <button
                     onClick={() => { setIsDropdownOpen(false); onNavigateToProfile(); }}
-                    className="flex items-center gap-3 w-full text-left px-4 py-2.5 text-[11px] font-bold tracking-widest text-[#2a2a2a] hover:bg-[#FBF5EB] hover:text-[#E6B754] transition-colors"
+                    className="flex items-center gap-3 w-full text-left px-4 py-2.5 text-sm text-[#2a2a2a] hover:bg-[#FBF5EB] hover:text-[#E6B754] transition-colors"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
-                    PROFILE
+                    Profile
                   </button>
                   <button
                     onClick={() => { setIsDropdownOpen(false); onLogout(); }}
-                    className="flex items-center gap-3 w-full text-left px-4 py-2.5 text-[11px] font-bold tracking-widest text-red-600 hover:bg-red-50 transition-colors"
+                    className="flex items-center gap-3 w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
-                    LOG OUT
+                    Log out
                   </button>
                 </div>
               )}
@@ -187,10 +187,10 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
             <div className="flex items-center">
               <button
                 onClick={onNavigateToLogin}
-                className="group flex items-center gap-2 px-6 py-2.5 bg-[#FBF5EB] text-[#2a2a2a] rounded-full text-[10px] font-bold tracking-widest hover:bg-[#E6B754] hover:text-white transition-all duration-300 btn-shine hover:-translate-y-0.5"
+                className="group flex items-center gap-2 px-6 py-2 bg-[#FBF5EB] text-[#2a2a2a] rounded-full text-sm hover:bg-[#E6B754] hover:text-white transition-all duration-300 btn-shine"
               >
-                <span>LOG IN</span>
-                <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                <span>Login</span>
+                <svg className="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
               </button>
             </div>
           )}
