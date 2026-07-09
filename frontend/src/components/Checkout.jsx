@@ -14,7 +14,6 @@ const Checkout = ({ cartItems }) => {
     phone1: '',
     phone2: '',
     orderNotes: '',
-    shippingMethod: 'koombiyo',
     paymentMethod: ''
   });
   const [isProcessing, setIsProcessing] = useState(false);
@@ -67,7 +66,13 @@ const Checkout = ({ cartItems }) => {
         customer_name: `${formData.firstName} ${formData.lastName}`.trim(),
         email: formData.email,
         mobile_number: formData.phone1,
+        phone2: formData.phone2 || '',
         location: `${formData.address}, ${formData.city}, ${formData.district} - ${formData.postalCode}`,
+        address: formData.address,
+        city: formData.city,
+        district: formData.district,
+        postal_code: formData.postalCode,
+        order_notes: formData.orderNotes || '',
         total_amount: total.toString(),
         payment_method: formData.paymentMethod,
         items: cartItems
@@ -224,13 +229,13 @@ const Checkout = ({ cartItems }) => {
                 <h3 className="font-black text-[#2a2a2a] mb-4 text-[15px]">Payment Method</h3>
                 <div className="flex flex-col gap-3">
                   <div 
-                    onClick={() => handleChange({ target: { name: 'paymentMethod', value: formData.paymentMethod === 'payhere' ? '' : 'payhere' } })}
-                    className={`flex flex-col items-start gap-3 p-4 border rounded-xl cursor-pointer transition-all ${formData.paymentMethod === 'payhere' ? 'border-[#B69F73] bg-[#FAF5EC]' : 'border-[#EADFC8] bg-white hover:border-[#B69F73]'}`}
+                    onClick={() => handleChange({ target: { name: 'paymentMethod', value: formData.paymentMethod === 'onepay' ? '' : 'onepay' } })}
+                    className={`flex flex-col items-start gap-3 p-4 border rounded-xl cursor-pointer transition-all ${formData.paymentMethod === 'onepay' ? 'border-[#B69F73] bg-[#FAF5EC]' : 'border-[#EADFC8] bg-white hover:border-[#B69F73]'}`}
                   >
                     <div className="flex items-center gap-3">
-                      <div className={`w-5 h-5 rounded-full shrink-0 transition-colors ${formData.paymentMethod === 'payhere' ? 'bg-green-500' : 'border-2 border-[#EADFC8]'}`}>
+                      <div className={`w-5 h-5 rounded-full shrink-0 transition-colors ${formData.paymentMethod === 'onepay' ? 'bg-green-500' : 'border-2 border-[#EADFC8]'}`}>
                       </div>
-                      <span className="font-bold text-[#2a2a2a] text-[15px] max-sm:text-[13px]">Bank Card / Bank Account - PayHere</span>
+                      <span className="font-bold text-[#2a2a2a] text-[15px] max-sm:text-[13px]">Bank Card / Bank Account - One Pay</span>
                     </div>
                     
                     <div className="flex items-center gap-1.5 shrink-0 pl-8">

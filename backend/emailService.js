@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer');
 const path = require('path');
+const fs = require('fs');
 require('dotenv').config();
 
 // Create transporter using SMTP/Gmail
@@ -22,13 +23,27 @@ const sendOrderConfirmation = async (orderData, orderId) => {
     return;
   }
 
-  // Prepare attachments array with the logo
-  const attachments = [{
-    filename: 'logo.png',
-    path: path.join(__dirname, '../frontend/public/logo.png'),
-    cid: 'logo', // referenced as cid:logo in the img src
-    contentDisposition: 'inline'
-  }];
+  const attachments = [];
+  const logoPath = path.join(__dirname, '../frontend/public/logo.png');
+  if (fs.existsSync(logoPath)) {
+    attachments.push({
+      filename: 'logo.png',
+      path: logoPath,
+      cid: 'logo',
+      contentDisposition: 'inline'
+    });
+  } else {
+    const logoWebpPath = path.join(__dirname, '../frontend/public/logo.webp');
+    if (fs.existsSync(logoWebpPath)) {
+      attachments.push({
+        filename: 'logo.png', // Fake extension to hide attachment in Gmail
+        path: logoWebpPath,
+        cid: 'logo',
+        contentType: 'image/png',
+        contentDisposition: 'inline'
+      });
+    }
+  }
 
   // Keep track of attached images to reuse cid and avoid duplicates
   const attachedImages = {};
@@ -51,18 +66,24 @@ const sendOrderConfirmation = async (orderData, orderId) => {
         
         if (!attachedImages[imageFilename]) {
           const cid = `product_${imageFilename.replace(/[^a-zA-Z0-9]/g, '')}`;
-          attachedImages[imageFilename] = cid;
+          const imagePath = path.join(__dirname, '../frontend/public/', imageFilename);
           
-          attachments.push({
-            filename: imageFilename,
-            path: path.join(__dirname, '../frontend/public/', imageFilename),
-            cid: cid,
-            contentDisposition: 'inline'
-          });
+          if (fs.existsSync(imagePath)) {
+            attachedImages[imageFilename] = cid;
+            attachments.push({
+              filename: imageFilename.replace('.webp', '.png'), // Fake extension for Gmail
+              path: imagePath,
+              cid: cid,
+              contentType: 'image/png', // Trick Gmail into treating it as a standard inline image
+              contentDisposition: 'inline'
+            });
+          }
         }
         
         const cid = attachedImages[imageFilename];
-        imageHtml = `<img src="cid:${cid}" alt="${item.product.name}" style="width: 50px; height: 50px; display: block; border-radius: 8px;" />`;
+        if (cid) {
+          imageHtml = `<div style="background-image: url('cid:${cid}'); background-size: cover; background-position: center; width: 50px; height: 50px; border-radius: 8px;"></div>`;
+        }
       }
       
       itemsHtml += `
@@ -99,6 +120,10 @@ const sendOrderConfirmation = async (orderData, orderId) => {
       <title>Order Confirmation</title>
     </head>
     <body style="margin: 0; padding: 0; background-color: #FAF5EC; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #2a2a2a;">
+      <!-- Hidden Preheader Text to clear inbox preview -->
+      <div style="display: none; max-height: 0px; overflow: hidden;">
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+      </div>
       <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #FAF5EC;">
         <tr>
           <td align="center" style="padding: 40px 15px;">
@@ -106,8 +131,8 @@ const sendOrderConfirmation = async (orderData, orderId) => {
               
               <!-- Header -->
               <tr>
-                <td style="padding-bottom: 30px; text-align: center;">
-                  <img src="cid:logo" alt="High Life Logo" style="height: 150px; width: auto; max-width: 100%; display: block; margin: 0 auto;" />
+                <td style="padding-bottom: 10px; text-align: center;">
+                  <div style="background-image: url('cid:logo'); background-size: contain; background-repeat: no-repeat; background-position: center; height: 150px; width: 250px; margin: 0 auto;"></div>
                 </td>
               </tr>
               
@@ -176,7 +201,7 @@ const sendOrderConfirmation = async (orderData, orderId) => {
                         <div style="color: #2a2a2a; font-size: 15px; font-weight: 500; line-height: 1.6;">
                           0${orderData.mobile_number.replace(/^0+/, '')}<br>
                           <a href="mailto:${orderData.email}" style="color: #E6B754; text-decoration: none;">${orderData.email}</a><br>
-                          Payment: ${orderData.payment_method === 'payhere' ? 'PayHere' : 'Cash On Delivery'}
+                          Payment: ${orderData.payment_method === 'onepay' ? 'Bank Card / Bank Account - One Pay' : (orderData.payment_method || 'One Pay')}
                         </div>
                       </td>
                     </tr>
@@ -212,7 +237,7 @@ const sendOrderConfirmation = async (orderData, orderId) => {
 
   try {
     const info = await transporter.sendMail({
-      from: `"High Life" <${process.env.EMAIL_USER}>`,
+      from: `"High Life (PVT) LTD" <${process.env.EMAIL_USER}>`,
       to: orderData.email,
       subject: `Thank you for your order!`,
       html: htmlContent,

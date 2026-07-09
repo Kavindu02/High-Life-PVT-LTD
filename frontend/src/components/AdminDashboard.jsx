@@ -15,7 +15,7 @@ const AdminDashboard = ({ onLogout }) => {
   return (
     <div className="min-h-screen bg-[#F9F7F2] flex">
       {/* Sidebar */}
-      <div className="w-64 bg-white border-r border-[#EADFC8] p-6 flex flex-col">
+      <div className="w-64 bg-white border-r border-[#EADFC8] p-6 flex flex-col sticky top-0 h-screen overflow-y-auto">
         <div className="mb-10">
           <a href="/" target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-105">
             <img src="/logo.webp" alt="High Life Logo" className="h-[130px] w-auto object-contain mix-blend-multiply mb-2 -ml-2" />

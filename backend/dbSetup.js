@@ -91,6 +91,31 @@ async function setupDatabase() {
     `);
     console.log('Orders table created or already exists.');
 
+    // Add new columns to orders table for additional checkout details
+    try {
+      await connection.query('ALTER TABLE orders ADD COLUMN phone2 VARCHAR(20) AFTER mobile_number;');
+      console.log('Added phone2 column to orders table.');
+    } catch (e) {
+      if (e.code !== 'ER_DUP_FIELDNAME') console.error('Error adding phone2 column:', e.message);
+    }
+    
+    try {
+      await connection.query('ALTER TABLE orders ADD COLUMN order_notes TEXT AFTER location;');
+      console.log('Added order_notes column to orders table.');
+    } catch (e) {
+      if (e.code !== 'ER_DUP_FIELDNAME') console.error('Error adding order_notes column:', e.message);
+    }
+
+    try {
+      await connection.query('ALTER TABLE orders ADD COLUMN address TEXT AFTER location;');
+      await connection.query('ALTER TABLE orders ADD COLUMN city VARCHAR(100) AFTER address;');
+      await connection.query('ALTER TABLE orders ADD COLUMN district VARCHAR(100) AFTER city;');
+      await connection.query('ALTER TABLE orders ADD COLUMN postal_code VARCHAR(20) AFTER district;');
+      console.log('Added address, city, district, postal_code columns to orders table.');
+    } catch (e) {
+      if (e.code !== 'ER_DUP_FIELDNAME') console.error('Error adding location columns:', e.message);
+    }
+
     // 5. Insert initial seed data if table is empty
     const [rows] = await connection.query('SELECT COUNT(*) as count FROM products');
     if (rows[0].count === 0) {

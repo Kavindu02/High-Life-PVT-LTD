@@ -179,11 +179,11 @@ app.put('/api/admin/orders/:id/status', async (req, res) => {
 // --- ORDER ROUTES ---
 app.post('/api/orders', async (req, res) => {
   try {
-    const { customer_name, email, mobile_number, location, total_amount, payment_method, items } = req.body;
+    const { customer_name, email, mobile_number, phone2, location, address, city, district, postal_code, order_notes, total_amount, payment_method, items } = req.body;
     
     const [result] = await pool.query(
-      'INSERT INTO orders (customer_name, email, mobile_number, location, total_amount, payment_method, items) VALUES (?, ?, ?, ?, ?, ?, ?)',
-      [customer_name, email, mobile_number, location, total_amount, payment_method, JSON.stringify(items)]
+      'INSERT INTO orders (customer_name, email, mobile_number, phone2, location, address, city, district, postal_code, order_notes, total_amount, payment_method, items) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+      [customer_name, email, mobile_number, phone2, location, address, city, district, postal_code, order_notes, total_amount, payment_method, JSON.stringify(items)]
     );
 
     // Send email confirmation asynchronously

@@ -178,7 +178,7 @@ const App = () => {
               onNavigateToHome={() => { setCurrentView('home'); window.scrollTo(0, 0); }}
             />
           ) : (
-            <AdminDashboard onLogout={() => { setAdminUser(null); setCurrentView('home'); }} />
+            <AdminDashboard onLogout={() => { setAdminUser(null); setCurrentView('login'); }} />
           )
         ) : currentView === 'login' ? (
           <Login
