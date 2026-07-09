@@ -244,12 +244,12 @@ const AdminOrders = () => {
                     </div>
                     <div className="flex justify-between border-b border-gray-50 pb-2">
                       <span className="text-[#888] text-sm font-semibold">Phone 1</span>
-                      <span className="font-bold text-[#2a2a2a]">{selectedOrder.mobile_number}</span>
+                      <span className="font-bold text-[#2a2a2a]">0{String(selectedOrder.mobile_number).replace(/^0+/, '')}</span>
                     </div>
                     {selectedOrder.phone2 && (
                       <div className="flex justify-between border-b border-gray-50 pb-2">
                         <span className="text-[#888] text-sm font-semibold">Phone 2</span>
-                        <span className="font-bold text-[#2a2a2a]">{selectedOrder.phone2}</span>
+                        <span className="font-bold text-[#2a2a2a]">0{String(selectedOrder.phone2).replace(/^0+/, '')}</span>
                       </div>
                     )}
                     <div className="flex flex-col border-b border-gray-50 pb-2">
