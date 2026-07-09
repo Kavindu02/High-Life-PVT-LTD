@@ -14,8 +14,17 @@ import Cart from './components/Cart';
 import SideCart from './components/SideCart';
 import Checkout from './components/Checkout';
 import AdminDashboard from './components/AdminDashboard';
+import Loader from './components/Loader';
 
 const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 4800); // 4 seconds loading to allow full animation
+    return () => clearTimeout(timer);
+  }, []);
   const [currentView, setCurrentView] = useState(() => {
     if (window.location.hash === '#admin' || window.location.hash === '#/admin') {
       window.history.replaceState(null, '', window.location.pathname);
@@ -111,6 +120,7 @@ const App = () => {
 
   return (
     <div className={`font-sans min-h-screen ${isAuthPage ? 'bg-[#0a0a0a]' : 'bg-brand-cream text-brand-dark'}`}>
+      <Loader isVisible={isLoading} />
       {!isAuthPage && (
         <Navbar
           currentView={currentView}
