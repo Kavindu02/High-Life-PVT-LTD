@@ -97,7 +97,7 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
   const cartItemCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-[#2A2A2A]/95 backdrop-blur-md border-b border-white/10 transition-all duration-300 flex flex-col font-montserrat">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-[#2A2A2A]/95 backdrop-blur-md border-b-[4px] border-[#E6B754] transition-all duration-300 flex flex-col font-montserrat">
       {/* Main Navbar */}
       <div className="w-full flex flex-col md:flex-row justify-between items-center px-6 lg:px-12 py-3 h-20 relative z-10">
 
@@ -105,10 +105,10 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
         <div className="flex items-center gap-16 lg:gap-24 mt-4 md:mt-0">
           {/* Logo */}
           <div
-            className="cursor-pointer relative w-[130px] h-10 group"
+            className="cursor-pointer relative w-[160px] h-10 group"
             onClick={() => scrollToSection('home')}
           >
-            <img src="/logo.webp" alt="High Life Logo" className="absolute top-1/2 -translate-y-1/2 left-0 h-[130px] w-auto object-contain drop-shadow-sm transition-transform duration-500 group-hover:scale-105" />
+            <img src="/logo.webp" alt="High Life Logo" className="absolute top-1/2 -translate-y-1/2 left-0 h-[180px] w-auto object-contain drop-shadow-sm transition-transform duration-500 group-hover:scale-105" />
           </div>
 
           {/* Links */}
