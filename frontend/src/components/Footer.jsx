@@ -32,7 +32,7 @@ const Footer = () => {
           <div>
             <h4 className="text-sm font-bold text-white uppercase tracking-[0.2em] mb-4">Explore</h4>
             <ul className="space-y-2">
-              {['Home', 'About', 'Collection', 'Blog', 'Contact'].map((link) => (
+              {['Home', 'About', 'Collection', 'Story', 'Contact'].map((link) => (
                 <li key={link}>
                   <a href={`#${link.toLowerCase().replace(' ', '')}`} className="text-[#fcf5e5]/60 hover:text-[#E6B754] hover:translate-x-1 inline-block transition-all duration-300 text-sm">
                     {link}

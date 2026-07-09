@@ -19,7 +19,7 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
     }
 
     const handleScroll = () => {
-      const sections = ['home', 'about', 'collection', 'blog', 'contact'];
+      const sections = ['home', 'about', 'collection', 'story', 'contact'];
       let current = 'home';
 
       for (const section of sections) {
@@ -56,7 +56,7 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
 
     // Try to match section names first
     const query = searchQuery.toLowerCase();
-    const sections = ['home', 'about', 'collection', 'blog', 'contact'];
+    const sections = ['home', 'about', 'collection', 'story', 'contact'];
     const match = sections.find(s => s.includes(query) || query.includes(s));
 
     if (match) {
@@ -113,7 +113,7 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
 
           {/* Links */}
           <ul className="flex items-center space-x-6 lg:space-x-10 text-sm text-[#FBF5EB]">
-            {['Home', 'About', 'Collection', 'Blog', 'Contact'].map((item) => {
+            {['Home', 'About', 'Collection', 'Story', 'Contact'].map((item) => {
               const lowerItem = item.toLowerCase();
               const isActive = activeSection === lowerItem;
               return (
