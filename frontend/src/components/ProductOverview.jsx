@@ -34,6 +34,68 @@ const ProductOverview = ({ product, onAddToCart, onBack, onCheckout }) => {
   const displayPrice = `Rs ${currentPriceNum}`;
   const oldPriceDisplay = `Rs ${Math.round(currentPriceNum * 1.25)}`;
 
+  const handleAddToCartWithAnimation = (e) => {
+    if (onAddToCart) {
+      onAddToCart(product, selectedSize, quantity);
+    }
+    
+    const button = e.currentTarget;
+    const buttonRect = button.getBoundingClientRect();
+    const cartIcon = document.getElementById('cart-icon-nav');
+    
+    if (cartIcon) {
+      const cartRect = cartIcon.getBoundingClientRect();
+      
+      const flyingElement = document.createElement('div');
+      flyingElement.style.position = 'fixed';
+      flyingElement.style.top = `${buttonRect.top + buttonRect.height / 2}px`;
+      flyingElement.style.left = `${buttonRect.left + buttonRect.width / 2}px`;
+      flyingElement.style.width = '50px';
+      flyingElement.style.height = '50px';
+      flyingElement.style.borderRadius = '50%';
+      flyingElement.style.zIndex = '99999';
+      flyingElement.style.transform = 'translate(-50%, -50%) scale(1)';
+      flyingElement.style.transition = 'all 0.7s cubic-bezier(0.25, 1, 0.5, 1)';
+      flyingElement.style.pointerEvents = 'none';
+      flyingElement.style.boxShadow = '0 10px 25px rgba(0,0,0,0.4)';
+      flyingElement.style.overflow = 'hidden';
+      flyingElement.style.border = '2px solid #E6B754';
+      flyingElement.style.background = '#fff';
+      
+      const img = document.createElement('img');
+      img.src = productImages[activeImageIndex];
+      img.style.width = '100%';
+      img.style.height = '100%';
+      img.style.objectFit = 'cover';
+      
+      flyingElement.appendChild(img);
+      document.body.appendChild(flyingElement);
+      
+      // Force reflow
+      void flyingElement.offsetWidth;
+      
+      // Trigger animation
+      setTimeout(() => {
+        flyingElement.style.top = `${cartRect.top + cartRect.height / 2}px`;
+        flyingElement.style.left = `${cartRect.left + cartRect.width / 2}px`;
+        flyingElement.style.transform = 'translate(-50%, -50%) scale(0.1)';
+        flyingElement.style.opacity = '0.3';
+      }, 10);
+      
+      // Cleanup
+      setTimeout(() => {
+        if (document.body.contains(flyingElement)) {
+          document.body.removeChild(flyingElement);
+        }
+        
+        cartIcon.style.transform = 'scale(1.3)';
+        setTimeout(() => {
+          cartIcon.style.transform = '';
+        }, 200);
+      }, 710);
+    }
+  };
+
   return (
     <div className="w-full bg-[#FAF5EC] min-h-screen pt-28 pb-16 relative overflow-hidden">
       {/* Background Accents */}
@@ -78,9 +140,10 @@ const ProductOverview = ({ product, onAddToCart, onBack, onCheckout }) => {
             </div>
 
             {/* Price */}
-            <div className="flex items-end gap-4 mb-6 bg-white/60 backdrop-blur-md w-fit px-6 py-3 rounded-2xl border border-white shadow-sm">
+            <div className="relative flex items-end gap-3 mb-6 mt-2 bg-white/60 backdrop-blur-md w-fit px-6 py-4 rounded-2xl border border-white shadow-sm">
+              <span className="absolute -top-3 -left-3 text-[10px] font-black text-white bg-gradient-to-r from-[#e6b753] to-[#d6993a] px-3 py-1 rounded-xl shadow-md uppercase tracking-wider z-10">20% OFF</span>
               <span className="text-3xl font-black text-shine">{displayPrice}</span>
-              <span className="text-base text-[#9A9286] font-bold line-through mb-1">{oldPriceDisplay}</span>
+              <span className="text-base text-[#9A9286] font-bold line-through mb-1 ml-1">{oldPriceDisplay}</span>
             </div>
 
             <p className="text-[#9A9286] font-bold mb-6 leading-relaxed text-sm md:text-base max-w-lg">
@@ -123,7 +186,7 @@ const ProductOverview = ({ product, onAddToCart, onBack, onCheckout }) => {
 
               <div className="flex flex-wrap items-center gap-3">
                 <button 
-                  onClick={() => onAddToCart && onAddToCart(product, selectedSize, quantity)}
+                  onClick={handleAddToCartWithAnimation}
                   className="bg-[#2a2a2a] btn-shine text-white px-8 py-3.5 rounded-xl font-black uppercase tracking-widest text-xs shadow-[0_10px_20px_rgba(42,42,42,0.2)] hover:bg-black hover:-translate-y-1 transition-all duration-300 flex-1 md:flex-none"
                 >
                   Add To Cart

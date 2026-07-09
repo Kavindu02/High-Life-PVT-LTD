@@ -195,7 +195,7 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
             </div>
           )}
 
-          <button onClick={onOpenSideCart} className={`transition-colors relative group p-2 hover:text-[#E6B754]`}>
+          <button id="cart-icon-nav" onClick={onOpenSideCart} className={`transition-colors relative group p-2 hover:text-[#E6B754]`}>
             <svg className={`w-5 h-5 transition-transform duration-300 group-hover:scale-110`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
             {cartItemCount > 0 && (
               <span className="absolute top-0 -right-1 min-w-[14px] h-[14px] flex items-center justify-center bg-[#E6B754] rounded-full text-[#FBF5EB] text-[8px] font-bold px-1 border border-[#2A2A2A]">
