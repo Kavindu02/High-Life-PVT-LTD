@@ -129,10 +129,19 @@ const sendOrderConfirmation = async (orderData, orderId) => {
           <td align="center" style="padding: 40px 15px;">
             <table width="100%" max-width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%; background-color: #ffffff; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #EADFC8;">
               
-              <!-- Header -->
+              <!-- Header with Logo and Order Number -->
               <tr>
-                <td style="padding-bottom: 10px; text-align: center;">
-                  <div style="background-image: url('cid:logo'); background-size: contain; background-repeat: no-repeat; background-position: center; height: 150px; width: 250px; margin: 0 auto;"></div>
+                <td style="padding-bottom: 20px;">
+                  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                      <td width="50%" align="left">
+                        <div style="background-image: url('cid:logo'); background-size: contain; background-repeat: no-repeat; background-position: left center; height: 60px; width: 120px;"></div>
+                      </td>
+                      <td width="50%" align="right" style="color: #888; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+                        ORDER #${orderId}
+                      </td>
+                    </tr>
+                  </table>
                 </td>
               </tr>
               
@@ -249,6 +258,114 @@ const sendOrderConfirmation = async (orderData, orderId) => {
   }
 };
 
+/**
+ * Sends an order cancellation email to the customer.
+ * @param {Object} orderData 
+ * @param {Number} orderId 
+ */
+const sendOrderCancellationEmail = async (orderData, orderId) => {
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    console.warn("EMAIL_USER or EMAIL_PASS not set. Skipping email cancellation.");
+    return;
+  }
+
+  const attachments = [];
+  const logoPath = path.join(__dirname, '../frontend/public/logo.png');
+  if (fs.existsSync(logoPath)) {
+    attachments.push({
+      filename: 'logo.png',
+      path: logoPath,
+      cid: 'logo',
+      contentDisposition: 'inline'
+    });
+  } else {
+    const logoWebpPath = path.join(__dirname, '../frontend/public/logo.webp');
+    if (fs.existsSync(logoWebpPath)) {
+      attachments.push({
+        filename: 'logo.png', 
+        path: logoWebpPath,
+        cid: 'logo',
+        contentType: 'image/png',
+        contentDisposition: 'inline'
+      });
+    }
+  }
+
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Order Cancelled</title>
+    </head>
+    <body style="margin: 0; padding: 0; background-color: #FAF5EC; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #2a2a2a;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #FAF5EC;">
+        <tr>
+          <td align="center" style="padding: 40px 15px;">
+            <table width="100%" max-width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%; background-color: #ffffff; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #EADFC8;">
+              
+              <!-- Header with Logo and Order Number -->
+              <tr>
+                <td style="padding-bottom: 20px;">
+                  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                      <td width="50%" align="left">
+                        <div style="background-image: url('cid:logo'); background-size: contain; background-repeat: no-repeat; background-position: left center; height: 60px; width: 120px;"></div>
+                      </td>
+                      <td width="50%" align="right" style="color: #888; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+                        ORDER #${orderId}
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              
+              <!-- Hero Section -->
+              <tr>
+                <td style="padding-bottom: 40px; padding-top: 20px;">
+                  <h1 style="font-size: 32px; font-weight: 900; margin: 0 0 20px 0; color: #2a2a2a; letter-spacing: -0.5px;">Order Cancelled</h1>
+                  <p style="font-size: 16px; line-height: 1.6; color: #555; margin: 0 0 25px 0;">We regret to inform you that your order <strong>#${orderId}</strong> has been cancelled.</p>
+                  <p style="font-size: 16px; line-height: 1.6; color: #555; margin: 0;">To know the reason for cancellation or if you have any questions, please contact us at <br><a href="mailto:hello@highlife.com" style="color: #E6B754; text-decoration: none; font-weight: 700;">hello@highlife.com</a>.</p>
+                </td>
+              </tr>
+              
+              <!-- Divider -->
+              <tr>
+                <td style="border-top: 2px dashed #EADFC8; padding-top: 30px; padding-bottom: 20px;"></td>
+              </tr>
+              
+              <!-- Footer -->
+              <tr>
+                <td align="center">
+                  <p style="font-size: 13px; color: #888; margin: 0; font-weight: 500;">
+                    © 2026 High Life (PVT) LTD. All Rights Reserved.
+                  </p>
+                </td>
+              </tr>
+              
+            </table>
+          </td>
+        </tr>
+      </table>
+    </body>
+    </html>
+  `;
+
+  try {
+    const info = await transporter.sendMail({
+      from: `"High Life (PVT) LTD" <${process.env.EMAIL_USER}>`,
+      to: orderData.email,
+      subject: `Order Cancelled - Order #${orderId}`,
+      html: htmlContent,
+      attachments: attachments
+    });
+    console.log("Cancellation email sent successfully:", info.messageId);
+  } catch (error) {
+    console.error("Error sending cancellation email:", error);
+  }
+};
+
 module.exports = {
-  sendOrderConfirmation
+  sendOrderConfirmation,
+  sendOrderCancellationEmail
 };

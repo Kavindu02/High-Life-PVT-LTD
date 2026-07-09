@@ -3,7 +3,7 @@ const cors = require('cors');
 const mysql = require('mysql2/promise');
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
-const { sendOrderConfirmation } = require('./emailService');
+const { sendOrderConfirmation, sendOrderCancellationEmail } = require('./emailService');
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -179,6 +179,29 @@ app.put('/api/admin/orders/:id/status', async (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
     await pool.query('UPDATE orders SET status = ? WHERE id = ?', [status, id]);
+    
+    if (status === 'Cancel' || status === 'Approved') {
+      const [orderResult] = await pool.query('SELECT * FROM orders WHERE id = ?', [id]);
+      if (orderResult.length > 0) {
+        const orderData = orderResult[0];
+        
+        if (typeof orderData.items === 'string') {
+          try {
+            orderData.items = JSON.parse(orderData.items);
+          } catch (e) {
+            console.error('Error parsing order items:', e);
+            orderData.items = [];
+          }
+        }
+
+        if (status === 'Cancel') {
+          sendOrderCancellationEmail(orderData, id);
+        } else {
+          sendOrderConfirmation(orderData, id);
+        }
+      }
+    }
+    
     res.json({ message: 'Order status updated successfully' });
   } catch (err) {
     console.error('Error updating order status:', err);

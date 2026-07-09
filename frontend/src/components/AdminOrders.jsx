@@ -49,6 +49,7 @@ const AdminOrders = () => {
   const [loading, setLoading] = useState(true);
   const [expandedOrderId, setExpandedOrderId] = useState(null);
   const [pendingStatuses, setPendingStatuses] = useState({});
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     fetchOrders();
@@ -99,15 +100,34 @@ const AdminOrders = () => {
 
   if (loading) return <div className="flex items-center justify-center h-64 text-[#888] font-bold">Loading orders...</div>;
 
+  const cleanedQuery = searchQuery.trim().replace(/^#/, '');
+  const filteredOrders = orders.filter(order => 
+    order.id.toString().includes(cleanedQuery)
+  );
+
   const selectedOrder = orders.find(o => o.id === expandedOrderId);
 
   return (
     <>
       <div className="bg-white rounded-[2rem] border border-[#EADFC8] shadow-sm overflow-hidden relative">
-        <div className="p-8 border-b border-[#EADFC8] flex justify-between items-center">
-          <h2 className="text-2xl font-black text-[#2a2a2a]">Orders</h2>
+        <div className="p-8 border-b border-[#EADFC8] flex justify-between items-center flex-wrap gap-4">
+          <div className="flex items-center gap-6">
+            <h2 className="text-2xl font-black text-[#2a2a2a]">Orders</h2>
+            <div className="relative">
+              <input 
+                type="text" 
+                placeholder="Search by Order ID..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 pr-4 py-2 bg-[#F9F7F2] border border-[#EADFC8] rounded-xl text-sm font-semibold text-[#2a2a2a] focus:outline-none focus:border-[#B69F73] focus:ring-1 focus:ring-[#B69F73] transition-all w-64 placeholder:text-[#888]/60"
+              />
+              <svg className="w-4 h-4 text-[#888] absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+          </div>
           <div className="text-sm font-bold text-[#888] bg-[#FAF5EC] px-4 py-2 rounded-full border border-[#EADFC8]">
-            Total Orders: {orders.length}
+            Total Orders: {filteredOrders.length}
           </div>
         </div>
         <div className="overflow-x-auto min-h-[250px]">
@@ -123,7 +143,7 @@ const AdminOrders = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-[#EADFC8]">
-              {orders.map(order => {
+              {filteredOrders.map(order => {
                 const locationParts = order.location ? order.location.split(', ') : ['Unknown', 'Unknown'];
                 const mainLoc = locationParts[0] || '';
                 const subLoc = locationParts.length > 1 ? locationParts[locationParts.length - 2] : '';
@@ -179,7 +199,7 @@ const AdminOrders = () => {
                   </tr>
                 );
               })}
-              {orders.length === 0 && (
+              {filteredOrders.length === 0 && (
                 <tr>
                   <td colSpan="6" className="p-12 text-center text-[#888] font-bold text-lg">No orders found.</td>
                 </tr>
@@ -276,11 +296,15 @@ const AdminOrders = () => {
                         return items.map((item, idx) => (
                           <div key={idx} className="flex justify-between items-center bg-[#F9F7F2] p-3 rounded-xl border border-transparent hover:border-[#EADFC8] transition-colors">
                             <div className="flex items-center gap-4">
-                              <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center text-2xl shadow-sm border border-[#EADFC8]/50 shrink-0">
-                                {item.product.icon}
+                              <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center text-2xl shadow-sm border border-[#EADFC8]/50 shrink-0 overflow-hidden">
+                                {item.product.image ? (
+                                  <img src={item.product.image} alt={item.product.name || 'Product'} className="w-full h-full object-cover" />
+                                ) : (
+                                  <span className="text-[#E6B754] font-bold text-lg">H</span>
+                                )}
                               </div>
                               <div>
-                                <p className="font-bold text-[#2a2a2a]">{item.product.title}</p>
+                                <p className="font-bold text-[#2a2a2a]">{item.product.name || item.product.title}</p>
                                 <p className="text-xs font-bold text-[#888] mt-0.5">Size: <span className="text-[#B69F73]">{item.size}</span> <span className="mx-1">|</span> Qty: <span className="text-[#2a2a2a]">{item.quantity}</span></p>
                               </div>
                             </div>
