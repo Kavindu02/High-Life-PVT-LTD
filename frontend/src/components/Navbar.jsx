@@ -108,7 +108,7 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
             className="cursor-pointer relative w-[130px] h-10 group"
             onClick={() => scrollToSection('home')}
           >
-            <img src="/logo.png" alt="High Life Logo" className="absolute top-1/2 -translate-y-1/2 left-0 h-[130px] w-auto object-contain drop-shadow-sm transition-transform duration-500 group-hover:scale-105" />
+            <img src="/logo.webp" alt="High Life Logo" className="absolute top-1/2 -translate-y-1/2 left-0 h-[130px] w-auto object-contain drop-shadow-sm transition-transform duration-500 group-hover:scale-105" />
           </div>
 
           {/* Links */}

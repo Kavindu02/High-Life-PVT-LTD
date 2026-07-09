@@ -10,7 +10,7 @@ const Hero = () => {
         {/* Left Side: Product Image */}
         <div className="w-full md:w-1/2 h-full flex items-end justify-center md:justify-start relative pb-10 md:pb-0">
           <img
-            src="/hero_products_large.png"
+            src="/hero_products_large.webp"
             alt="Premium Spices"
             className="w-[80%] md:w-[120%] lg:w-[130%] max-w-none object-contain translate-y-12 md:translate-y-24 md:-translate-x-12 z-10 drop-shadow-2xl"
           />

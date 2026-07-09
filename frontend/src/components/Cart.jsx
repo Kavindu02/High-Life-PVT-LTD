@@ -117,10 +117,6 @@ const Cart = ({ cartItems, setCartItems, onNavigateToHome, onCheckout }) => {
                   <span className="font-bold text-[#2a2a2a]">{totalWeightGrams.toLocaleString()} g</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span>Delivery</span>
-                  <span className="bg-[#f0ebe1] text-[#888] text-xs font-bold px-3 py-1.5 rounded-lg">Calculated at Checkout</span>
-                </div>
-                <div className="flex justify-between items-center">
                   <span>Payment</span>
                   <span className="bg-[#f0ebe1] text-[#888] text-xs font-bold px-3 py-1.5 rounded-lg">Selected at Checkout</span>
                 </div>

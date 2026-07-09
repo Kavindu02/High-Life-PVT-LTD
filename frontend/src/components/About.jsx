@@ -12,7 +12,7 @@ const About = () => {
         {/* Left Side: Image */}
         <div className="w-full md:w-1/2 pr-0 md:pr-8 mb-12 md:mb-0">
           <img 
-            src="/about_box.png" 
+            src="/about_box.webp" 
             alt="Handpicked Spices Box" 
             className="w-full h-auto object-cover shadow-2xl rounded-sm"
           />

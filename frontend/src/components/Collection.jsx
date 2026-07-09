@@ -6,13 +6,13 @@ const Collection = ({ onProductClick }) => {
       id: 1,
       name: "Pepper powder",
       description: "Rich and aromatic black pepper",
-      image: "/gammiriskudu_minimalist.png",
+      image: "/gammiriskudu_minimalist.webp",
       images: [
-        "/gammiriskudu_hero.png",
-        "/gammiriskudu_flatlay.png",
-        "/gammiriskudu_dynamic.png",
-        "/gammiriskudu_lifestyle.png",
-        "/gammiriskudu_minimalist.png"
+        "/gammiriskudu_hero.webp",
+        "/gammiriskudu_flatlay.webp",
+        "/gammiriskudu_dynamic.webp",
+        "/gammiriskudu_lifestyle.webp",
+        "/gammiriskudu_minimalist.webp"
       ],
       pricing: {
         '25g': "130.00",
@@ -24,13 +24,13 @@ const Collection = ({ onProductClick }) => {
       id: 2,
       name: "Chilli Powder",
       description: "High quality fine chilli powder",
-      image: "/miriskudu_minimalist.png",
+      image: "/miriskudu_minimalist.webp",
       images: [
-        "/miriskudu_hero.png",
-        "/miriskudu_flatlay.png",
-        "/miriskudu_dynamic.png",
-        "/miriskudu_lifestyle.png",
-        "/miriskudu_minimalist.png"
+        "/miriskudu_hero.webp",
+        "/miriskudu_flatlay.webp",
+        "/miriskudu_dynamic.webp",
+        "/miriskudu_lifestyle.webp",
+        "/miriskudu_minimalist.webp"
       ],
       pricing: {
         '50g': "90.00",
@@ -42,13 +42,13 @@ const Collection = ({ onProductClick }) => {
       id: 3,
       name: "Chilli pieces",
       description: "Authentic crushed chilli flakes",
-      image: "/kalimiris_minimalist.png",
+      image: "/kalimiris_minimalist.webp",
       images: [
-        "/kalimiris_hero.png",
-        "/kalimiris_flatlay.png",
-        "/kalimiris_dynamic.png",
-        "/kalimiris_lifestyle.png",
-        "/kalimiris_minimalist.png"
+        "/kalimiris_hero.webp",
+        "/kalimiris_flatlay.webp",
+        "/kalimiris_dynamic.webp",
+        "/kalimiris_lifestyle.webp",
+        "/kalimiris_minimalist.webp"
       ],
       pricing: {
         '100g': "180.00",
@@ -60,13 +60,13 @@ const Collection = ({ onProductClick }) => {
       id: 4,
       name: "Turmeric Powder",
       description: "Pure and vibrant turmeric powder",
-      image: "/kahakudu_minimalist.png",
+      image: "/kahakudu_minimalist.webp",
       images: [
-        "/kahakudu_hero.png",
-        "/kahakudu_flatlay.png",
-        "/kahakudu_dynamic.png",
-        "/kahakudu_lifestyle.png",
-        "/kahakudu_minimalist.png"
+        "/kahakudu_hero.webp",
+        "/kahakudu_flatlay.webp",
+        "/kahakudu_dynamic.webp",
+        "/kahakudu_lifestyle.webp",
+        "/kahakudu_minimalist.webp"
       ],
       pricing: {
         '25g': "145.00",
