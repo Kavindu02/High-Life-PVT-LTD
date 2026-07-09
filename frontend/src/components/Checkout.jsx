@@ -87,6 +87,21 @@ const Checkout = ({ cartItems }) => {
         });
         
         if (response.ok) {
+          // Update local user data if logged in
+          const storedUser = localStorage.getItem('user');
+          if (storedUser) {
+            try {
+              const parsedUser = JSON.parse(storedUser);
+              if (parsedUser.email === orderData.email) {
+                parsedUser.address = orderData.address;
+                parsedUser.city = orderData.city;
+                parsedUser.district = orderData.district;
+                parsedUser.postalCode = orderData.postal_code;
+                localStorage.setItem('user', JSON.stringify(parsedUser));
+              }
+            } catch(e) {}
+          }
+
           setPaymentSuccessful(true);
           setTimeout(() => {
             setShowSuccessModal(true);
@@ -301,25 +316,27 @@ const Checkout = ({ cartItems }) => {
         </div>
       </div>
       {showSuccessModal && (
-        <div className="fixed top-8 left-1/2 -translate-x-1/2 z-50 animate-bounce">
-          <div className="bg-[#FAF5EC] border-2 border-[#EADFC8] rounded-full px-6 py-4 shadow-xl flex items-center gap-4">
-            <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center shrink-0">
-              <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+        <div className="fixed inset-0 z-[100] bg-transparent">
+          <div className="fixed top-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <div className="bg-[#FAF5EC] border-2 border-[#EADFC8] rounded-full px-6 py-4 shadow-xl flex items-center gap-4">
+              <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center shrink-0">
+                <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+              </div>
+              <div>
+                <h3 className="text-sm font-black text-[#2a2a2a] m-0 leading-tight">Order Placed Successfully!</h3>
+                <p className="text-xs text-[#888] font-medium m-0 mt-0.5">Check your email for the receipt.</p>
+              </div>
+              <button 
+                onClick={() => {
+                  setShowSuccessModal(false);
+                  localStorage.removeItem('cartItems');
+                  window.location.href = '/';
+                }}
+                className="ml-4 bg-[#2a2a2a] text-[#FAF5EC] px-4 py-1.5 rounded-full text-xs font-bold hover:bg-[#C5A880] hover:text-[#2a2a2a] transition-colors"
+              >
+                OK
+              </button>
             </div>
-            <div>
-              <h3 className="text-sm font-black text-[#2a2a2a] m-0 leading-tight">Order Placed Successfully!</h3>
-              <p className="text-xs text-[#888] font-medium m-0 mt-0.5">Check your email for the receipt.</p>
-            </div>
-            <button 
-              onClick={() => {
-                setShowSuccessModal(false);
-                localStorage.removeItem('cartItems');
-                window.location.href = '/';
-              }}
-              className="ml-4 bg-[#2a2a2a] text-[#FAF5EC] px-4 py-1.5 rounded-full text-xs font-bold hover:bg-[#C5A880] hover:text-[#2a2a2a] transition-colors"
-            >
-              OK
-            </button>
           </div>
         </div>
       )}

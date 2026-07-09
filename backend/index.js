@@ -96,7 +96,17 @@ app.post('/api/login', async (req, res) => {
     }
 
     // Send back user data
-    res.json({ id: user.id, name: user.name, email: user.email, mobileNumber: user.mobile_number, role: user.role || 'user' });
+    res.json({ 
+      id: user.id, 
+      name: user.name, 
+      email: user.email, 
+      mobileNumber: user.mobile_number, 
+      role: user.role || 'user',
+      address: user.address || '',
+      city: user.city || '',
+      district: user.district || '',
+      postalCode: user.postal_code || ''
+    });
   } catch (err) {
     console.error('Login error:', err);
     res.status(500).json({ error: 'Server error during login' });
@@ -185,6 +195,15 @@ app.post('/api/orders', async (req, res) => {
       'INSERT INTO orders (customer_name, email, mobile_number, phone2, location, address, city, district, postal_code, order_notes, total_amount, payment_method, items) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
       [customer_name, email, mobile_number, phone2, location, address, city, district, postal_code, order_notes, total_amount, payment_method, JSON.stringify(items)]
     );
+
+    // Update user's address details if they are a registered user
+    const [existingUsers] = await pool.query('SELECT id FROM users WHERE email = ?', [email]);
+    if (existingUsers.length > 0) {
+      await pool.query(
+        'UPDATE users SET address = ?, city = ?, district = ?, postal_code = ? WHERE email = ?',
+        [address, city, district, postal_code, email]
+      );
+    }
 
     // Send email confirmation asynchronously
     sendOrderConfirmation(req.body, result.insertId);
