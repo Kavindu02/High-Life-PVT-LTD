@@ -154,30 +154,30 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="hover:shadow-[0_0_15px_rgba(230,183,84,0.4)] transition-all duration-300 flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-[#E6B754] to-[#8a7652] text-white border border-[#FBF5EB]"
+                className="hover:shadow-[0_0_15px_rgba(230,183,84,0.4)] transition-all duration-300 flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-[#E6B754] to-[#8a7652] text-white"
               >
                 <span className="font-bold text-xs">{user.name.charAt(0).toUpperCase()}</span>
               </button>
 
               {/* Profile Dropdown */}
               {isDropdownOpen && (
-                <div className="absolute right-0 mt-3 w-48 bg-white/95 backdrop-blur-md border border-[#2a2a2a]/10 rounded-xl shadow-xl py-2 z-50 overflow-hidden transform opacity-100 scale-100 transition-all origin-top-right">
-                  <div className="px-4 py-2 border-b border-[#2a2a2a]/5 mb-1">
-                    <p className="text-[10px] text-[#2a2a2a]/50 font-semibold uppercase tracking-wider">Signed in as</p>
-                    <p className="text-[12px] font-bold text-[#2a2a2a] truncate">{user.name}</p>
+                <div className="absolute right-0 mt-3 w-48 bg-[#FAF5EC] backdrop-blur-md border-2 border-[#EADFC8] rounded-xl shadow-xl py-2 z-50 overflow-hidden transform opacity-100 scale-100 transition-all origin-top-right">
+                  <div className="px-4 py-2 border-b border-[#EADFC8] mb-1">
+                    <p className="text-[10px] text-[#888] font-bold uppercase tracking-wider">Signed in as</p>
+                    <p className="text-[12px] font-black text-[#2a2a2a] truncate">{user.name}</p>
                   </div>
                   <button
                     onClick={() => { setIsDropdownOpen(false); onNavigateToProfile(); }}
-                    className="flex items-center gap-3 w-full text-left px-4 py-2.5 text-sm text-[#2a2a2a] hover:bg-[#FBF5EB] hover:text-[#E6B754] transition-colors"
+                    className="flex items-center gap-3 w-full text-left px-4 py-2.5 text-sm text-[#2a2a2a] font-medium hover:bg-[#EADFC8]/40 hover:text-[#C5A880] transition-colors"
                   >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
                     Profile
                   </button>
                   <button
                     onClick={() => { setIsDropdownOpen(false); onLogout(); }}
-                    className="flex items-center gap-3 w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                    className="flex items-center gap-3 w-full text-left px-4 py-2.5 text-sm text-red-500 font-medium hover:bg-red-50 transition-colors"
                   >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
                     Log out
                   </button>
                 </div>
