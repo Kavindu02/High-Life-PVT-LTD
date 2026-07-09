@@ -192,8 +192,8 @@ app.post('/api/orders', async (req, res) => {
     const { customer_name, email, mobile_number, phone2, location, address, city, district, postal_code, order_notes, total_amount, payment_method, items } = req.body;
     
     const [result] = await pool.query(
-      'INSERT INTO orders (customer_name, email, mobile_number, phone2, location, address, city, district, postal_code, order_notes, total_amount, payment_method, items) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-      [customer_name, email, mobile_number, phone2, location, address, city, district, postal_code, order_notes, total_amount, payment_method, JSON.stringify(items)]
+      'INSERT INTO orders (customer_name, email, mobile_number, phone2, location, address, city, district, postal_code, order_notes, total_amount, payment_method, items, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+      [customer_name, email, mobile_number, phone2, location, address, city, district, postal_code, order_notes, total_amount, payment_method, JSON.stringify(items), 'Approved']
     );
 
     // Update user's address details if they are a registered user

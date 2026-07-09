@@ -1,9 +1,54 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+
+const StatusSelect = ({ status, onChange }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const options = ['Approved', 'Cancel'];
+  const selectRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (selectRef.current && !selectRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  return (
+    <div className="relative inline-block text-left w-[120px]" ref={selectRef}>
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full bg-white border border-[#EADFC8] rounded-lg px-3 py-2 text-sm font-bold text-[#2a2a2a] outline-none hover:border-[#B69F73] shadow-sm hover:shadow-md transition-all flex items-center justify-between"
+      >
+        <span>{status}</span>
+        <svg className={`w-4 h-4 transition-transform text-[#888] ${isOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+      </button>
+      {isOpen && (
+        <div className="absolute z-50 mt-1 w-full bg-white border border-[#EADFC8] rounded-lg shadow-xl overflow-hidden right-0 top-full">
+          {options.map(option => (
+            <div 
+              key={option}
+              onClick={() => {
+                onChange(option);
+                setIsOpen(false);
+              }}
+              className={`px-3 py-2.5 text-sm font-bold cursor-pointer transition-colors ${status === option ? 'bg-[#FAF5EC] text-[#B69F73]' : 'text-[#2a2a2a] hover:bg-[#FAF5EC] hover:text-[#B69F73]'}`}
+            >
+              {option}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
 
 const AdminOrders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [expandedOrderId, setExpandedOrderId] = useState(null);
+  const [pendingStatuses, setPendingStatuses] = useState({});
 
   useEffect(() => {
     fetchOrders();
@@ -30,6 +75,11 @@ const AdminOrders = () => {
       });
       if (response.ok) {
         fetchOrders(); // Refresh to get updated data
+        setPendingStatuses(prev => {
+          const newState = { ...prev };
+          delete newState[id];
+          return newState;
+        });
       }
     } catch (err) {
       console.error('Failed to update order status', err);
@@ -60,7 +110,7 @@ const AdminOrders = () => {
             Total Orders: {orders.length}
           </div>
         </div>
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto min-h-[250px]">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-[#FAF5EC] text-[#888] text-xs font-bold uppercase tracking-wider border-b border-[#EADFC8]">
@@ -105,21 +155,25 @@ const AdminOrders = () => {
                     
                     <td className="p-5">
                       <div className="flex items-center gap-2">
-                        <select 
-                          value={order.status}
-                          onChange={(e) => handleStatusChange(order.id, e.target.value)}
-                          className="bg-white border border-[#EADFC8] rounded-lg px-3 py-2 text-sm font-bold text-[#2a2a2a] outline-none focus:border-[#B69F73] cursor-pointer shadow-sm hover:shadow-md transition-shadow"
-                        >
-                          <option value="Pending">Pending</option>
-                          <option value="Approved">Approved</option>
-                          <option value="Cancel">Cancel</option>
-                        </select>
-                        <button 
-                          onClick={() => setExpandedOrderId(order.id)}
-                          className="px-4 py-2 rounded-lg text-sm font-bold transition-colors shadow-sm bg-[#2a2a2a] text-white hover:bg-[#B69F73]"
-                        >
-                          Details
-                        </button>
+                        <StatusSelect 
+                          status={pendingStatuses[order.id] || order.status}
+                          onChange={(val) => setPendingStatuses(prev => ({ ...prev, [order.id]: val }))}
+                        />
+                        {(pendingStatuses[order.id] && pendingStatuses[order.id] !== order.status) ? (
+                          <button 
+                            onClick={() => handleStatusChange(order.id, pendingStatuses[order.id])}
+                            className="px-4 py-2 rounded-lg text-sm font-bold transition-colors shadow-sm bg-green-500 text-white hover:bg-green-600"
+                          >
+                            Save
+                          </button>
+                        ) : (
+                          <button 
+                            onClick={() => setExpandedOrderId(order.id)}
+                            className="px-4 py-2 rounded-lg text-sm font-bold transition-colors shadow-sm bg-[#2a2a2a] text-white hover:bg-[#B69F73]"
+                          >
+                            Details
+                          </button>
+                        )}
                       </div>
                     </td>
                   </tr>
