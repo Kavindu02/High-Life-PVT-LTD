@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchableSelect from './SearchableSelect';
 import { districtsAndCities, districtsList } from '../data/sriLankaData';
 
@@ -19,6 +19,29 @@ const Checkout = ({ cartItems }) => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentSuccessful, setPaymentSuccessful] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      try {
+        const user = JSON.parse(storedUser);
+        const nameParts = user.name ? user.name.split(' ') : [];
+        setFormData(prev => ({
+          ...prev,
+          firstName: nameParts[0] || '',
+          lastName: nameParts.slice(1).join(' ') || '',
+          email: user.email || '',
+          address: user.address || prev.address,
+          district: user.district || prev.district,
+          city: user.city || prev.city,
+          postalCode: user.postalCode || prev.postalCode,
+          phone1: user.mobileNumber ? user.mobileNumber.replace(/^\+94/, '') : prev.phone1
+        }));
+      } catch (e) {
+        console.error('Error parsing stored user', e);
+      }
+    }
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -63,7 +86,17 @@ const Checkout = ({ cartItems }) => {
       setIsProcessing(false);
       setPaymentSuccessful(true);
 
+      let userId = null;
+      const storedUser = localStorage.getItem('user');
+      if (storedUser) {
+        try {
+          const parsedUser = JSON.parse(storedUser);
+          userId = parsedUser.id;
+        } catch (e) {}
+      }
+
       const orderData = {
+        user_id: userId,
         customer_name: `${formData.firstName} ${formData.lastName}`.trim(),
         email: formData.email,
         mobile_number: formData.phone1,

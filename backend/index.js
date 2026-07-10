@@ -212,11 +212,11 @@ app.put('/api/admin/orders/:id/status', async (req, res) => {
 // --- ORDER ROUTES ---
 app.post('/api/orders', async (req, res) => {
   try {
-    const { customer_name, email, mobile_number, phone2, location, address, city, district, postal_code, order_notes, total_amount, payment_method, items } = req.body;
+    const { user_id, customer_name, email, mobile_number, phone2, location, address, city, district, postal_code, order_notes, total_amount, payment_method, items } = req.body;
     
     const [result] = await pool.query(
-      'INSERT INTO orders (customer_name, email, mobile_number, phone2, location, address, city, district, postal_code, order_notes, total_amount, payment_method, items, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-      [customer_name, email, mobile_number, phone2, location, address, city, district, postal_code, order_notes, total_amount, payment_method, JSON.stringify(items), 'Approved']
+      'INSERT INTO orders (user_id, customer_name, email, mobile_number, phone2, location, address, city, district, postal_code, order_notes, total_amount, payment_method, items, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+      [user_id || null, customer_name, email, mobile_number, phone2, location, address, city, district, postal_code, order_notes, total_amount, payment_method, JSON.stringify(items), 'Approved']
     );
 
     // Update user's address details if they are a registered user
@@ -235,6 +235,18 @@ app.post('/api/orders', async (req, res) => {
   } catch (err) {
     console.error('Error creating order:', err);
     res.status(500).json({ error: 'Server error during order creation' });
+  }
+});
+
+// Get user's orders by user_id
+app.get('/api/orders/user/:userId', async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const [orders] = await pool.query('SELECT * FROM orders WHERE user_id = ? ORDER BY created_at DESC', [userId]);
+    res.json(orders);
+  } catch (err) {
+    console.error('Error fetching user orders:', err);
+    res.status(500).json({ error: 'Failed to fetch user orders' });
   }
 });
 
