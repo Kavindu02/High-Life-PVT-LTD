@@ -365,7 +365,102 @@ const sendOrderCancellationEmail = async (orderData, orderId) => {
   }
 };
 
+/**
+ * Sends a contact form message to the admin.
+ * @param {Object} contactData 
+ */
+const sendContactEmail = async (contactData) => {
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    console.warn("EMAIL_USER or EMAIL_PASS not set. Skipping contact email.");
+    return;
+  }
+
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <title>New Contact Message</title>
+    </head>
+    <body style="margin: 0; padding: 0; background-color: #FAF5EC; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #2a2a2a;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #FAF5EC;">
+        <tr>
+          <td align="center" style="padding: 40px 15px;">
+            <table width="100%" max-width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%; background-color: #ffffff; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #EADFC8;">
+              
+              <!-- Header -->
+              <tr>
+                <td style="padding-bottom: 20px; border-bottom: 2px dashed #EADFC8; text-align: center;">
+                  <h1 style="font-size: 24px; font-weight: 900; margin: 0; color: #2a2a2a; letter-spacing: 1px; text-transform: uppercase;">
+                    <span style="color: #E6B754;">New</span> Contact Message
+                  </h1>
+                </td>
+              </tr>
+              
+              <!-- Customer Info -->
+              <tr>
+                <td style="padding-top: 30px; padding-bottom: 20px;">
+                  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                      <td width="50%" valign="top" style="padding-right: 15px;">
+                        <div style="color: #888; font-size: 13px; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Sender Name</div>
+                        <div style="color: #2a2a2a; font-size: 16px; font-weight: 600;">
+                          ${contactData.firstName} ${contactData.lastName}
+                        </div>
+                      </td>
+                      <td width="50%" valign="top" style="padding-left: 15px;">
+                        <div style="color: #888; font-size: 13px; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Email Address</div>
+                        <div style="color: #E6B754; font-size: 16px; font-weight: 600;">
+                          <a href="mailto:${contactData.email}" style="color: #E6B754; text-decoration: none;">${contactData.email}</a>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              
+              <!-- Message Box -->
+              <tr>
+                <td style="padding-bottom: 30px;">
+                  <div style="color: #888; font-size: 13px; font-weight: 700; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Message</div>
+                  <div style="background-color: #FAF5EC; border: 1px solid #EADFC8; border-radius: 12px; padding: 25px; color: #444; font-size: 16px; line-height: 1.8; white-space: pre-wrap;">${contactData.message}</div>
+                </td>
+              </tr>
+              
+              <!-- Footer -->
+              <tr>
+                <td align="center" style="padding-top: 20px; border-top: 2px dashed #EADFC8;">
+                  <p style="font-size: 13px; color: #888; margin: 0; font-weight: 500;">
+                    This message was sent from the High Life (PVT) LTD Contact Form.
+                  </p>
+                </td>
+              </tr>
+              
+            </table>
+          </td>
+        </tr>
+      </table>
+    </body>
+    </html>
+  `;
+
+  try {
+    const info = await transporter.sendMail({
+      from: `"${contactData.firstName} ${contactData.lastName}" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_USER,
+      replyTo: contactData.email,
+      subject: `New Contact Form Submission from ${contactData.firstName} ${contactData.lastName}`,
+      html: htmlContent
+    });
+    console.log("Contact email sent successfully:", info.messageId);
+  } catch (error) {
+    console.error("Error sending contact email:", error);
+    throw error;
+  }
+};
+
 module.exports = {
   sendOrderConfirmation,
-  sendOrderCancellationEmail
+  sendOrderCancellationEmail,
+  sendContactEmail
 };

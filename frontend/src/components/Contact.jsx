@@ -1,6 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    message: ''
+  });
+  const [status, setStatus] = useState(''); // 'sending', 'success', 'error'
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('sending');
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setTimeout(() => {
+          setStatus('');
+          setFormData({ firstName: '', lastName: '', email: '', message: '' });
+        }, 4000);
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setStatus('error');
+    }
+  };
+
   return (
     <section id="contact" className="w-full py-20 px-6 bg-[#B69F73]">
       <div className="max-w-7xl mx-auto">
@@ -74,45 +113,79 @@ const Contact = () => {
             
             <h3 className="relative z-10 text-2xl font-bold text-[#2a2a2a] mb-8">Send us a Message</h3>
             
-            <form className="relative z-10 flex flex-col gap-6">
-              <div className="flex flex-col sm:flex-row gap-6">
+            {status === 'success' ? (
+              <div className="relative z-10 flex flex-col items-center justify-center py-16 animate-[fadeIn_0.5s_ease-out] text-center h-full">
+                <div className="w-20 h-20 bg-[#E6B754] rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(230,183,84,0.4)] transform hover:scale-110 transition-transform duration-300">
+                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h4 className="text-3xl font-extrabold text-[#2a2a2a] mb-3">Awesome!</h4>
+                <p className="text-[#2a2a2a]/70 font-medium max-w-sm text-sm leading-relaxed">
+                  Your message has been sent successfully. We'll be in touch with you shortly.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="relative z-10 flex flex-col gap-6">
+                <div className="flex flex-col sm:flex-row gap-6">
+                  <div className="w-full flex flex-col gap-2">
+                    <label className="text-[10px] text-[#2a2a2a]/50 uppercase tracking-widest font-bold">First Name</label>
+                    <input 
+                      type="text" 
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleChange}
+                      required
+                      className="w-full pb-2 bg-transparent text-[#2a2a2a] outline-none border-b border-[#2a2a2a]/10 focus:border-[#E6B754] transition font-medium" 
+                    />
+                  </div>
+                  <div className="w-full flex flex-col gap-2">
+                    <label className="text-[10px] text-[#2a2a2a]/50 uppercase tracking-widest font-bold">Last Name</label>
+                    <input 
+                      type="text" 
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      required
+                      className="w-full pb-2 bg-transparent text-[#2a2a2a] outline-none border-b border-[#2a2a2a]/10 focus:border-[#E6B754] transition font-medium" 
+                    />
+                  </div>
+                </div>
                 <div className="w-full flex flex-col gap-2">
-                  <label className="text-[10px] text-[#2a2a2a]/50 uppercase tracking-widest font-bold">First Name</label>
+                  <label className="text-[10px] text-[#2a2a2a]/50 uppercase tracking-widest font-bold">Email Address</label>
                   <input 
-                    type="text" 
+                    type="email" 
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
                     className="w-full pb-2 bg-transparent text-[#2a2a2a] outline-none border-b border-[#2a2a2a]/10 focus:border-[#E6B754] transition font-medium" 
                   />
                 </div>
                 <div className="w-full flex flex-col gap-2">
-                  <label className="text-[10px] text-[#2a2a2a]/50 uppercase tracking-widest font-bold">Last Name</label>
-                  <input 
-                    type="text" 
-                    className="w-full pb-2 bg-transparent text-[#2a2a2a] outline-none border-b border-[#2a2a2a]/10 focus:border-[#E6B754] transition font-medium" 
-                  />
+                  <label className="text-[10px] text-[#2a2a2a]/50 uppercase tracking-widest font-bold">Message</label>
+                  <textarea 
+                    rows="4" 
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    className="w-full pb-2 bg-transparent text-[#2a2a2a] outline-none border-b border-[#2a2a2a]/10 focus:border-[#E6B754] transition resize-none font-medium"
+                  ></textarea>
                 </div>
-              </div>
-              <div className="w-full flex flex-col gap-2">
-                <label className="text-[10px] text-[#2a2a2a]/50 uppercase tracking-widest font-bold">Email Address</label>
-                <input 
-                  type="email" 
-                  className="w-full pb-2 bg-transparent text-[#2a2a2a] outline-none border-b border-[#2a2a2a]/10 focus:border-[#E6B754] transition font-medium" 
-                />
-              </div>
-              <div className="w-full flex flex-col gap-2">
-                <label className="text-[10px] text-[#2a2a2a]/50 uppercase tracking-widest font-bold">Message</label>
-                <textarea 
-                  rows="4" 
-                  className="w-full pb-2 bg-transparent text-[#2a2a2a] outline-none border-b border-[#2a2a2a]/10 focus:border-[#E6B754] transition resize-none font-medium"
-                ></textarea>
-              </div>
-              
-              <button 
-                type="button" 
-                className="bg-[#2a2a2a] btn-shine text-white px-8 py-3.5 rounded-full text-xs font-bold tracking-wider hover:bg-[#E6B754] transition shadow-md border border-transparent mt-4 self-start"
-              >
-                SEND MESSAGE
-              </button>
-            </form>
+                
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-4">
+                  <button 
+                    type="submit" 
+                    disabled={status === 'sending'}
+                    className="bg-[#2a2a2a] btn-shine text-white px-8 py-3.5 rounded-full text-xs font-bold tracking-wider hover:bg-[#E6B754] transition shadow-md border border-transparent disabled:opacity-70 disabled:cursor-not-allowed"
+                  >
+                    {status === 'sending' ? 'SENDING...' : 'SEND MESSAGE'}
+                  </button>
+                  {status === 'error' && <span className="text-red-500 text-sm font-bold">Failed to send message. Please try again.</span>}
+                </div>
+              </form>
+            )}
           </div>
 
         </div>

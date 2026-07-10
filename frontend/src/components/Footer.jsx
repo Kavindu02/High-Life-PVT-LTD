@@ -89,16 +89,18 @@ const Footer = ({ onNavigateToPrivacy, onNavigateToTerms }) => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col items-center justify-center pt-4 border-t border-white/10 text-xs text-[#fcf5e5]/40 font-medium gap-2">
-          <div className="flex space-x-4 mb-2">
+        <div className="flex flex-col md:flex-row items-center justify-between pt-6 border-t border-white/10 text-xs text-[#fcf5e5]/40 font-medium gap-4">
+          <div className="flex flex-col md:flex-row items-center gap-2 text-center md:text-left">
+            <p>© {new Date().getFullYear()} High Life (PVT) LTD. All Rights Reserved.</p>
+            <p className="hidden md:block">|</p>
+            <p>Developed by <a href="https://www.syntechcraft.com/" target="_blank" rel="noopener noreferrer" className="text-[#E6B754] hover:text-white transition-colors">Syntechcraft</a></p>
+          </div>
+          
+          <div className="flex items-center space-x-4">
             <button onClick={onNavigateToPrivacy} className="hover:text-[#E6B754] transition-colors">Privacy Policy</button>
             <span>|</span>
             <button onClick={onNavigateToTerms} className="hover:text-[#E6B754] transition-colors">Terms of Service</button>
           </div>
-          <p>© {new Date().getFullYear()} High Life (PVT) LTD. All Rights Reserved.</p>
-          <p>
-            Developed by <a href="https://www.syntechcraft.com/" target="_blank" rel="noopener noreferrer" className="text-[#E6B754] hover:text-white transition-colors">Syntechcraft</a>
-          </p>
         </div>
       </div>
     </footer>

@@ -3,7 +3,7 @@ const cors = require('cors');
 const mysql = require('mysql2/promise');
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
-const { sendOrderConfirmation, sendOrderCancellationEmail } = require('./emailService');
+const { sendOrderConfirmation, sendOrderCancellationEmail, sendContactEmail } = require('./emailService');
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -247,6 +247,24 @@ app.get('/api/orders/user/:userId', async (req, res) => {
   } catch (err) {
     console.error('Error fetching user orders:', err);
     res.status(500).json({ error: 'Failed to fetch user orders' });
+  }
+});
+
+// Handle Contact Form
+app.post('/api/contact', async (req, res) => {
+  try {
+    const { firstName, lastName, email, message } = req.body;
+    
+    if (!firstName || !lastName || !email || !message) {
+      return res.status(400).json({ error: 'All fields are required' });
+    }
+
+    await sendContactEmail({ firstName, lastName, email, message });
+    
+    res.status(200).json({ message: 'Message sent successfully' });
+  } catch (err) {
+    console.error('Error processing contact form:', err);
+    res.status(500).json({ error: 'Failed to send message' });
   }
 });
 
