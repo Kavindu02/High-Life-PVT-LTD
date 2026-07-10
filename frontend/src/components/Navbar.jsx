@@ -97,7 +97,7 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
   const cartItemCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-[#2A2A2A]/95 backdrop-blur-md border-b-[4px] border-[#E6B754] transition-all duration-300 flex flex-col font-montserrat">
+    <nav className={`fixed top-0 left-0 w-full z-50 bg-[#2A2A2A]/95 backdrop-blur-md ${activeSection === 'home' ? 'border-b-[2px]' : 'border-b-[4px]'} border-[#E6B754] transition-all duration-150 ease-in-out flex flex-col font-montserrat`}>
       {/* Main Navbar */}
       <div className="w-full flex flex-col md:flex-row justify-between items-center px-6 lg:px-12 py-3 h-20 relative z-10">
 
