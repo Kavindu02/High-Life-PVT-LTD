@@ -30,7 +30,7 @@ const Contact = () => {
                 </div>
                 <div className="flex flex-col">
                   <p className="text-[10px] text-[#2a2a2a]/50 uppercase tracking-[0.2em] font-bold mb-1">email</p>
-                  <p className="font-bold text-[#2a2a2a] group-hover:text-[#E6B754] transition-colors duration-300 text-lg">hello@highlife.com</p>
+                  <p className="font-bold text-[#2a2a2a] group-hover:text-[#E6B754] transition-colors duration-300 text-lg">highlifepvtltd@gmail.com</p>
                 </div>
               </div>
 
@@ -43,7 +43,7 @@ const Contact = () => {
                 </div>
                 <div className="flex flex-col">
                   <p className="text-[10px] text-[#2a2a2a]/50 uppercase tracking-[0.2em] font-bold mb-1">Hotline</p>
-                  <p className="font-bold text-[#2a2a2a] group-hover:text-[#E6B754] transition-colors duration-300 text-lg">+94 76 045 4514</p>
+                  <p className="font-bold text-[#2a2a2a] group-hover:text-[#E6B754] transition-colors duration-300 text-lg">0755393000</p>
                 </div>
               </div>
 

@@ -2,8 +2,11 @@ import React from 'react';
 
 const Hero = () => {
   return (
-    <section id="home" className="relative w-full h-[600px] md:h-[700px] lg:h-[800px] bg-[#B79C6F] flex items-center overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-black/10 to-transparent"></div>
+    <section id="home" className="relative w-full h-[550px] md:h-[650px] lg:h-[750px] pt-20 flex items-center overflow-hidden bg-[#1a1a1a]" style={{ backgroundImage: 'url(/hero-bg-dark.jpeg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      {/* Site theme color overlay */}
+      <div className="absolute inset-0 bg-[#B79C6F]/40 mix-blend-multiply"></div>
+      {/* Gradient to make text readable (darker on the right where text is) */}
+      <div className="absolute inset-0 bg-gradient-to-l from-[#2A2A2A]/90 via-[#2A2A2A]/60 to-[#B79C6F]/20"></div>
 
       <div className="max-w-7xl mx-auto w-full h-full flex flex-col md:flex-row items-center relative z-10">
 
@@ -12,7 +15,7 @@ const Hero = () => {
           <img
             src="/hero_products_large.webp"
             alt="Premium Spices"
-            className="w-[80%] md:w-[120%] lg:w-[130%] max-w-none object-contain translate-y-12 md:translate-y-24 md:-translate-x-12 z-10 drop-shadow-2xl"
+            className="w-auto max-w-[70%] md:max-w-[100%] lg:max-w-[110%] h-auto max-h-[350px] md:max-h-[450px] lg:max-h-[550px] object-contain translate-y-4 md:translate-y-8 md:-translate-x-4 z-10 drop-shadow-2xl"
           />
         </div>
 
