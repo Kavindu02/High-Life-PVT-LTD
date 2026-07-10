@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Footer = () => {
+const Footer = ({ onNavigateToPrivacy, onNavigateToTerms }) => {
   return (
     <footer className="bg-[#2A2A2A] text-[#fcf5e5] pt-12 pb-6 px-6 border-t-[4px] border-[#E6B754]">
       <div className="max-w-7xl mx-auto">
@@ -90,6 +90,11 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="flex flex-col items-center justify-center pt-4 border-t border-white/10 text-xs text-[#fcf5e5]/40 font-medium gap-2">
+          <div className="flex space-x-4 mb-2">
+            <button onClick={onNavigateToPrivacy} className="hover:text-[#E6B754] transition-colors">Privacy Policy</button>
+            <span>|</span>
+            <button onClick={onNavigateToTerms} className="hover:text-[#E6B754] transition-colors">Terms of Service</button>
+          </div>
           <p>© {new Date().getFullYear()} High Life (PVT) LTD. All Rights Reserved.</p>
           <p>
             Developed by <a href="https://www.syntechcraft.com/" target="_blank" rel="noopener noreferrer" className="text-[#E6B754] hover:text-white transition-colors">Syntechcraft</a>

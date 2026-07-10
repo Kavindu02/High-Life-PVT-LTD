@@ -28,11 +28,11 @@ const About = () => {
             </h2>
             
             <p className="text-xs md:text-sm text-brand-dark/70 mb-6 leading-relaxed max-w-lg">
-              Handpicked spices are top grade, hand picked by experts and processed under strict hygienic condition and careful supervision which leads to unequalled savoury goodness to your cooking.
+              Established on January 11, 2025, High Life (PVT) LTD was founded on a distinct mission: to bring you the finest, authentic Ceylon spices. Driven by passion rather than mere business, we ensure every product delivers an unequalled, savory goodness to elevate your culinary journey.
             </p>
             
             <p className="text-xs md:text-sm text-brand-dark/70 mb-8 leading-relaxed max-w-lg">
-              Though it is one mission but not adapted like business, the product is entirely pure with its quality control and is under the strict supervision of family. This is the reason that no other products of the same type could take the place of this.
+              Our premium spices are expertly handpicked and processed under strict hygienic conditions. Maintained with uncompromising quality control and guided by careful family supervision, our entirely pure spices offer a richness and quality that simply cannot be replaced.
             </p>
             
             <a href="#collection" className="mt-4 relative top-12 inline-block w-fit bg-[#2a2a2a] btn-shine text-white text-xs font-bold px-8 py-3 rounded-full hover:bg-[#E6B754] transition tracking-wider shadow-lg border-2 border-white/20">

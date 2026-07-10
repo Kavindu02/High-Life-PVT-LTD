@@ -15,7 +15,8 @@ import SideCart from './components/SideCart';
 import Checkout from './components/Checkout';
 import AdminDashboard from './components/AdminDashboard';
 import Loader from './components/Loader';
-
+import PrivacyPolicy from './components/PrivacyPolicy';
+import TermsOfService from './components/TermsOfService';
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -237,6 +238,10 @@ const App = () => {
               window.scrollTo(0, 0); 
             }}
           />
+        ) : currentView === 'privacy-policy' ? (
+          <PrivacyPolicy />
+        ) : currentView === 'terms-of-service' ? (
+          <TermsOfService />
         ) : (
           <>
             <Hero />
@@ -247,7 +252,10 @@ const App = () => {
           </>
         )}
       </main>
-      {!isAuthPage && <Footer />}
+      {!isAuthPage && <Footer 
+        onNavigateToPrivacy={() => { setCurrentView('privacy-policy'); window.scrollTo(0, 0); }}
+        onNavigateToTerms={() => { setCurrentView('terms-of-service'); window.scrollTo(0, 0); }}
+      />}
     </div>
   );
 };
