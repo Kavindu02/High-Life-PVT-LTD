@@ -14,27 +14,33 @@ const Hero = () => {
         <div className="w-full md:w-1/2 h-full hidden md:block"></div>
 
         {/* Right Side: Text Content */}
-        <div className="w-full md:w-1/2 flex flex-col items-center justify-center text-white px-6 md:px-12 text-center pb-20 md:pb-0 z-20">
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-wide uppercase drop-shadow-md">
+        <div className="w-full md:w-1/2 flex flex-col items-center justify-center px-6 md:px-12 text-center pb-20 md:pb-0 z-20">
+          <h2 className="text-xl md:text-2xl lg:text-4xl font-bold tracking-[0.2em] uppercase drop-shadow-md text-[#B79C6F] mb-2 md:mb-4">
             WORLD'S BEST
           </h2>
-          <h1 className="text-5xl md:text-7xl lg:text-[100px] font-black mt-2 leading-none tracking-tight drop-shadow-lg">
-            CEYLON SPICES
+          <h1 className="text-6xl md:text-8xl lg:text-[110px] font-black leading-[1.1] tracking-tight drop-shadow-lg text-white">
+            <span className="block">CEYLON</span>
+            <span className="block">SPICES</span>
           </h1>
-          <p className="text-xl md:text-2xl lg:text-3xl font-medium mt-6 drop-shadow-md">
-            100% Authentic | Premium Quality
+          <p className="text-lg md:text-xl lg:text-3xl font-medium mt-6 drop-shadow-md text-white/90">
+            100% Authentic <span className="text-[#B79C6F] mx-2">|</span> Premium Quality
           </p>
 
-          <a
-            href="#collection"
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="mt-10 bg-white text-[#B79C6F] hover:bg-[#f0f0f0] px-10 py-4 rounded font-bold text-lg transition-colors shadow-lg cursor-pointer inline-block"
-          >
-            Shop Now
-          </a>
+          <div className="relative mt-10">
+            <a
+              href="#collection"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="bg-[#B79C6F] text-white hover:bg-[#a0875c] px-10 py-4 rounded font-bold text-lg transition-colors shadow-lg cursor-pointer inline-block relative z-10"
+            >
+              Shop Now
+            </a>
+            {/* Simple decorative sparkle effect like the image */}
+            <div className="absolute -right-4 -top-4 w-8 h-8 bg-white/20 blur-sm rotate-45 z-0 rounded-full"></div>
+            <div className="absolute -right-2 -top-2 text-white/50 z-20 pointer-events-none">✨</div>
+          </div>
 
         </div>
 

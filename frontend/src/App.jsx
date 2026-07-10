@@ -253,8 +253,31 @@ const App = () => {
         )}
       </main>
       {!isAuthPage && <Footer 
-        onNavigateToPrivacy={() => { setCurrentView('privacy-policy'); window.scrollTo(0, 0); }}
-        onNavigateToTerms={() => { setCurrentView('terms-of-service'); window.scrollTo(0, 0); }}
+        onNavigateToPrivacy={() => { 
+          setSelectedProduct(null);
+          sessionStorage.removeItem('selectedProduct');
+          setCurrentView('privacy-policy'); 
+          window.scrollTo(0, 0); 
+        }}
+        onNavigateToTerms={() => { 
+          setSelectedProduct(null);
+          sessionStorage.removeItem('selectedProduct');
+          setCurrentView('terms-of-service'); 
+          window.scrollTo(0, 0); 
+        }}
+        onNavigateToSection={(sectionId) => {
+          setSelectedProduct(null);
+          sessionStorage.removeItem('selectedProduct');
+          setCurrentView('home');
+          setTimeout(() => {
+            const element = document.getElementById(sectionId);
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+            } else {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+          }, 100);
+        }}
       />}
     </div>
   );

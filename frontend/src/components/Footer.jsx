@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Footer = ({ onNavigateToPrivacy, onNavigateToTerms }) => {
+const Footer = ({ onNavigateToPrivacy, onNavigateToTerms, onNavigateToSection }) => {
   return (
     <footer className="bg-[#2A2A2A] text-[#fcf5e5] pt-12 pb-6 px-6 border-t-[4px] border-[#E6B754]">
       <div className="max-w-7xl mx-auto">
@@ -32,13 +32,24 @@ const Footer = ({ onNavigateToPrivacy, onNavigateToTerms }) => {
           <div>
             <h4 className="text-sm font-bold text-white uppercase tracking-[0.2em] mb-4">Explore</h4>
             <ul className="space-y-2">
-              {['Home', 'About', 'Collection', 'Story', 'Contact'].map((link) => (
-                <li key={link}>
-                  <a href={`#${link.toLowerCase().replace(' ', '')}`} className="text-[#fcf5e5]/60 hover:text-[#E6B754] hover:translate-x-1 inline-block transition-all duration-300 text-sm">
-                    {link}
-                  </a>
-                </li>
-              ))}
+              {['Home', 'About', 'Collection', 'Story', 'Contact'].map((link) => {
+                const sectionId = link.toLowerCase().replace(' ', '');
+                return (
+                  <li key={link}>
+                    <button 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (onNavigateToSection) {
+                          onNavigateToSection(sectionId);
+                        }
+                      }} 
+                      className="text-[#fcf5e5]/60 hover:text-[#E6B754] hover:translate-x-1 inline-block transition-all duration-300 text-sm text-left"
+                    >
+                      {link}
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
