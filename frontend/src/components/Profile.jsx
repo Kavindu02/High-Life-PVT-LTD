@@ -114,7 +114,18 @@ const Profile = ({ user, onLogout }) => {
                     </div>
                     <div className="w-full md:w-auto text-center md:text-right">
                       <p className="text-xl font-bold text-[#2A2A2A]">Rs. {order.total_amount}</p>
-                      <p className="text-[11px] text-[#9A9286] font-bold uppercase tracking-widest mt-1">{order.payment_method}</p>
+                      <p className="text-[11px] text-[#9A9286] font-bold uppercase tracking-widest mt-1">
+                        {(() => {
+                          try {
+                            const items = typeof order.items === 'string' ? JSON.parse(order.items) : order.items;
+                            if (Array.isArray(items) && items.length > 0) {
+                              const sizes = items.map(item => item.size).filter(Boolean).join(', ');
+                              return sizes ? `SIZE: ${sizes}` : '';
+                            }
+                          } catch (e) {}
+                          return '';
+                        })()}
+                      </p>
                     </div>
                   </div>
                 ))}
