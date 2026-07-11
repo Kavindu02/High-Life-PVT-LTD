@@ -19,13 +19,13 @@ const Hero = () => {
             WORLD'S BEST
           </h2>
           <div className="border-b-2 border-[#B79C6F]/50 pb-4 md:pb-6 mb-6 inline-block text-left">
-            <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-[110px] leading-[1.1] tracking-tight drop-shadow-lg text-white font-black">
+            <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-[110px] leading-[1.1] tracking-tight drop-shadow-lg text-[#FBF5EB] font-black">
               <span className="block">Ceylon</span>
               <span className="block text-right pl-12 md:pl-24">Spices</span>
             </h1>
           </div>
-          <p className="text-lg md:text-xl lg:text-3xl font-medium drop-shadow-md text-white/90">
-            100% Authentic <span className="text-[#B79C6F] mx-2">|</span> Premium Quality
+          <p className="text-xs md:text-sm lg:text-base font-medium drop-shadow-md text-white/80 max-w-[400px] mx-auto leading-relaxed">
+            Premium handpicked Ceylon spices bringing authentic flavor and rich aroma to your kitchen.
           </p>
 
           <div className="relative mt-10 flex flex-col sm:flex-row gap-4 items-center justify-center">
@@ -45,7 +45,7 @@ const Hero = () => {
                 e.preventDefault();
                 document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="bg-transparent border-2 border-white/70 text-white hover:bg-white hover:text-[#1a1a1a] px-10 py-4 rounded-full font-bold text-lg transition-colors shadow-lg cursor-pointer inline-block relative z-10 w-full sm:w-auto"
+              className="bg-transparent border-2 border-white/70 text-white hover:bg-[#FBF5EB] hover:border-[#FBF5EB] hover:text-[#1a1a1a] px-10 py-4 rounded-full font-bold text-lg transition-colors shadow-lg cursor-pointer inline-block relative z-10 w-full sm:w-auto"
             >
               Contact Us
             </a>
