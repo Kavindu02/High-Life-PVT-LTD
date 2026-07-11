@@ -152,13 +152,13 @@ const Checkout = ({ cartItems }) => {
   };
 
   return (
-    <div className="w-full bg-[#FAF5EC] min-h-screen pt-32 pb-16 relative font-sans">
+    <div className="w-full bg-[#FAF5EC] min-h-screen pt-24 md:pt-32 pb-16 relative font-sans">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
         <div className="flex flex-col lg:flex-row gap-12 items-start">
 
           {/* Left Column - Delivery Details */}
-          <div className="flex-1 w-full bg-white/60 backdrop-blur-md p-6 lg:p-10 rounded-[2rem] border border-[#EADFC8]/50 shadow-sm">
+          <div className="flex-1 w-full bg-white/60 backdrop-blur-md p-5 md:p-6 lg:p-10 rounded-[1.5rem] md:rounded-[2rem] border border-[#EADFC8]/50 shadow-sm">
             <h2 className="text-3xl font-black mb-10 text-[#2a2a2a]">Delivery Details</h2>
 
             <form className="space-y-6">
@@ -235,7 +235,7 @@ const Checkout = ({ cartItems }) => {
 
           {/* Right Column - Your Order */}
           <div className="w-full lg:w-[450px] shrink-0">
-            <div className="bg-white/60 backdrop-blur-md p-6 lg:p-10 rounded-[2rem] text-[#2a2a2a] sticky top-28 border border-[#EADFC8]/50 shadow-sm">
+            <div className="bg-white/60 backdrop-blur-md p-5 md:p-6 lg:p-10 rounded-[1.5rem] md:rounded-[2rem] text-[#2a2a2a] sticky top-28 border border-[#EADFC8]/50 shadow-sm">
               <h2 className="text-3xl font-black mb-10 text-[#2a2a2a]">Your Order</h2>
 
               <div className="flex justify-between items-center mb-6 font-black text-[#2a2a2a] text-[15px]">
@@ -348,15 +348,15 @@ const Checkout = ({ cartItems }) => {
         </div>
       </div>
       {showSuccessModal && (
-        <div className="fixed inset-0 z-[100] bg-transparent">
-          <div className="fixed top-8 left-1/2 -translate-x-1/2 animate-bounce">
-            <div className="bg-[#FAF5EC] border-2 border-[#EADFC8] rounded-full px-6 py-4 shadow-xl flex items-center gap-4">
+        <div className="fixed inset-0 z-[100] bg-transparent pointer-events-none flex items-start justify-center pt-8 md:pt-10">
+          <div className="animate-bounce pointer-events-auto">
+            <div className="bg-[#FAF5EC] border-2 border-[#EADFC8] rounded-[24px] md:rounded-full px-4 md:px-6 py-3 md:py-4 shadow-xl flex items-center justify-between gap-3 md:gap-4 w-[92vw] sm:w-auto max-w-[400px]">
               <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center shrink-0">
                 <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
               </div>
-              <div>
-                <h3 className="text-sm font-black text-[#2a2a2a] m-0 leading-tight">Order Placed Successfully!</h3>
-                <p className="text-xs text-[#888] font-medium m-0 mt-0.5">Check your email for the receipt.</p>
+              <div className="flex-1">
+                <h3 className="text-[13px] md:text-sm font-black text-[#2a2a2a] m-0 leading-tight">Order Placed Successfully!</h3>
+                <p className="text-[11px] md:text-xs text-[#888] font-medium m-0 mt-0.5">Check your email for the receipt.</p>
               </div>
               <button
                 onClick={() => {
@@ -364,7 +364,7 @@ const Checkout = ({ cartItems }) => {
                   localStorage.removeItem('cartItems');
                   window.location.href = '/';
                 }}
-                className="ml-4 bg-[#2a2a2a] text-[#FAF5EC] px-4 py-1.5 rounded-full text-xs font-bold hover:bg-[#C5A880] hover:text-[#2a2a2a] transition-colors"
+                className="shrink-0 bg-[#2a2a2a] text-[#FAF5EC] px-4 py-2 rounded-full text-[11px] md:text-xs font-bold hover:bg-[#C5A880] hover:text-[#2a2a2a] transition-colors"
               >
                 OK
               </button>

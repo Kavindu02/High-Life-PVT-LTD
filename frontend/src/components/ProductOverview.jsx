@@ -38,14 +38,18 @@ const ProductOverview = ({ product, onAddToCart, onBack, onCheckout }) => {
     if (onAddToCart) {
       onAddToCart(product, selectedSize, quantity);
     }
-    
+
     const button = e.currentTarget;
     const buttonRect = button.getBoundingClientRect();
-    const cartIcon = document.getElementById('cart-icon-nav');
-    
-    if (cartIcon) {
-      const cartRect = cartIcon.getBoundingClientRect();
+    const cartIcon = window.innerWidth < 768 
+      ? document.getElementById('cart-icon-mobile') 
+      : document.getElementById('cart-icon-nav');
       
+    const activeCartIcon = cartIcon || document.getElementById('cart-icon-nav') || document.getElementById('cart-icon-mobile');
+    
+    if (activeCartIcon) {
+      const cartRect = activeCartIcon.getBoundingClientRect();
+
       const flyingElement = document.createElement('div');
       flyingElement.style.position = 'fixed';
       flyingElement.style.top = `${buttonRect.top + buttonRect.height / 2}px`;
@@ -61,19 +65,19 @@ const ProductOverview = ({ product, onAddToCart, onBack, onCheckout }) => {
       flyingElement.style.overflow = 'hidden';
       flyingElement.style.border = '2px solid #E6B754';
       flyingElement.style.background = '#fff';
-      
+
       const img = document.createElement('img');
       img.src = productImages[activeImageIndex];
       img.style.width = '100%';
       img.style.height = '100%';
       img.style.objectFit = 'cover';
-      
+
       flyingElement.appendChild(img);
       document.body.appendChild(flyingElement);
-      
+
       // Force reflow
       void flyingElement.offsetWidth;
-      
+
       // Trigger animation
       setTimeout(() => {
         flyingElement.style.top = `${cartRect.top + cartRect.height / 2}px`;
@@ -81,16 +85,16 @@ const ProductOverview = ({ product, onAddToCart, onBack, onCheckout }) => {
         flyingElement.style.transform = 'translate(-50%, -50%) scale(0.1)';
         flyingElement.style.opacity = '0.3';
       }, 10);
-      
+
       // Cleanup
       setTimeout(() => {
         if (document.body.contains(flyingElement)) {
           document.body.removeChild(flyingElement);
         }
-        
-        cartIcon.style.transform = 'scale(1.3)';
+
+        activeCartIcon.style.transform = 'scale(1.3)';
         setTimeout(() => {
-          cartIcon.style.transform = '';
+          activeCartIcon.style.transform = '';
         }, 200);
       }, 710);
     }
@@ -184,23 +188,24 @@ const ProductOverview = ({ product, onAddToCart, onBack, onCheckout }) => {
                 </div>
               </div>
 
-              <div className="flex flex-wrap items-center gap-3">
-                <button 
+              <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3">
+                <button
                   onClick={handleAddToCartWithAnimation}
-                  className="bg-[#2a2a2a] btn-shine text-white px-8 py-3.5 rounded-xl font-black uppercase tracking-widest text-xs shadow-[0_10px_20px_rgba(42,42,42,0.2)] hover:bg-black hover:-translate-y-1 transition-all duration-300 flex-1 md:flex-none"
+                  className="bg-[#2a2a2a] btn-shine text-white px-8 py-4 md:py-3.5 rounded-xl font-black uppercase tracking-widest text-xs shadow-[0_10px_20px_rgba(42,42,42,0.2)] hover:bg-black hover:-translate-y-1 transition-all duration-300 w-full md:w-auto"
                 >
                   Add To Cart
                 </button>
 
-              <button 
-                onClick={() => {
-                  if (onCheckout) onCheckout({ product, size: selectedSize, quantity });
-                }}
-                className="bg-gradient-to-r btn-shine from-[#e6b753] to-[#d6993a] text-white px-8 py-3.5 rounded-xl font-black uppercase tracking-widest text-xs shadow-[0_10px_20px_rgba(230,183,83,0.3)] hover:shadow-[0_15px_30px_rgba(230,183,83,0.4)] hover:-translate-y-1 transition-all duration-300 flex-1 md:flex-none">
-                Buy Now
-              </button>
+                <button
+                  onClick={() => {
+                    if (onCheckout) onCheckout({ product, size: selectedSize, quantity });
+                  }}
+                  className="bg-gradient-to-r btn-shine from-[#e6b753] to-[#d6993a] text-white px-8 py-4 md:py-3.5 rounded-xl font-black uppercase tracking-widest text-xs shadow-[0_10px_20px_rgba(230,183,83,0.3)] hover:shadow-[0_15px_30px_rgba(230,183,83,0.4)] hover:-translate-y-1 transition-all duration-300 w-full md:w-auto"
+                >
+                  Buy Now
+                </button>
+              </div>
             </div>
-          </div>
 
             {/* Meta Info */}
             <div className="flex flex-col gap-3 pt-6 border-t-[1.5px] border-[#EADFC8]/60 text-sm">

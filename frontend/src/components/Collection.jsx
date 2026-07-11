@@ -89,7 +89,7 @@ const Collection = ({ onProductClick }) => {
           {products.map((product) => (
             <div
               key={product.id}
-              className="mt-16 mb-6 relative flex flex-col items-center cursor-pointer group"
+              className="mt-20 md:mt-24 mb-6 relative flex flex-col items-center cursor-pointer group"
               onClick={() => onProductClick && onProductClick(product)}
             >
               {/* Main Light Card */}
@@ -98,7 +98,7 @@ const Collection = ({ onProductClick }) => {
 
 
                 {/* Overlapping Product Image */}
-                <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-48 h-48 z-30 group-hover:-translate-y-3 group-hover:scale-110 transition-all duration-500">
+                <div className="absolute -top-16 md:-top-20 left-1/2 -translate-x-1/2 w-40 h-40 md:w-48 md:h-48 z-30 group-hover:-translate-y-3 group-hover:scale-110 transition-all duration-500">
                   <img src={product.image} alt={product.name} className="w-full h-full object-contain drop-shadow-2xl mix-blend-multiply rounded-[32px]" />
                 </div>
 
@@ -106,7 +106,7 @@ const Collection = ({ onProductClick }) => {
                 <div className="w-full border-[1.5px] border-dashed border-[#EADFC8] rounded-xl p-5 pt-20 flex flex-col items-center relative h-full bg-white/30">
 
                   {/* Title */}
-                  <h3 className="text-[#2A2A2A] text-[15px] xl:text-base font-black tracking-wide uppercase mb-1 text-center whitespace-nowrap">
+                  <h3 className="text-[#2A2A2A] text-[15px] xl:text-base font-black tracking-wide uppercase mb-1 text-center">
                     {product.name}
                   </h3>
 
@@ -123,7 +123,7 @@ const Collection = ({ onProductClick }) => {
                   </div>
 
                   {/* Description */}
-                  <p className="text-[9px] 2xl:text-[10px] text-[#9A9286] text-center mb-4 w-full uppercase tracking-wide font-bold whitespace-nowrap">
+                  <p className="text-[9px] 2xl:text-[10px] text-[#9A9286] text-center mb-4 w-full uppercase tracking-wide font-bold">
                     {product.description}
                   </p>
 

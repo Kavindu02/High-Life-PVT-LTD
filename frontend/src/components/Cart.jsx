@@ -56,45 +56,48 @@ const Cart = ({ cartItems, setCartItems, onNavigateToHome, onCheckout }) => {
   }
 
   return (
-    <div className="w-full bg-[#FAF5EC] min-h-screen pt-32 pb-16 relative font-sans">
+    <div className="w-full bg-[#FAF5EC] min-h-screen pt-24 md:pt-32 pb-16 relative font-sans">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <h1 className="text-4xl font-black text-[#2a2a2a] mb-10 tracking-tight">Your Cart</h1>
         
         <div className="flex flex-col lg:flex-row gap-12">
           {/* Cart Items */}
           <div className="flex-1">
-            <div className="bg-white/60 backdrop-blur-md rounded-[2rem] p-6 lg:p-8 border border-[#EADFC8]/50 shadow-sm">
+            <div className="bg-white/60 backdrop-blur-md rounded-[1.5rem] md:rounded-[2rem] p-4 md:p-6 lg:p-8 border border-[#EADFC8]/50 shadow-sm">
               {cartItems.map((item, index) => {
                 const itemPrice = item.product.pricing[item.size];
                 return (
-                  <div key={index} className="flex flex-col sm:flex-row items-center gap-6 py-6 border-b border-[#EADFC8]/50 last:border-0 last:pb-0 first:pt-0">
-                    <div className="w-24 h-24 rounded-2xl bg-[#fcf5e5] border border-[#f5e8cd] p-2 flex shrink-0">
+                  <div key={index} className="flex flex-row items-start sm:items-center gap-4 sm:gap-6 py-6 border-b border-[#EADFC8]/50 last:border-0 last:pb-0 first:pt-0">
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-[#fcf5e5] border border-[#f5e8cd] p-2 flex shrink-0">
                       <img src={item.product.image} alt={item.product.name} className="w-full h-full object-cover mix-blend-multiply rounded-xl" />
                     </div>
                     
-                    <div className="flex-1 flex flex-col items-center sm:items-start text-center sm:text-left w-full">
-                      <h3 className="text-lg font-black text-[#2a2a2a]">{item.product.name}</h3>
-                      <p className="text-sm font-bold text-[#9A9286] mt-1 uppercase tracking-widest">Size: {item.size}</p>
+                    <div className="flex-1 flex flex-col items-start text-left w-full">
+                      <div className="w-full flex justify-between items-start gap-2">
+                        <div>
+                          <h3 className="text-base sm:text-lg font-black text-[#2a2a2a] leading-tight">{item.product.name}</h3>
+                          <p className="text-[10px] sm:text-xs font-bold text-[#9A9286] mt-1 uppercase tracking-widest">Size: {item.size}</p>
+                        </div>
+                        <div className="text-base sm:text-xl font-black text-[#B69F73] whitespace-nowrap">
+                          Rs {itemPrice * item.quantity}
+                        </div>
+                      </div>
                       
-                      <div className="flex items-center gap-6 mt-4 sm:mt-auto w-full justify-between sm:justify-start">
+                      <div className="flex items-center gap-4 mt-3 w-full justify-between sm:justify-start">
                         {/* Quantity Selector */}
-                        <div className="flex items-center bg-white border border-[#EADFC8] rounded-full overflow-hidden shadow-sm">
-                          <button onClick={() => updateQuantity(item.product, item.size, item.quantity - 1)} className="px-3 py-1 text-[#9A9286] hover:bg-[#FBF5EB] hover:text-[#2a2a2a] transition-colors">-</button>
-                          <span className="px-3 font-bold text-xs text-[#2a2a2a] min-w-[2rem] text-center">{item.quantity}</span>
-                          <button onClick={() => updateQuantity(item.product, item.size, item.quantity + 1)} className="px-3 py-1 text-[#9A9286] hover:bg-[#FBF5EB] hover:text-[#2a2a2a] transition-colors">+</button>
+                        <div className="flex items-center bg-white border border-[#EADFC8] rounded-full overflow-hidden shadow-sm h-8 sm:h-9">
+                          <button onClick={() => updateQuantity(item.product, item.size, item.quantity - 1)} className="px-3 h-full text-[#9A9286] hover:bg-[#FBF5EB] hover:text-[#2a2a2a] transition-colors">-</button>
+                          <span className="px-2 sm:px-3 font-bold text-xs text-[#2a2a2a] min-w-[1.5rem] sm:min-w-[2rem] text-center">{item.quantity}</span>
+                          <button onClick={() => updateQuantity(item.product, item.size, item.quantity + 1)} className="px-3 h-full text-[#9A9286] hover:bg-[#FBF5EB] hover:text-[#2a2a2a] transition-colors">+</button>
                         </div>
                         
                         <button 
                           onClick={() => removeItem(item.product, item.size)}
-                          className="text-[#9A9286] hover:text-red-500 transition-colors p-2"
+                          className="text-[#9A9286] hover:text-red-500 transition-colors p-1.5"
                         >
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                         </button>
                       </div>
-                    </div>
-                    
-                    <div className="text-xl font-black text-[#B69F73] sm:ml-auto whitespace-nowrap">
-                      Rs {itemPrice * item.quantity}
                     </div>
                   </div>
                 );
@@ -104,7 +107,7 @@ const Cart = ({ cartItems, setCartItems, onNavigateToHome, onCheckout }) => {
 
           {/* Order Summary */}
           <div className="w-full lg:w-96 shrink-0">
-            <div className="bg-white/60 backdrop-blur-md p-6 lg:p-10 rounded-[2rem] text-[#2a2a2a] sticky top-28 border border-[#EADFC8]/50 shadow-sm">
+            <div className="bg-white/60 backdrop-blur-md p-5 md:p-6 lg:p-10 rounded-[1.5rem] md:rounded-[2rem] text-[#2a2a2a] sticky top-28 border border-[#EADFC8]/50 shadow-sm">
               <h2 className="text-3xl font-black mb-8 text-[#2a2a2a]">Order Summary</h2>
               
               <div className="flex flex-col gap-6 text-[15px] text-[#888] pb-8 mb-8 border-b border-[#EADFC8]">

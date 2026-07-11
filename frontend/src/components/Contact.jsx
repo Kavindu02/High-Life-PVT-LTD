@@ -47,20 +47,20 @@ const Contact = () => {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#2a2a2a] mb-6 leading-tight tracking-tight">Get in Touch</h2>
           <p className="text-[#2a2a2a]/70 max-w-2xl mx-auto">We'd love to hear from you. Whether you have a question about our products, pricing, or anything else, our team is ready to answer all your questions.</p>
         </div>
-        
+
         <div className="flex flex-col md:flex-row gap-8">
-          
+
           {/* Contact Details (Left) */}
-          <div className="relative w-full md:w-5/12 bg-[#fcf5e5] rounded-3xl p-10 md:p-12 border border-[#f5e8cd] shadow-sm flex flex-col justify-start">
+          <div className="relative w-full md:w-5/12 bg-[#fcf5e5] rounded-3xl p-8 md:p-14 border border-[#f5e8cd] shadow-sm flex flex-col justify-start">
             {/* Corner Lines Design */}
-            <div className="absolute top-6 left-6 w-10 h-10 border-t-2 border-l-2 border-[#E6B754]/30 rounded-tl-xl pointer-events-none transition-all duration-500 hover:border-[#E6B754]/60"></div>
-            <div className="absolute top-6 right-6 w-10 h-10 border-t-2 border-r-2 border-[#E6B754]/30 rounded-tr-xl pointer-events-none transition-all duration-500 hover:border-[#E6B754]/60"></div>
-            <div className="absolute bottom-6 left-6 w-10 h-10 border-b-2 border-l-2 border-[#E6B754]/30 rounded-bl-xl pointer-events-none transition-all duration-500 hover:border-[#E6B754]/60"></div>
-            <div className="absolute bottom-6 right-6 w-10 h-10 border-b-2 border-r-2 border-[#E6B754]/30 rounded-br-xl pointer-events-none transition-all duration-500 hover:border-[#E6B754]/60"></div>
+            <div className="absolute top-3 left-3 md:top-6 md:left-6 w-5 h-5 md:w-8 md:h-8 border-t-2 border-l-2 border-[#E6B754]/40 rounded-tl-xl pointer-events-none transition-all duration-500 hover:border-[#E6B754]/80"></div>
+            <div className="absolute top-3 right-3 md:top-6 md:right-6 w-5 h-5 md:w-8 md:h-8 border-t-2 border-r-2 border-[#E6B754]/40 rounded-tr-xl pointer-events-none transition-all duration-500 hover:border-[#E6B754]/80"></div>
+            <div className="absolute bottom-3 left-3 md:bottom-6 md:left-6 w-5 h-5 md:w-8 md:h-8 border-b-2 border-l-2 border-[#E6B754]/40 rounded-bl-xl pointer-events-none transition-all duration-500 hover:border-[#E6B754]/80"></div>
+            <div className="absolute bottom-3 right-3 md:bottom-6 md:right-6 w-5 h-5 md:w-8 md:h-8 border-b-2 border-r-2 border-[#E6B754]/40 rounded-br-xl pointer-events-none transition-all duration-500 hover:border-[#E6B754]/80"></div>
             <h3 className="relative z-10 text-2xl font-bold text-[#2a2a2a] mb-8">Contact Details</h3>
             <div className="relative z-10 space-y-12 mt-10">
-              
-              <div className="flex items-center gap-8 group cursor-pointer">
+
+              <div className="flex items-center gap-6 md:gap-8 group cursor-pointer">
                 <div className="relative w-14 h-14 shrink-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
                   <div className="absolute inset-0 bg-[#1a1a1a] group-hover:bg-[#E6B754] transition-colors duration-300 rotate-45 rounded-sm shadow-md"></div>
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="relative z-10 w-6 h-6 text-[#E6B754] group-hover:text-white transition-colors duration-300">
@@ -69,11 +69,11 @@ const Contact = () => {
                 </div>
                 <div className="flex flex-col">
                   <p className="text-[10px] text-[#2a2a2a]/50 uppercase tracking-[0.2em] font-bold mb-1">email</p>
-                  <p className="font-bold text-[#2a2a2a] group-hover:text-[#E6B754] transition-colors duration-300 text-lg">highlifepvtltd@gmail.com</p>
+                  <p className="font-bold text-[#2a2a2a] group-hover:text-[#E6B754] transition-colors duration-300 text-sm md:text-lg break-all md:break-normal">highlifepvtltd@gmail.com</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-8 group cursor-pointer">
+              <div className="flex items-center gap-6 md:gap-8 group cursor-pointer">
                 <div className="relative w-14 h-14 shrink-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
                   <div className="absolute inset-0 bg-[#1a1a1a] group-hover:bg-[#E6B754] transition-colors duration-300 rotate-45 rounded-sm shadow-md"></div>
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="relative z-10 w-6 h-6 text-[#E6B754] group-hover:text-white transition-colors duration-300">
@@ -82,11 +82,11 @@ const Contact = () => {
                 </div>
                 <div className="flex flex-col">
                   <p className="text-[10px] text-[#2a2a2a]/50 uppercase tracking-[0.2em] font-bold mb-1">Hotline</p>
-                  <p className="font-bold text-[#2a2a2a] group-hover:text-[#E6B754] transition-colors duration-300 text-lg">0755393000</p>
+                  <p className="font-bold text-[#2a2a2a] group-hover:text-[#E6B754] transition-colors duration-300 text-sm md:text-lg">0755393000</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-8 group cursor-pointer">
+              <div className="flex items-center gap-6 md:gap-8 group cursor-pointer">
                 <div className="relative w-14 h-14 shrink-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
                   <div className="absolute inset-0 bg-[#1a1a1a] group-hover:bg-[#E6B754] transition-colors duration-300 rotate-45 rounded-sm shadow-md"></div>
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="relative z-10 w-6 h-6 text-[#E6B754] group-hover:text-white transition-colors duration-300">
@@ -96,23 +96,23 @@ const Contact = () => {
                 </div>
                 <div className="flex flex-col">
                   <p className="text-[10px] text-[#2a2a2a]/50 uppercase tracking-[0.2em] font-bold mb-1">Address</p>
-                  <p className="font-bold text-[#2a2a2a] group-hover:text-[#E6B754] transition-colors duration-300 text-lg">Wataraka, Sri Lanka</p>
+                  <p className="font-bold text-[#2a2a2a] group-hover:text-[#E6B754] transition-colors duration-300 text-sm md:text-lg">Wataraka, Sri Lanka</p>
                 </div>
               </div>
-              
+
             </div>
           </div>
 
           {/* Contact Form (Right) */}
-          <div className="relative w-full md:w-7/12 bg-[#fcf5e5] rounded-3xl p-10 md:p-12 border border-[#f5e8cd] shadow-sm flex flex-col justify-start">
+          <div className="relative w-full md:w-7/12 bg-[#fcf5e5] rounded-3xl p-8 md:p-14 border border-[#f5e8cd] shadow-sm flex flex-col justify-start">
             {/* Corner Lines Design */}
-            <div className="absolute top-6 left-6 w-10 h-10 border-t-2 border-l-2 border-[#E6B754]/30 rounded-tl-xl pointer-events-none transition-all duration-500 hover:border-[#E6B754]/60"></div>
-            <div className="absolute top-6 right-6 w-10 h-10 border-t-2 border-r-2 border-[#E6B754]/30 rounded-tr-xl pointer-events-none transition-all duration-500 hover:border-[#E6B754]/60"></div>
-            <div className="absolute bottom-6 left-6 w-10 h-10 border-b-2 border-l-2 border-[#E6B754]/30 rounded-bl-xl pointer-events-none transition-all duration-500 hover:border-[#E6B754]/60"></div>
-            <div className="absolute bottom-6 right-6 w-10 h-10 border-b-2 border-r-2 border-[#E6B754]/30 rounded-br-xl pointer-events-none transition-all duration-500 hover:border-[#E6B754]/60"></div>
-            
+            <div className="absolute top-3 left-3 md:top-6 md:left-6 w-5 h-5 md:w-8 md:h-8 border-t-2 border-l-2 border-[#E6B754]/40 rounded-tl-xl pointer-events-none transition-all duration-500 hover:border-[#E6B754]/80"></div>
+            <div className="absolute top-3 right-3 md:top-6 md:right-6 w-5 h-5 md:w-8 md:h-8 border-t-2 border-r-2 border-[#E6B754]/40 rounded-tr-xl pointer-events-none transition-all duration-500 hover:border-[#E6B754]/80"></div>
+            <div className="absolute bottom-3 left-3 md:bottom-6 md:left-6 w-5 h-5 md:w-8 md:h-8 border-b-2 border-l-2 border-[#E6B754]/40 rounded-bl-xl pointer-events-none transition-all duration-500 hover:border-[#E6B754]/80"></div>
+            <div className="absolute bottom-3 right-3 md:bottom-6 md:right-6 w-5 h-5 md:w-8 md:h-8 border-b-2 border-r-2 border-[#E6B754]/40 rounded-br-xl pointer-events-none transition-all duration-500 hover:border-[#E6B754]/80"></div>
+
             <h3 className="relative z-10 text-2xl font-bold text-[#2a2a2a] mb-8">Send us a Message</h3>
-            
+
             {status === 'success' ? (
               <div className="relative z-10 flex flex-col items-center justify-center py-16 animate-[fadeIn_0.5s_ease-out] text-center h-full">
                 <div className="w-20 h-20 bg-[#E6B754] rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(230,183,84,0.4)] transform hover:scale-110 transition-transform duration-300">
@@ -130,42 +130,42 @@ const Contact = () => {
                 <div className="flex flex-col sm:flex-row gap-6">
                   <div className="w-full flex flex-col gap-2">
                     <label className="text-[10px] text-[#2a2a2a]/50 uppercase tracking-widest font-bold">First Name</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       name="firstName"
                       value={formData.firstName}
                       onChange={handleChange}
                       required
-                      className="w-full pb-2 bg-transparent text-[#2a2a2a] outline-none border-b border-[#2a2a2a]/10 focus:border-[#E6B754] transition font-medium" 
+                      className="w-full pb-2 bg-transparent text-[#2a2a2a] outline-none border-b border-[#2a2a2a]/10 focus:border-[#E6B754] transition font-medium"
                     />
                   </div>
                   <div className="w-full flex flex-col gap-2">
                     <label className="text-[10px] text-[#2a2a2a]/50 uppercase tracking-widest font-bold">Last Name</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       name="lastName"
                       value={formData.lastName}
                       onChange={handleChange}
                       required
-                      className="w-full pb-2 bg-transparent text-[#2a2a2a] outline-none border-b border-[#2a2a2a]/10 focus:border-[#E6B754] transition font-medium" 
+                      className="w-full pb-2 bg-transparent text-[#2a2a2a] outline-none border-b border-[#2a2a2a]/10 focus:border-[#E6B754] transition font-medium"
                     />
                   </div>
                 </div>
                 <div className="w-full flex flex-col gap-2">
                   <label className="text-[10px] text-[#2a2a2a]/50 uppercase tracking-widest font-bold">Email Address</label>
-                  <input 
-                    type="email" 
+                  <input
+                    type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full pb-2 bg-transparent text-[#2a2a2a] outline-none border-b border-[#2a2a2a]/10 focus:border-[#E6B754] transition font-medium" 
+                    className="w-full pb-2 bg-transparent text-[#2a2a2a] outline-none border-b border-[#2a2a2a]/10 focus:border-[#E6B754] transition font-medium"
                   />
                 </div>
                 <div className="w-full flex flex-col gap-2">
                   <label className="text-[10px] text-[#2a2a2a]/50 uppercase tracking-widest font-bold">Message</label>
-                  <textarea 
-                    rows="4" 
+                  <textarea
+                    rows="4"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
@@ -173,12 +173,12 @@ const Contact = () => {
                     className="w-full pb-2 bg-transparent text-[#2a2a2a] outline-none border-b border-[#2a2a2a]/10 focus:border-[#E6B754] transition resize-none font-medium"
                   ></textarea>
                 </div>
-                
+
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-4">
-                  <button 
-                    type="submit" 
+                  <button
+                    type="submit"
                     disabled={status === 'sending'}
-                    className="bg-[#2a2a2a] btn-shine text-white px-8 py-3.5 rounded-full text-xs font-bold tracking-wider hover:bg-[#E6B754] transition shadow-md border border-transparent disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="w-full sm:w-auto bg-[#2a2a2a] btn-shine text-white px-8 py-3.5 rounded-full text-xs font-bold tracking-wider hover:bg-[#E6B754] transition shadow-md border border-transparent disabled:opacity-70 disabled:cursor-not-allowed"
                   >
                     {status === 'sending' ? 'SENDING...' : 'SEND MESSAGE'}
                   </button>

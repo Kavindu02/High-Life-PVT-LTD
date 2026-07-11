@@ -97,10 +97,8 @@ const App = () => {
       history.scrollRestoration = 'manual';
     }
 
-    // Always scroll to top on refresh, whether on Home or Product Overview
-    setTimeout(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    }, 50);
+    // Instantly scroll to top on product change to prevent jitter
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 
   }, [selectedProduct]);
 

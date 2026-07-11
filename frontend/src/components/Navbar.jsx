@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNavigate, onNavigateToLogin, onNavigateToRegister, onNavigateToProfile, onOpenSideCart, onLogout }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const dropdownRef = useRef(null);
 
@@ -97,22 +98,41 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
   const cartItemCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 bg-[#2A2A2A]/95 backdrop-blur-md ${activeSection === 'home' ? 'border-b-[2px]' : 'border-b-[4px]'} border-[#E6B754] transition-all duration-150 ease-in-out flex flex-col font-montserrat`}>
+    <nav className={`fixed top-0 left-0 w-full z-50 bg-[#2A2A2A]/95 backdrop-blur-md ${activeSection === 'home' ? 'border-b-[2px]' : 'border-b-[4px]'} border-[#E6B754] transition-all duration-300 ease-in-out font-montserrat`}>
       {/* Main Navbar */}
-      <div className="w-full flex flex-col md:flex-row justify-between items-center px-6 lg:px-12 py-3 h-20 relative z-10">
+      <div className="w-full flex justify-between items-center px-4 md:px-6 lg:px-12 h-16 md:h-20 relative z-10">
 
         {/* Left Side: Logo & Links */}
-        <div className="flex items-center gap-16 lg:gap-24 mt-4 md:mt-0">
+        <div className="flex items-center gap-6 lg:gap-24 h-full">
           {/* Logo */}
           <div
-            className="cursor-pointer relative w-[160px] h-10 group"
-            onClick={() => scrollToSection('home')}
+            className="cursor-pointer relative w-[110px] md:w-[160px] h-10 flex-shrink-0 group -ml-6 md:ml-0"
+            onClick={() => { scrollToSection('home'); setIsMobileMenuOpen(false); }}
           >
-            <img src="/logo.webp" alt="High Life Logo" className="absolute top-1/2 -translate-y-1/2 left-0 h-[180px] w-auto object-contain drop-shadow-sm transition-transform duration-500 group-hover:scale-105" />
+            <img src="/logo.webp" alt="High Life Logo" className="absolute top-1/2 -translate-y-1/2 left-0 h-[120px] md:h-[180px] w-auto object-contain drop-shadow-sm transition-transform duration-500 group-hover:scale-105 origin-left" />
+          </div>
+
+          {/* Mobile Right Icons (Hamburger & Cart) - MOVED TO ABSOLUTE RIGHT ON MOBILE */}
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 flex md:hidden items-center gap-3 text-[#FBF5EB]">
+            <button id="cart-icon-mobile" onClick={onOpenSideCart} className="transition-colors relative group p-2 hover:text-[#E6B754]">
+              <svg className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+              {cartItemCount > 0 && (
+                <span className="absolute top-0 -right-1 min-w-[16px] h-[16px] flex items-center justify-center bg-[#E6B754] rounded-full text-[#2A2A2A] text-[9px] font-black px-1 border border-[#2A2A2A]">
+                  {cartItemCount}
+                </span>
+              )}
+            </button>
+            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2 text-[#FBF5EB] hover:text-[#E6B754] transition-colors focus:outline-none">
+              {isMobileMenuOpen ? (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+              ) : (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
+              )}
+            </button>
           </div>
 
           {/* Links */}
-          <ul className="flex items-center space-x-6 lg:space-x-10 text-sm text-[#FBF5EB]">
+          <ul className="hidden md:flex items-center space-x-6 lg:space-x-10 text-sm text-[#FBF5EB]">
             {['Home', 'About', 'Collection', 'Story', 'Contact'].map((item) => {
               const lowerItem = item.toLowerCase();
               const isActive = activeSection === lowerItem;
@@ -203,6 +223,83 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
               </span>
             )}
           </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      <div className={`fixed inset-0 bg-[#2A2A2A]/98 backdrop-blur-xl z-[60] transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-full'} md:hidden flex flex-col px-8 pb-8 h-screen overflow-y-auto`}>
+        
+        {/* Overlay Close Header */}
+        <div className="w-full flex justify-end items-center h-20 shrink-0">
+          <button 
+            onClick={() => setIsMobileMenuOpen(false)} 
+            className="p-2.5 bg-white/10 text-[#FBF5EB] hover:bg-[#E6B754] hover:text-white rounded-full transition-all duration-300 focus:outline-none shadow-lg mt-2"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" /></svg>
+          </button>
+        </div>
+
+        {/* Search */}
+        <form onSubmit={(e) => { handleSearch(e); setIsMobileMenuOpen(false); }} className="flex items-center border border-white/20 bg-white/5 px-4 py-3 rounded-full mb-8 mt-2">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search collections..."
+            className="bg-transparent border-none outline-none text-sm px-3 w-full placeholder:text-[#FBF5EB]/50 text-[#FBF5EB]"
+          />
+          <button type="submit" className="focus:outline-none">
+            <svg className="w-5 h-5 text-[#FBF5EB]/50 hover:text-[#E6B754]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+          </button>
+        </form>
+
+        {/* Links */}
+        <ul className="flex flex-col space-y-6 text-xl font-bold text-[#FBF5EB] text-center">
+          {['Home', 'About', 'Collection', 'Story', 'Contact'].map((item) => {
+            const lowerItem = item.toLowerCase();
+            const isActive = activeSection === lowerItem;
+            return (
+              <li
+                key={item}
+                className="cursor-pointer"
+                onClick={() => { scrollToSection(lowerItem); setIsMobileMenuOpen(false); }}
+              >
+                <span className={`transition-colors duration-300 ${isActive ? 'text-[#E6B754]' : 'hover:text-[#E6B754]'}`}>{item}</span>
+              </li>
+            );
+          })}
+        </ul>
+
+        {/* Auth / Profile */}
+        <div className="mt-auto pt-10 flex flex-col items-center gap-4 pb-12">
+          {user ? (
+            <div className="flex items-center justify-between w-full bg-white/5 border border-white/10 rounded-2xl p-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#E6B754] to-[#8a7652] text-white flex items-center justify-center font-bold">
+                  {user.name.charAt(0).toUpperCase()}
+                </div>
+                <div className="text-left">
+                  <p className="text-[10px] text-[#888] font-bold uppercase tracking-wider">Signed in as</p>
+                  <p className="text-sm font-black text-white truncate max-w-[120px]">{user.name}</p>
+                </div>
+              </div>
+              <div className="flex gap-2">
+                <button onClick={() => { setIsMobileMenuOpen(false); onNavigateToProfile(); }} className="p-2 text-white/70 hover:text-[#E6B754] transition-colors rounded-full bg-white/5">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                </button>
+                <button onClick={() => { setIsMobileMenuOpen(false); onLogout(); }} className="p-2 text-red-400 hover:text-red-500 transition-colors rounded-full bg-white/5">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
+                </button>
+              </div>
+            </div>
+          ) : (
+            <button
+              onClick={() => { setIsMobileMenuOpen(false); onNavigateToLogin(); }}
+              className="w-full py-4 bg-[#FBF5EB] text-[#2a2a2a] rounded-full text-base font-bold hover:bg-[#E6B754] hover:text-white transition-all duration-300 btn-shine"
+            >
+              Login
+            </button>
+          )}
         </div>
       </div>
     </nav>

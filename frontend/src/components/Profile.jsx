@@ -24,10 +24,10 @@ const Profile = ({ user, onLogout }) => {
   return (
     <div className="min-h-screen bg-[#B69F73] flex flex-col items-center justify-center p-6 font-sans relative pt-24 md:pt-32">
       <div className="w-full max-w-[700px] z-10 relative">
-        <div className="bg-[#FAF5EC] w-full p-6 md:p-10 rounded-[30px] relative shadow-2xl">
+        <div className="bg-[#FAF5EC] w-full p-8 pb-12 md:p-14 rounded-[30px] relative shadow-2xl">
           {/* Corner Decorators */}
-          <div className="absolute top-6 left-6 w-12 h-12 border-t-2 border-l-2 border-[#EADFC8] rounded-tl-xl pointer-events-none"></div>
-          <div className="absolute bottom-6 right-6 w-12 h-12 border-b-2 border-r-2 border-[#EADFC8] rounded-br-xl pointer-events-none"></div>
+          <div className="absolute top-4 left-4 md:top-6 md:left-6 w-8 h-8 md:w-12 md:h-12 border-t-2 border-l-2 border-[#EADFC8] rounded-tl-xl pointer-events-none"></div>
+          <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 w-8 h-8 md:w-12 md:h-12 border-b-2 border-r-2 border-[#EADFC8] rounded-br-xl pointer-events-none"></div>
 
           <div className="flex flex-col md:flex-row items-center gap-6 mb-8">
             <div className="w-24 h-24 bg-[#B69F73] text-white rounded-full flex items-center justify-center text-4xl font-bold shadow-lg shrink-0 border-4 border-white">
@@ -104,17 +104,17 @@ const Profile = ({ user, onLogout }) => {
             ) : (
               <div className="space-y-4">
                 {orders.map(order => (
-                  <div key={order.id} className="bg-white p-6 rounded-[20px] shadow-sm border border-[#EADFC8] flex flex-col md:flex-row justify-between gap-4 items-center">
-                    <div className="w-full md:w-auto text-center md:text-left">
-                      <p className="font-bold text-[#2A2A2A] text-lg">Order #{order.id}</p>
-                      <p className="text-sm text-[#9A9286] font-semibold mt-1">{new Date(order.created_at).toLocaleDateString()}</p>
-                      <p className="text-sm font-bold mt-2 tracking-wide">
+                  <div key={order.id} className="bg-white p-5 md:p-6 rounded-[20px] shadow-sm border border-[#EADFC8] flex flex-row justify-between items-center gap-2 md:gap-4">
+                    <div className="text-left">
+                      <p className="font-bold text-[#2A2A2A] text-base md:text-lg leading-tight">Order #{order.id}</p>
+                      <p className="text-[11px] md:text-sm text-[#9A9286] font-semibold mt-0.5">{new Date(order.created_at).toLocaleDateString()}</p>
+                      <p className="text-[11px] md:text-sm font-bold mt-2 tracking-wide">
                         STATUS: <span className={order.status === 'Approved' ? 'text-green-600' : order.status === 'Cancel' ? 'text-red-600' : 'text-blue-600'}>{order.status}</span>
                       </p>
                     </div>
-                    <div className="w-full md:w-auto text-center md:text-right">
-                      <p className="text-xl font-bold text-[#2A2A2A]">Rs. {order.total_amount}</p>
-                      <p className="text-[11px] text-[#9A9286] font-bold uppercase tracking-widest mt-1">
+                    <div className="text-right">
+                      <p className="text-base md:text-xl font-bold text-[#2A2A2A] leading-tight">Rs. {order.total_amount}</p>
+                      <p className="text-[10px] md:text-[11px] text-[#9A9286] font-bold uppercase tracking-widest mt-1 max-w-[80px] md:max-w-none truncate">
                         {(() => {
                           try {
                             const items = typeof order.items === 'string' ? JSON.parse(order.items) : order.items;

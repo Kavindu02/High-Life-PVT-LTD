@@ -15,10 +15,10 @@ const Hero = () => {
 
         {/* Right Side: Text Content */}
         <div className="w-full md:w-1/2 flex flex-col items-center justify-center px-6 md:px-12 text-center pb-20 md:pb-0 z-20">
-          <h2 className="text-xl md:text-2xl lg:text-4xl font-bold tracking-[0.2em] uppercase drop-shadow-md text-[#B79C6F] mb-2 md:mb-4">
+          <h2 className="text-lg md:text-2xl lg:text-4xl font-bold tracking-[0.2em] uppercase drop-shadow-md text-[#B79C6F] mb-2 md:mb-4">
             WORLD'S BEST
           </h2>
-          <h1 className="text-6xl md:text-8xl lg:text-[110px] font-black leading-[1.1] tracking-tight drop-shadow-lg text-white">
+          <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-[110px] font-black leading-[1.1] tracking-tight drop-shadow-lg text-white">
             <span className="block">CEYLON</span>
             <span className="block">SPICES</span>
           </h1>

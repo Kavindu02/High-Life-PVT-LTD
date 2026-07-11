@@ -74,7 +74,7 @@ const Footer = ({ onNavigateToPrivacy, onNavigateToTerms, onNavigateToSection })
                 <svg className="w-5 h-5 text-[#E6B754] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                 </svg>
-                <span className="group-hover:text-white transition-colors duration-300">highlifepvtltd@gmail.com</span>
+                <span className="group-hover:text-white transition-colors duration-300 break-all sm:break-normal">highlifepvtltd@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -107,9 +107,10 @@ const Footer = ({ onNavigateToPrivacy, onNavigateToTerms, onNavigateToSection })
             <p>Developed by <a href="https://www.syntechcraft.com/" target="_blank" rel="noopener noreferrer" className="text-[#E6B754] hover:text-white transition-colors">Syntechcraft</a></p>
           </div>
           
-          <div className="flex items-center space-x-4">
+          <div className="flex flex-wrap justify-center items-center gap-2 md:gap-4 mt-4 md:mt-0">
             <button onClick={onNavigateToPrivacy} className="hover:text-[#E6B754] transition-colors">Privacy Policy</button>
-            <span>|</span>
+            <span className="hidden md:inline">|</span>
+            <span className="md:hidden opacity-50">•</span>
             <button onClick={onNavigateToTerms} className="hover:text-[#E6B754] transition-colors">Terms of Service</button>
           </div>
         </div>
