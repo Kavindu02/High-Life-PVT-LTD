@@ -230,10 +230,19 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
       <div className={`fixed inset-0 bg-[#2A2A2A]/98 backdrop-blur-xl z-[60] transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-full'} md:hidden flex flex-col px-8 pb-8 h-screen overflow-y-auto`}>
         
         {/* Overlay Close Header */}
-        <div className="w-full flex justify-end items-center h-20 shrink-0">
+        <div className="w-full flex justify-between items-center h-20 shrink-0 relative mt-2">
+          {/* Logo */}
+          <div
+            className="cursor-pointer relative w-[110px] h-10 flex-shrink-0 -ml-4"
+            onClick={() => { scrollToSection('home'); setIsMobileMenuOpen(false); }}
+          >
+            <img src="/logo.webp" alt="High Life Logo" className="absolute top-1/2 -translate-y-1/2 left-0 h-[120px] w-auto object-contain drop-shadow-sm" />
+          </div>
+          
+          {/* Close Button */}
           <button 
             onClick={() => setIsMobileMenuOpen(false)} 
-            className="p-2.5 bg-white/10 text-[#FBF5EB] hover:bg-[#E6B754] hover:text-white rounded-full transition-all duration-300 focus:outline-none shadow-lg mt-2"
+            className="p-2.5 bg-white/10 text-[#FBF5EB] hover:bg-[#E6B754] hover:text-white rounded-full transition-all duration-300 focus:outline-none shadow-lg"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" /></svg>
           </button>
@@ -254,7 +263,7 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
         </form>
 
         {/* Links */}
-        <ul className="flex flex-col space-y-6 text-xl font-bold text-[#FBF5EB] text-center">
+        <ul className="flex flex-col space-y-6 text-xl font-bold text-[#FBF5EB] text-left mt-4 pl-2">
           {['Home', 'About', 'Collection', 'Story', 'Contact'].map((item) => {
             const lowerItem = item.toLowerCase();
             const isActive = activeSection === lowerItem;
