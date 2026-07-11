@@ -106,10 +106,10 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
         <div className="flex items-center gap-6 lg:gap-24 h-full">
           {/* Logo */}
           <div
-            className="cursor-pointer relative w-[110px] md:w-[160px] h-10 flex-shrink-0 group -ml-6 md:ml-0"
+            className="cursor-pointer relative w-[110px] md:w-[160px] h-10 flex-shrink-0 -ml-6 md:ml-0"
             onClick={() => { scrollToSection('home'); setIsMobileMenuOpen(false); }}
           >
-            <img src="/logo.webp" alt="High Life Logo" className="absolute top-1/2 -translate-y-1/2 left-0 h-[120px] md:h-[180px] w-auto object-contain drop-shadow-sm transition-transform duration-500 group-hover:scale-105 origin-left" />
+            <img src="/logo.webp" alt="High Life Logo" className="absolute top-1/2 -translate-y-1/2 left-0 h-[120px] md:h-[180px] w-auto object-contain drop-shadow-sm" />
           </div>
 
           {/* Mobile Right Icons (Hamburger & Cart) - MOVED TO ABSOLUTE RIGHT ON MOBILE */}

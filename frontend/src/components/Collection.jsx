@@ -98,7 +98,7 @@ const Collection = ({ onProductClick }) => {
 
 
                 {/* Overlapping Product Image */}
-                <div className="absolute -top-16 md:-top-20 left-1/2 -translate-x-1/2 w-40 h-40 md:w-48 md:h-48 z-30 group-hover:-translate-y-3 group-hover:scale-110 transition-all duration-500">
+                <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-48 h-48 z-30 group-hover:-translate-y-3 group-hover:scale-110 transition-all duration-500">
                   <img src={product.image} alt={product.name} className="w-full h-full object-contain drop-shadow-2xl mix-blend-multiply rounded-[32px]" />
                 </div>
 

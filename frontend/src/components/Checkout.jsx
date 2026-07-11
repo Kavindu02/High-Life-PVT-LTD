@@ -92,7 +92,7 @@ const Checkout = ({ cartItems }) => {
         try {
           const parsedUser = JSON.parse(storedUser);
           userId = parsedUser.id;
-        } catch (e) {}
+        } catch (e) { }
       }
 
       const orderData = {
@@ -266,7 +266,11 @@ const Checkout = ({ cartItems }) => {
                 </div>
               </div>
 
-
+              <div className="mb-6 p-4 bg-[#FBF5EB] border border-[#EADFC8] rounded-xl">
+                <p className="text-[13px] text-[#2a2a2a] font-medium leading-relaxed">
+                  <span className="font-bold text-[#e60000]">Please Note:</span> Delivery charges are not included in the total. The applicable delivery fee must be paid directly to the delivery service upon receiving your order.
+                </p>
+              </div>
 
               <div className="flex justify-between items-end mb-10">
                 <span className="text-2xl font-bold text-[#2a2a2a]">Total</span>
@@ -288,11 +292,7 @@ const Checkout = ({ cartItems }) => {
 
                     <div className="flex items-center gap-1.5 shrink-0 pl-4 sm:pl-8">
                       {/* Visa */}
-                      <div className="bg-[#1434CB] rounded-[4px] px-1.5 flex items-center justify-center w-9 sm:w-[42px] h-[22px] sm:h-[26px]">
-                        <svg viewBox="0 0 38 12" className="w-full text-white" fill="currentColor">
-                          <path d="M14.659 11.536l2.368-11.23h3.805l-2.368 11.23h-3.805zm17.382-10.97c-.604-.265-1.602-.505-3.003-.505-3.23 0-5.502 1.637-5.522 3.987-.024 1.724 1.642 2.686 2.894 3.277 1.282.603 1.71.993 1.71 1.535-.022.827-1.042 1.206-2.008 1.206-1.332 0-2.052-.196-3.096-.64l-.426-.197-.52 3.107c.76.34 2.164.636 3.633.648 3.425 0 5.66-1.606 5.688-4.086.023-1.36-.838-2.39-2.73-3.25-1.135-.558-1.83-1.006-1.83-1.625 0-.58.68-1.185 1.93-1.185 1.056-.02 1.83.218 2.413.486l.288.136.594-3.095zM10.198 11.536H6.602L4.35 2.11C4.167 1.34 3.99.986 3.4 1.13L.047 1.84v-.4c1.17-.353 2.508-.85 3.33-1.22H4.49c.5 0 .973.344 1.096 1.002l1.246 8.016.143-.808 1.785-8.125H12.6l-2.4 11.23zm23.63 0h3.585l-3.094-11.23H31.72c-.41 0-.743.235-.907.618l-3.418 8.077 1.713.882c.2-.423.41-.855.41-.855h4.195l.4 1.89h-.022zm-3.09-3.284l1.01-2.613c-.02.046.208-.548.337-.922h.023l.176.843.57 2.692h-2.116z" />
-                        </svg>
-                      </div>
+                      <img src="/visa.jpg" alt="Visa" className="w-10 sm:w-[46px] h-[24px] sm:h-[28px] object-contain rounded-[4px] shadow-sm" />
                       {/* Mastercard */}
                       <div className="bg-[#141414] rounded-[4px] flex items-center justify-center w-9 sm:w-[42px] h-[22px] sm:h-[26px]">
                         <svg viewBox="0 0 36 24" className="h-[75%] sm:h-[80%] w-auto">
@@ -318,10 +318,10 @@ const Checkout = ({ cartItems }) => {
                 onClick={handlePlaceOrder}
                 disabled={isProcessing || paymentSuccessful}
                 className={`w-full text-white text-[13px] font-bold uppercase px-8 py-4 rounded-full transition tracking-wider shadow-lg border-2 border-[#EADFC8]/50 flex items-center justify-center gap-2 group ${paymentSuccessful
-                    ? 'bg-green-500 hover:bg-green-600 border-green-500/50'
-                    : isProcessing
-                      ? 'bg-[#888] cursor-not-allowed'
-                      : 'bg-[#2a2a2a] btn-shine hover:bg-[#E6B754]'
+                  ? 'bg-green-500 hover:bg-green-600 border-green-500/50'
+                  : isProcessing
+                    ? 'bg-[#888] cursor-not-allowed'
+                    : 'bg-[#2a2a2a] btn-shine hover:bg-[#E6B754]'
                   }`}
               >
                 {paymentSuccessful ? (

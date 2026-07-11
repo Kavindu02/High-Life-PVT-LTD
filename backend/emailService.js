@@ -190,6 +190,17 @@ const sendOrderConfirmation = async (orderData, orderId) => {
                 </td>
               </tr>
               
+              <!-- Delivery Charge Note -->
+              <tr>
+                <td style="padding-bottom: 30px;">
+                  <div style="background-color: #FBF5EB; border: 1px solid #EADFC8; border-radius: 12px; padding: 20px;">
+                    <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #2a2a2a;">
+                      <strong style="color: #e60000;">Please Note:</strong> Delivery charges are not included in the total. The applicable delivery fee must be paid directly to the delivery service upon receiving your order.
+                    </p>
+                  </div>
+                </td>
+              </tr>
+              
               <!-- Customer Information -->
               <tr>
                 <td style="padding-bottom: 30px; padding-top: 10px;">

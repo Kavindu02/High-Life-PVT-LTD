@@ -57,8 +57,8 @@ const Contact = () => {
             <div className="absolute top-3 right-3 md:top-6 md:right-6 w-5 h-5 md:w-8 md:h-8 border-t-2 border-r-2 border-[#E6B754]/40 rounded-tr-xl pointer-events-none transition-all duration-500 hover:border-[#E6B754]/80"></div>
             <div className="absolute bottom-3 left-3 md:bottom-6 md:left-6 w-5 h-5 md:w-8 md:h-8 border-b-2 border-l-2 border-[#E6B754]/40 rounded-bl-xl pointer-events-none transition-all duration-500 hover:border-[#E6B754]/80"></div>
             <div className="absolute bottom-3 right-3 md:bottom-6 md:right-6 w-5 h-5 md:w-8 md:h-8 border-b-2 border-r-2 border-[#E6B754]/40 rounded-br-xl pointer-events-none transition-all duration-500 hover:border-[#E6B754]/80"></div>
-            <h3 className="relative z-10 text-2xl font-bold text-[#2a2a2a] mb-8">Contact Details</h3>
-            <div className="relative z-10 space-y-12 mt-10">
+            <h3 className="relative z-10 text-2xl font-bold text-[#2a2a2a] mb-4 md:mb-8">Contact Details</h3>
+            <div className="relative z-10 space-y-8 md:space-y-12 mt-2 md:mt-10">
 
               <div className="flex items-center gap-6 md:gap-8 group cursor-pointer">
                 <div className="relative w-14 h-14 shrink-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
