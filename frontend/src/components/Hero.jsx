@@ -35,7 +35,7 @@ const Hero = () => {
                 e.preventDefault();
                 document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="bg-[#B79C6F] text-white hover:bg-[#a0875c] px-10 py-4 rounded font-bold text-lg transition-colors shadow-lg cursor-pointer inline-block relative z-10 w-full sm:w-auto"
+              className="bg-[#B79C6F] text-white hover:bg-[#a0875c] px-10 py-4 rounded-full font-bold text-lg transition-colors shadow-lg cursor-pointer inline-block relative z-10 w-full sm:w-auto"
             >
               Shop Now
             </a>
@@ -45,7 +45,7 @@ const Hero = () => {
                 e.preventDefault();
                 document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="bg-transparent border-2 border-white/70 text-white hover:bg-white hover:text-[#1a1a1a] px-10 py-4 rounded font-bold text-lg transition-colors shadow-lg cursor-pointer inline-block relative z-10 w-full sm:w-auto"
+              className="bg-transparent border-2 border-white/70 text-white hover:bg-white hover:text-[#1a1a1a] px-10 py-4 rounded-full font-bold text-lg transition-colors shadow-lg cursor-pointer inline-block relative z-10 w-full sm:w-auto"
             >
               Contact Us
             </a>
