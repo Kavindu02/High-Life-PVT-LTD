@@ -18,28 +18,37 @@ const Hero = () => {
           <h2 className="text-lg md:text-2xl lg:text-4xl font-bold tracking-[0.2em] uppercase drop-shadow-md text-[#B79C6F] mb-2 md:mb-4">
             WORLD'S BEST
           </h2>
-          <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-[110px] font-black leading-[1.1] tracking-tight drop-shadow-lg text-white">
-            <span className="block">CEYLON</span>
-            <span className="block">SPICES</span>
-          </h1>
-          <p className="text-lg md:text-xl lg:text-3xl font-medium mt-6 drop-shadow-md text-white/90">
+          <div className="border-b-2 border-[#B79C6F]/50 pb-4 md:pb-6 mb-6 inline-block text-left">
+            <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-[110px] leading-[1.1] tracking-tight drop-shadow-lg text-white font-black">
+              <span className="block">Ceylon</span>
+              <span className="block text-right pl-12 md:pl-24">Spices</span>
+            </h1>
+          </div>
+          <p className="text-lg md:text-xl lg:text-3xl font-medium drop-shadow-md text-white/90">
             100% Authentic <span className="text-[#B79C6F] mx-2">|</span> Premium Quality
           </p>
 
-          <div className="relative mt-10">
+          <div className="relative mt-10 flex flex-col sm:flex-row gap-4 items-center justify-center">
             <a
               href="#collection"
               onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="bg-[#B79C6F] text-white hover:bg-[#a0875c] px-10 py-4 rounded font-bold text-lg transition-colors shadow-lg cursor-pointer inline-block relative z-10"
+              className="bg-[#B79C6F] text-white hover:bg-[#a0875c] px-10 py-4 rounded font-bold text-lg transition-colors shadow-lg cursor-pointer inline-block relative z-10 w-full sm:w-auto"
             >
               Shop Now
             </a>
-            {/* Simple decorative sparkle effect like the image */}
-            <div className="absolute -right-4 -top-4 w-8 h-8 bg-white/20 blur-sm rotate-45 z-0 rounded-full"></div>
-            <div className="absolute -right-2 -top-2 text-white/50 z-20 pointer-events-none">✨</div>
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="bg-transparent border-2 border-white/70 text-white hover:bg-white hover:text-[#1a1a1a] px-10 py-4 rounded font-bold text-lg transition-colors shadow-lg cursor-pointer inline-block relative z-10 w-full sm:w-auto"
+            >
+              Contact Us
+            </a>
           </div>
 
         </div>
