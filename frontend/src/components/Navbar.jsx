@@ -100,10 +100,10 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 bg-[#2A2A2A]/95 backdrop-blur-md ${activeSection === 'home' ? 'border-b-[2px]' : 'border-b-[4px]'} border-[#E6B754] transition-all duration-300 ease-in-out font-montserrat`}>
       {/* Main Navbar */}
-      <div className="w-full flex justify-between items-center px-4 md:px-6 lg:px-12 h-16 md:h-20 relative z-10">
+      <div className="w-full flex justify-between items-center px-4 md:px-6 lg:px-6 xl:px-12 h-16 md:h-20 relative z-10">
 
         {/* Left Side: Logo & Links */}
-        <div className="flex items-center gap-6 lg:gap-24 h-full">
+        <div className="flex items-center gap-6 lg:gap-8 xl:gap-24 h-full">
           {/* Logo */}
           <div
             className="cursor-pointer relative w-[110px] md:w-[160px] h-10 flex-shrink-0 -ml-6 md:ml-0"
@@ -113,7 +113,7 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
           </div>
 
           {/* Mobile Right Icons (Hamburger & Cart) - MOVED TO ABSOLUTE RIGHT ON MOBILE */}
-          <div className="absolute right-4 top-1/2 -translate-y-1/2 flex md:hidden items-center gap-3 text-[#FBF5EB]">
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 flex lg:hidden items-center gap-3 text-[#FBF5EB]">
             <button id="cart-icon-mobile" onClick={onOpenSideCart} className="transition-colors relative group p-2 hover:text-[#E6B754]">
               <svg className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
               {cartItemCount > 0 && (
@@ -132,7 +132,7 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
           </div>
 
           {/* Links */}
-          <ul className="hidden md:flex items-center space-x-6 lg:space-x-10 text-sm text-[#FBF5EB]">
+          <ul className="hidden lg:flex items-center space-x-4 lg:space-x-5 xl:space-x-10 text-sm text-[#FBF5EB]">
             {['Home', 'About', 'Collection', 'Story', 'Contact'].map((item) => {
               const lowerItem = item.toLowerCase();
               const isActive = activeSection === lowerItem;
@@ -151,7 +151,7 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
         </div>
 
         {/* Search (Moved to Center) */}
-        <form onSubmit={handleSearch} className="hidden md:flex items-center border border-white/10 bg-white/10 backdrop-blur-sm px-4 py-2 w-64 rounded-full hover:border-[#E6B754]/50 hover:bg-white/20 transition-all duration-300 shadow-sm">
+        <form onSubmit={handleSearch} className="hidden lg:flex items-center border border-white/10 bg-white/10 backdrop-blur-sm px-4 py-2 w-48 xl:w-64 rounded-full hover:border-[#E6B754]/50 hover:bg-white/20 transition-all duration-300 shadow-sm">
           <button type="submit" className="focus:outline-none">
             <svg className="w-4 h-4 text-[#FBF5EB]/50 hover:text-[#E6B754] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
           </button>
@@ -169,7 +169,7 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
         </form>
 
         {/* Right Icons */}
-        <div className="hidden md:flex items-center space-x-6 text-[#FBF5EB]">
+        <div className="hidden lg:flex items-center space-x-6 text-[#FBF5EB]">
           {user ? (
             <div className="relative" ref={dropdownRef}>
               <button
@@ -228,7 +228,7 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
       </div>
 
       {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 bg-[#2A2A2A]/98 backdrop-blur-xl z-[60] transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-full'} md:hidden flex flex-col px-8 pb-8 h-screen overflow-y-auto`}>
+      <div className={`fixed inset-0 bg-[#2A2A2A]/98 backdrop-blur-xl z-[60] transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-full'} lg:hidden flex flex-col px-8 pb-8 h-screen overflow-y-auto`}>
         
         {/* Overlay Close Header */}
         <div className="w-full flex justify-between items-center h-20 shrink-0 relative mt-2">

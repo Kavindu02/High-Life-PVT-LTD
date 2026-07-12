@@ -41,11 +41,10 @@ const ProductOverview = ({ product, onAddToCart, onBack, onCheckout }) => {
 
     const button = e.currentTarget;
     const buttonRect = button.getBoundingClientRect();
-    const cartIcon = window.innerWidth < 768 
-      ? document.getElementById('cart-icon-mobile') 
-      : document.getElementById('cart-icon-nav');
-      
-    const activeCartIcon = cartIcon || document.getElementById('cart-icon-nav') || document.getElementById('cart-icon-mobile');
+    let activeCartIcon = document.getElementById('cart-icon-nav');
+    if (!activeCartIcon || activeCartIcon.offsetParent === null) {
+      activeCartIcon = document.getElementById('cart-icon-mobile');
+    }
     
     if (activeCartIcon) {
       const cartRect = activeCartIcon.getBoundingClientRect();

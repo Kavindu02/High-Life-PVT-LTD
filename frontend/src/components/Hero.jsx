@@ -15,17 +15,17 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto w-full h-full flex flex-col md:flex-row items-center relative z-10">
 
         {/* Left Side: Empty Spacer to maintain layout */}
-        <div className="w-full md:w-1/2 h-full hidden md:block"></div>
+        <div className="w-full lg:w-1/2 h-full hidden lg:block"></div>
 
         {/* Right Side: Text Content */}
-        <div className="w-full md:w-1/2 flex flex-col items-center justify-center px-6 md:px-12 text-center pb-20 md:pb-0 z-20 md:translate-x-8 lg:translate-x-16">
-          <h2 className="text-xs md:text-xl lg:text-3xl font-bold tracking-[0.2em] uppercase drop-shadow-md text-[#B79C6F] mb-2 md:mb-4">
+        <div className="w-full lg:w-1/2 flex flex-col items-center justify-center px-6 md:px-8 lg:px-12 text-center pb-20 lg:pb-0 z-20 lg:translate-x-8 xl:translate-x-16">
+          <h2 className="text-sm sm:text-base md:text-2xl lg:text-3xl font-bold tracking-[0.2em] uppercase drop-shadow-md text-[#B79C6F] mb-2 md:mb-4">
             WORLD'S BEST
           </h2>
           <div className="relative pb-4 md:pb-6 mb-4 md:mb-6 inline-block text-left w-full sm:w-auto">
-            <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-[110px] leading-[1.1] tracking-tight drop-shadow-lg text-[#FBF5EB] font-black flex flex-row md:flex-col justify-center md:justify-start gap-2 md:gap-0">
+            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-8xl xl:text-[110px] leading-[1.1] tracking-tight drop-shadow-lg text-[#FBF5EB] font-black flex flex-col items-center lg:items-start justify-center lg:justify-start gap-1 lg:gap-0">
               <span>Ceylon</span>
-              <span className="md:text-right md:pl-24">Spices</span>
+              <span className="lg:text-right lg:pl-24">Spices</span>
             </h1>
             
             {/* Premium Divider Line */}
@@ -45,7 +45,7 @@ const Hero = () => {
                 e.preventDefault();
                 document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="bg-[#B79C6F] text-white hover:bg-[#a0875c] px-8 py-4 rounded-full font-bold text-base md:text-lg transition-colors shadow-lg cursor-pointer text-center relative z-10 w-full max-w-[260px] sm:w-auto sm:max-w-none sm:px-10 btn-shine"
+              className="bg-[#B79C6F] text-white hover:bg-[#a0875c] px-8 py-4 rounded-full font-bold text-base md:text-lg transition-colors shadow-lg cursor-pointer text-center relative z-10 w-full max-w-[260px] sm:w-auto sm:max-w-none sm:px-10 btn-shine whitespace-nowrap"
             >
               Shop Now
             </a>
@@ -55,7 +55,7 @@ const Hero = () => {
                 e.preventDefault();
                 document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="bg-transparent border-2 border-white/70 text-white hover:bg-[#FBF5EB] hover:border-[#FBF5EB] hover:text-[#1a1a1a] px-8 py-4 rounded-full font-bold text-base md:text-lg transition-colors shadow-lg cursor-pointer text-center relative z-10 w-full max-w-[260px] sm:w-auto sm:max-w-none sm:px-10 btn-shine"
+              className="bg-transparent border-2 border-white/70 text-white hover:bg-[#FBF5EB] hover:border-[#FBF5EB] hover:text-[#1a1a1a] px-8 py-4 rounded-full font-bold text-base md:text-lg transition-colors shadow-lg cursor-pointer text-center relative z-10 w-full max-w-[260px] sm:w-auto sm:max-w-none sm:px-10 btn-shine whitespace-nowrap"
             >
               Contact Us
             </a>

@@ -5,12 +5,12 @@ const About = () => {
     <section id="about" className="w-full relative bg-brand-cream">
       
       {/* Top half (Brand Cream) and Bottom half (Navbar Brown) */}
-      <div className="absolute bottom-0 left-0 w-full h-[35%] md:h-[40%] bg-[#b69f73] z-0"></div>
+      <div className="absolute bottom-0 left-0 w-full h-[75%] lg:h-[40%] bg-[#b69f73] z-0"></div>
 
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row relative z-10 pt-24 pb-16 px-6">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row relative z-10 pt-24 pb-16 px-6">
         
         {/* Left Side: Image */}
-        <div className="w-full md:w-1/2 pr-0 md:pr-8 mb-12 md:mb-0">
+        <div className="w-full lg:w-1/2 pr-0 lg:pr-8 mb-12 lg:mb-0">
           <img 
             src="/about_box.webp" 
             alt="Handpicked Spices Box" 
@@ -19,19 +19,19 @@ const About = () => {
         </div>
 
         {/* Right Side: Content */}
-        <div className="w-full md:w-1/2 flex flex-col">
+        <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
           
-          <div className="mb-16 md:mb-32 md:pl-8">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#2a2a2a] mb-8 leading-tight tracking-tight">
+          <div className="mb-16 lg:mb-32 lg:pl-8 flex flex-col items-center lg:items-start w-full">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#2a2a2a] mb-8 leading-tight tracking-tight">
               About<br/>
               <span className="whitespace-nowrap">handpicked Spices</span>
             </h2>
             
-            <p className="text-xs md:text-sm text-brand-dark/70 mb-6 leading-relaxed max-w-lg">
+            <p className="text-sm md:text-base text-brand-dark/70 mb-6 leading-relaxed max-w-lg mx-auto lg:mx-0">
               Established on January 11, 2025, High Life (PVT) LTD was founded on a distinct mission: to bring you the finest, authentic Ceylon spices. Driven by passion rather than mere business, we ensure every product delivers an unequalled, savory goodness to elevate your culinary journey.
             </p>
             
-            <p className="text-xs md:text-sm text-brand-dark/70 mb-8 leading-relaxed max-w-lg">
+            <p className="text-sm md:text-base text-brand-dark/70 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
               Our premium spices are expertly handpicked and processed under strict hygienic conditions. Maintained with uncompromising quality control and guided by careful family supervision, our entirely pure spices offer a richness and quality that simply cannot be replaced.
             </p>
             
@@ -41,7 +41,7 @@ const About = () => {
           </div>
 
           {/* Bottom Icons Area */}
-          <div className="grid grid-cols-2 md:flex md:flex-nowrap justify-between md:justify-end gap-6 md:gap-8 mt-auto w-full md:pl-16 text-[#2A2A2A] pt-12 md:pt-0">
+          <div className="grid grid-cols-2 sm:flex sm:flex-nowrap justify-center lg:justify-end gap-6 sm:gap-8 mt-auto w-full lg:pl-16 text-[#2A2A2A] pt-12 lg:pt-0">
             
             <div className="flex flex-col items-center">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-14 w-14 mb-4 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
