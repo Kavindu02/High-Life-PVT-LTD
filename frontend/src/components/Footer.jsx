@@ -8,7 +8,17 @@ const Footer = ({ onNavigateToPrivacy, onNavigateToTerms, onNavigateToSection })
 
           {/* Brand & About */}
           <div className="lg:col-span-1">
-            <img src="/logo.webp" alt="High Life Logo" className="-ml-14 h-20 w-auto mb-4 object-contain transform scale-[2.5] origin-left" />
+            <img 
+              src="/logo.webp" 
+              alt="High Life Logo" 
+              onClick={(e) => {
+                e.preventDefault();
+                if (onNavigateToSection) {
+                  onNavigateToSection('home');
+                }
+              }}
+              className="cursor-pointer -ml-14 h-20 w-auto mb-4 object-contain transform scale-[2.5] origin-left" 
+            />
             <p className="text-[#fcf5e5]/60 text-sm leading-relaxed mb-6">
               Providing you with the most authentic, rich, and vibrant spices straight from the finest gardens. Elevate your culinary journey with our expertly curated blends.
             </p>

@@ -31,7 +31,7 @@ const Hero = () => {
             {/* Premium Divider Line */}
             <div className="absolute bottom-0 left-0 w-full flex items-center justify-center pointer-events-none">
               <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-[#B79C6F] to-transparent opacity-80"></div>
-              <div className="absolute w-2 h-2 rotate-45 bg-[#E6B754] shadow-[0_0_12px_rgba(230,183,84,1)]"></div>
+              <div className="absolute w-2 h-2 rotate-45 bg-[#B79C6F]"></div>
             </div>
           </div>
           <p className="text-sm md:text-base lg:text-lg font-medium drop-shadow-md text-white/90 max-w-[450px] mx-auto leading-relaxed mt-2 md:mt-4">
