@@ -159,7 +159,7 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search collections..."
+            placeholder="Search..."
             className="bg-transparent border-none outline-none text-[11px] px-3 w-full placeholder:text-[#FBF5EB]/50 text-[#FBF5EB] font-medium"
           />
           <div className="w-px h-3 bg-white/20 mx-2"></div>
@@ -255,7 +255,7 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search collections..."
+            placeholder="Search..."
             className="bg-transparent border-none outline-none text-sm px-3 w-full placeholder:text-[#FBF5EB]/50 text-[#FBF5EB]"
           />
           <button type="submit" className="focus:outline-none">

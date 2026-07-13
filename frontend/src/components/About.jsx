@@ -23,15 +23,15 @@ const About = () => {
           
           <div className="mb-16 lg:mb-32 lg:pl-8 flex flex-col items-center lg:items-start w-full">
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#2a2a2a] mb-8 leading-tight tracking-tight">
-              About<br/>
-              <span className="whitespace-nowrap">handpicked Spices</span>
+              The Journey of<br/>
+              <span className="whitespace-nowrap">Our Spices</span>
             </h2>
             
-            <p className="text-sm md:text-base text-brand-dark/70 mb-6 leading-relaxed max-w-lg mx-auto lg:mx-0">
+            <p className="text-sm md:text-lg lg:text-base text-brand-dark/70 mb-6 leading-relaxed md:leading-loose lg:leading-relaxed max-w-lg md:max-w-2xl lg:max-w-lg mx-auto lg:mx-0">
               Established on January 11, 2025, High Life (PVT) LTD was founded on a distinct mission: to bring you the finest, authentic Ceylon spices. Driven by passion rather than mere business, we ensure every product delivers an unequalled, savory goodness to elevate your culinary journey.
             </p>
             
-            <p className="text-sm md:text-base text-brand-dark/70 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
+            <p className="text-sm md:text-lg lg:text-base text-brand-dark/70 mb-8 leading-relaxed md:leading-loose lg:leading-relaxed max-w-lg md:max-w-2xl lg:max-w-lg mx-auto lg:mx-0">
               Our premium spices are expertly handpicked and processed under strict hygienic conditions. Maintained with uncompromising quality control and guided by careful family supervision, our entirely pure spices offer a richness and quality that simply cannot be replaced.
             </p>
             
