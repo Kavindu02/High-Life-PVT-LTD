@@ -17,12 +17,12 @@ const Hero = () => {
         {/* Left Side: Text Content */}
         <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start justify-center px-6 md:px-8 lg:px-12 text-center lg:text-left pb-20 lg:pb-0 z-20 lg:-translate-x-8 xl:-translate-x-16">
           <div className="relative pb-4 md:pb-6 mb-4 md:mb-6 inline-block text-left w-full sm:w-auto">
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-script drop-shadow-md text-[#B79C6F] -mb-2 md:-mb-4 text-center lg:text-left w-full pl-1 relative z-10">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-script drop-shadow-md text-[#B79C6F] mb-0 md:mb-1 text-center lg:text-left w-full pl-1 relative z-10">
               World's Best
             </h2>
-            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-8xl xl:text-[110px] leading-[1.1] tracking-tight drop-shadow-lg text-[#FBF5EB] font-bold flex flex-col items-center lg:items-start justify-center lg:justify-start gap-1 lg:gap-0">
-              <span>Ceylon</span>
-              <span className="lg:text-left lg:pl-0">Spices</span>
+            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-8xl xl:text-[110px] leading-[1.05] drop-shadow-xl flex flex-col items-center lg:items-start justify-center lg:justify-start">
+              <span className="font-black text-[#FBF5EB] tracking-wide text-[0.85em]">Ceylon</span>
+              <span className="font-black text-transparent bg-clip-text bg-gradient-to-r from-[#B79C6F] via-[#E5D3B3] to-[#B79C6F] tracking-wider pl-1">Spices</span>
             </h1>
 
             {/* Premium Divider Line */}
