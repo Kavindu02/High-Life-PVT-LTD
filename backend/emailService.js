@@ -82,7 +82,7 @@ const sendOrderConfirmation = async (orderData, orderId) => {
         
         const cid = attachedImages[imageFilename];
         if (cid) {
-          imageHtml = `<div style="background-image: url('cid:${cid}'); background-size: cover; background-position: center; width: 50px; height: 50px; border-radius: 8px;"></div>`;
+          imageHtml = `<img src="cid:${cid}" alt="${item.product.name}" width="50" height="50" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px; display: block;" />`;
         }
       }
       
@@ -135,7 +135,7 @@ const sendOrderConfirmation = async (orderData, orderId) => {
                   <table width="100%" cellpadding="0" cellspacing="0" border="0">
                     <tr>
                       <td width="50%" align="left">
-                        <div style="background-image: url('cid:logo'); background-size: contain; background-repeat: no-repeat; background-position: left center; height: 60px; width: 120px;"></div>
+                        <img src="cid:logo" alt="Logo" width="120" style="height: 60px; width: auto; max-width: 120px; display: block;" />
                       </td>
                       <td width="50%" align="right" style="color: #888; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
                         ORDER #${orderId}
@@ -239,7 +239,7 @@ const sendOrderConfirmation = async (orderData, orderId) => {
                 <td align="center">
                   <p style="font-size: 14px; line-height: 1.6; color: #666; margin: 0 0 15px 0;">
                     If you have any questions, reply to this email or contact us at <br>
-                    <a href="mailto:hello@highlife.com" style="color: #E6B754; text-decoration: none; font-weight: 700;">hello@highlife.com</a>.
+                    <a href="mailto:highlifepvtltd@gmail.com" style="color: #E6B754; text-decoration: none; font-weight: 700;">highlifepvtltd@gmail.com</a>.
                   </p>
                   <p style="font-size: 13px; color: #888; margin: 0; font-weight: 500;">
                     © 2026 High Life (PVT) LTD. All Rights Reserved.
@@ -321,7 +321,7 @@ const sendOrderCancellationEmail = async (orderData, orderId) => {
                   <table width="100%" cellpadding="0" cellspacing="0" border="0">
                     <tr>
                       <td width="50%" align="left">
-                        <div style="background-image: url('cid:logo'); background-size: contain; background-repeat: no-repeat; background-position: left center; height: 60px; width: 120px;"></div>
+                        <img src="cid:logo" alt="Logo" width="120" style="height: 60px; width: auto; max-width: 120px; display: block;" />
                       </td>
                       <td width="50%" align="right" style="color: #888; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
                         ORDER #${orderId}
@@ -336,7 +336,7 @@ const sendOrderCancellationEmail = async (orderData, orderId) => {
                 <td style="padding-bottom: 40px; padding-top: 20px;">
                   <h1 style="font-size: 32px; font-weight: 900; margin: 0 0 20px 0; color: #2a2a2a; letter-spacing: -0.5px;">Order Cancelled</h1>
                   <p style="font-size: 16px; line-height: 1.6; color: #555; margin: 0 0 25px 0;">We regret to inform you that your order <strong>#${orderId}</strong> has been cancelled.</p>
-                  <p style="font-size: 16px; line-height: 1.6; color: #555; margin: 0;">To know the reason for cancellation or if you have any questions, please contact us at <br><a href="mailto:hello@highlife.com" style="color: #E6B754; text-decoration: none; font-weight: 700;">hello@highlife.com</a>.</p>
+                  <p style="font-size: 16px; line-height: 1.6; color: #555; margin: 0;">To know the reason for cancellation or if you have any questions, please contact us at <br><a href="mailto:highlifepvtltd@gmail.com" style="color: #E6B754; text-decoration: none; font-weight: 700;">highlifepvtltd@gmail.com</a>.</p>
                 </td>
               </tr>
               
