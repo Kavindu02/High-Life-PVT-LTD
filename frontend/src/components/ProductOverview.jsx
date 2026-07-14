@@ -120,7 +120,7 @@ const ProductOverview = ({ product, onAddToCart, onBack, onCheckout }) => {
                   className={`aspect-square flex-1 min-w-0 md:flex-none md:w-full rounded-xl md:rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 p-1 ${activeImageIndex === index ? 'bg-gradient-to-br from-[#e6b753] to-[#d6993a] shadow-lg md:scale-105' : 'bg-white/50 hover:bg-white opacity-70 hover:opacity-100 border border-[#EADFC8]'}`}
                 >
                   <div className="w-full h-full rounded-xl overflow-hidden bg-[#faf8f5] flex items-center justify-center">
-                    <img src={img} alt={`${product.name} ${index + 1}`} className="w-full h-full object-cover mix-blend-multiply" />
+                    <img src={img} alt={`${product.name} ${index + 1}`} className="w-full h-full object-cover mix-blend-multiply" loading="eager" fetchPriority="high" />
                   </div>
                 </div>
               ))}
@@ -130,7 +130,7 @@ const ProductOverview = ({ product, onAddToCart, onBack, onCheckout }) => {
             <div className="flex-1 w-full aspect-[4/5] md:aspect-square bg-[#fcf5e5] rounded-[2rem] border border-[#f5e8cd] shadow-lg relative overflow-hidden group">
               <div className="absolute top-6 left-6 w-12 h-12 border-t-2 border-l-2 border-[#EADFC8] rounded-tl-xl pointer-events-none"></div>
               <div className="absolute bottom-6 right-6 w-12 h-12 border-b-2 border-r-2 border-[#EADFC8] rounded-br-xl pointer-events-none"></div>
-              <img src={productImages[activeImageIndex]} alt={product.name} className="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-700 relative z-10" />
+              <img src={productImages[activeImageIndex]} alt={product.name} className="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-700 relative z-10" loading="eager" fetchPriority="high" />
             </div>
           </div>
 
