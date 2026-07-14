@@ -24,26 +24,6 @@ const sendOrderConfirmation = async (orderData, orderId) => {
   }
 
   const attachments = [];
-  const logoPath = path.join(__dirname, '../frontend/public/logo.png');
-  if (fs.existsSync(logoPath)) {
-    attachments.push({
-      filename: 'logo.png',
-      path: logoPath,
-      cid: 'logo',
-      contentDisposition: 'inline'
-    });
-  } else {
-    const logoWebpPath = path.join(__dirname, '../frontend/public/logo.webp');
-    if (fs.existsSync(logoWebpPath)) {
-      attachments.push({
-        filename: 'logo.png', // Fake extension to hide attachment in Gmail
-        path: logoWebpPath,
-        cid: 'logo',
-        contentType: 'image/png',
-        contentDisposition: 'inline'
-      });
-    }
-  }
 
   // Keep track of attached images to reuse cid and avoid duplicates
   const attachedImages = {};
@@ -345,8 +325,7 @@ const sendOrderCancellationEmail = async (orderData, orderId) => {
       from: `"High Life (PVT) LTD" <${process.env.EMAIL_USER}>`,
       to: orderData.email,
       subject: `Order Cancelled - Order #${orderId}`,
-      html: htmlContent,
-      attachments: attachments
+      html: htmlContent
     });
     console.log("Cancellation email sent successfully:", info.messageId);
   } catch (error) {
