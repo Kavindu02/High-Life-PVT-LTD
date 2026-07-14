@@ -65,10 +65,8 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
     } else {
       // Fallback to browser's native find to search anywhere on the page
       if (window.find) {
-        // Reset selection to top if we want to search from beginning, 
-        // but window.find searches from current position. 
-        // A simple window.find is usually enough for a basic frontend.
-        const found = window.find(searchQuery);
+        // Use wrap-around search to find the word anywhere on the page
+        const found = window.find(searchQuery, false, false, true);
         if (!found) {
           alert('No results found for: ' + searchQuery);
         }
@@ -152,19 +150,21 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
 
         {/* Search (Moved to Center) */}
         <form onSubmit={handleSearch} className="hidden lg:flex items-center border border-white/10 bg-white/10 backdrop-blur-sm px-4 py-2 w-48 xl:w-64 rounded-full hover:border-[#E6B754]/50 hover:bg-white/20 transition-all duration-300 shadow-sm">
-          <button type="submit" className="focus:outline-none">
-            <svg className="w-4 h-4 text-[#FBF5EB]/50 hover:text-[#E6B754] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-          </button>
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                handleSearch(e);
+              }
+            }}
             placeholder="Search..."
             className="bg-transparent border-none outline-none text-[11px] px-3 w-full placeholder:text-[#FBF5EB]/50 text-[#FBF5EB] font-medium"
           />
-          <div className="w-px h-3 bg-white/20 mx-2"></div>
           <button type="submit" className="focus:outline-none group">
-            <svg className="w-4 h-4 text-[#FBF5EB]/50 cursor-pointer group-hover:text-[#E6B754] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
+            <svg className="w-4 h-4 text-[#FBF5EB]/50 cursor-pointer group-hover:text-[#E6B754] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
           </button>
         </form>
 
@@ -255,6 +255,13 @@ const Navbar = ({ currentView, user, cartItems = [], isProductOverview, onNaviga
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                handleSearch(e);
+                setIsMobileMenuOpen(false);
+              }
+            }}
             placeholder="Search..."
             className="bg-transparent border-none outline-none text-sm px-3 w-full placeholder:text-[#FBF5EB]/50 text-[#FBF5EB]"
           />
