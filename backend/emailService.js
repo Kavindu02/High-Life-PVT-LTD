@@ -135,7 +135,7 @@ const sendOrderConfirmation = async (orderData, orderId) => {
                   <table width="100%" cellpadding="0" cellspacing="0" border="0">
                     <tr>
                       <td width="50%" align="left">
-                        <img src="cid:logo" alt="Logo" width="120" style="height: 60px; width: auto; max-width: 120px; display: block;" />
+                        <h2 style="margin: 0; color: #E6B754; font-size: 24px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase;">HIGH LIFE</h2>
                       </td>
                       <td width="50%" align="right" style="color: #888; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
                         ORDER #${orderId}
@@ -280,28 +280,6 @@ const sendOrderCancellationEmail = async (orderData, orderId) => {
     return;
   }
 
-  const attachments = [];
-  const logoPath = path.join(__dirname, '../frontend/public/logo.png');
-  if (fs.existsSync(logoPath)) {
-    attachments.push({
-      filename: 'logo.png',
-      path: logoPath,
-      cid: 'logo',
-      contentDisposition: 'inline'
-    });
-  } else {
-    const logoWebpPath = path.join(__dirname, '../frontend/public/logo.webp');
-    if (fs.existsSync(logoWebpPath)) {
-      attachments.push({
-        filename: 'logo.png', 
-        path: logoWebpPath,
-        cid: 'logo',
-        contentType: 'image/png',
-        contentDisposition: 'inline'
-      });
-    }
-  }
-
   const htmlContent = `
     <!DOCTYPE html>
     <html>
@@ -321,7 +299,7 @@ const sendOrderCancellationEmail = async (orderData, orderId) => {
                   <table width="100%" cellpadding="0" cellspacing="0" border="0">
                     <tr>
                       <td width="50%" align="left">
-                        <img src="cid:logo" alt="Logo" width="120" style="height: 60px; width: auto; max-width: 120px; display: block;" />
+                        <h2 style="margin: 0; color: #E6B754; font-size: 24px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase;">HIGH LIFE</h2>
                       </td>
                       <td width="50%" align="right" style="color: #888; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
                         ORDER #${orderId}
