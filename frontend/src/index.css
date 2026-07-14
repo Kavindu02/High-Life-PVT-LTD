@@ -12,6 +12,7 @@
   --font-cinzel: "Cinzel", serif;
   --font-outfit: "Outfit", sans-serif;
   --font-montserrat: "Montserrat", sans-serif;
+  --font-script: "Great Vibes", cursive;
 }
 
 body {
@@ -121,3 +122,4 @@ button, [role="button"], a {
     padding-right: 2rem !important;
   }
 }
+
