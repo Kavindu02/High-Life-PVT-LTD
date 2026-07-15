@@ -92,6 +92,12 @@ const sendOrderConfirmation = async (orderData, orderId) => {
     });
   }
 
+  console.log("=== EMAIL SERVICE DEBUG ===");
+  console.log("Subtotal:", subtotal);
+  console.log("OrderData Total Amount:", orderData.total_amount);
+  console.log("Condition (subtotal < 5000):", subtotal < 5000);
+  console.log("============================");
+
   const htmlContent = `
     <!DOCTYPE html>
     <html>
@@ -173,11 +179,19 @@ const sendOrderConfirmation = async (orderData, orderId) => {
               <!-- Delivery Charge Note -->
               <tr>
                 <td style="padding-bottom: 30px;">
+                  ${subtotal < 5000 ? `
                   <div style="background-color: #FBF5EB; border: 1px solid #EADFC8; border-radius: 12px; padding: 20px;">
                     <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #2a2a2a;">
                       <strong style="color: #e60000;">Please Note:</strong> Delivery charges are not included in the total. The applicable delivery fee must be paid directly to the delivery service upon receiving your order.
                     </p>
                   </div>
+                  ` : `
+                  <div style="background-color: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 20px;">
+                    <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #2a2a2a;">
+                      <strong style="color: #16a34a;">Free Delivery!</strong> Your order qualifies for free delivery as the total is Rs. 5000 or above.
+                    </p>
+                  </div>
+                  `}
                 </td>
               </tr>
               

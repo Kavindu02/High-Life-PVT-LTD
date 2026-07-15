@@ -14,7 +14,7 @@ const PrivacyPolicy = () => {
         <p>We use your information strictly to fulfill your orders, provide customer support, and communicate with you regarding your purchases. We do not sell or share your personal information with third parties for marketing purposes.</p>
         
         <h2 className="text-2xl font-bold text-[#2a2a2a] mt-8">3. Delivery & Payment Policy</h2>
-        <p>Please note that we do not offer Cash on Delivery (COD) as a payment method for the product cost. However, <strong>delivery charges are not collected through our website</strong>. The delivery charge must be paid directly to the delivery service personnel when you receive your package.</p>
+        <p>Please note that we do not offer Cash on Delivery (COD) as a payment method for the product cost. For orders below Rs. 5000, <strong>delivery charges are not collected through our website</strong> and must be paid directly to the delivery service personnel when you receive your package. However, <strong>orders of Rs. 5000 and above qualify for Free Delivery</strong>.</p>
         
         <h2 className="text-2xl font-bold text-[#2a2a2a] mt-8">4. Data Security</h2>
         <p>We implement strict security measures to ensure your personal data is safe. All transactions and data transmissions are encrypted and handled securely.</p>

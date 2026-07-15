@@ -14,7 +14,7 @@ const TermsOfService = () => {
         <p>All our spices are 100% authentic and premium quality. Prices for our products are subject to change without notice. We reserve the right to modify or discontinue products at any time.</p>
         
         <h2 className="text-2xl font-bold text-[#2a2a2a] mt-8">3. Shipping & Delivery Charges</h2>
-        <p>We aim to process and dispatch all orders promptly. <strong>Important Delivery Notice:</strong> There is no Cash on Delivery (COD) for product purchases. Additionally, delivery charges are not included in your checkout total on this website. <strong>You are required to pay the delivery fee directly to the courier service upon receiving your product.</strong></p>
+        <p>We aim to process and dispatch all orders promptly. <strong>Important Delivery Notice:</strong> There is no Cash on Delivery (COD) for product purchases. For orders below Rs. 5000, delivery charges are not included in your checkout total and <strong>you are required to pay the delivery fee directly to the courier service upon receiving your product.</strong> However, <strong>orders of Rs. 5000 and above qualify for Free Delivery.</strong></p>
         
         <h2 className="text-2xl font-bold text-[#2a2a2a] mt-8">4. Returns & Refunds</h2>
         <p>Given the perishable nature of our products, we handle returns on a case-by-case basis. If you receive a damaged or incorrect item, please contact our support team within 24 hours of delivery.</p>
