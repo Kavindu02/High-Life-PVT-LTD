@@ -102,48 +102,21 @@ const Collection = ({ onProductClick }) => {
           .animate-scooter-bounce {
             animation: scooter-bounce 0.3s ease-in-out infinite;
           }
-          @keyframes wind-dash {
-            0% { transform: translateX(20px); opacity: 0; }
-            20% { opacity: 1; }
-            80% { opacity: 1; }
-            100% { transform: translateX(-80px); opacity: 0; }
           }
-          .animate-wind-dash-1 { animation: wind-dash 0.8s linear infinite; }
-          .animate-wind-dash-2 { animation: wind-dash 1.1s linear infinite 0.3s; }
-          .animate-wind-dash-3 { animation: wind-dash 0.9s linear infinite 0.5s; }
         `}
       </style>
 
       {/* Modernized Free Delivery Offer Section */}
-      <section className="w-full relative flex flex-col items-center justify-center py-1 bg-[#2a2a2a]">
+      <section className="w-full relative flex flex-col items-center justify-center py-1 bg-cover bg-center bg-fixed bg-no-repeat overflow-hidden" style={{ backgroundImage: 'url(/delivery_banner_bg.png)' }}>
+        {/* Dark overlay to ensure text remains readable */}
+        <div className="absolute inset-0 bg-[#2a2a2a]/85 backdrop-blur-[1px]"></div>
 
-
-        {/* Large Background Text - Moving Marquee */}
-        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full overflow-hidden opacity-[0.03] pointer-events-none z-0 select-none">
-          <div className="animate-marquee flex whitespace-nowrap w-max">
-            <h2 className="text-[24vw] md:text-[18vw] leading-[0.8] font-black text-white uppercase tracking-tighter mx-4 md:mx-8">
-              FREE DELIVERY
-            </h2>
-            <h2 className="text-[24vw] md:text-[18vw] leading-[0.8] font-black text-white uppercase tracking-tighter mx-4 md:mx-8">
-              FREE DELIVERY
-            </h2>
-            <h2 className="text-[24vw] md:text-[18vw] leading-[0.8] font-black text-white uppercase tracking-tighter mx-4 md:mx-8">
-              FREE DELIVERY
-            </h2>
-            <h2 className="text-[24vw] md:text-[18vw] leading-[0.8] font-black text-white uppercase tracking-tighter mx-4 md:mx-8">
-              FREE DELIVERY
-            </h2>
-          </div>
-        </div>
 
         {/* Content Container */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 w-full flex flex-col md:flex-row items-center justify-center md:justify-between gap-2 py-1 md:py-2 overflow-visible">
-
-          {/* Left Spacer for true centering on desktop */}
-          <div className="hidden md:block md:w-[30%]"></div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 w-full flex flex-col items-center justify-center gap-2 py-1 md:py-2 overflow-visible">
 
           {/* Text Content */}
-          <div className="w-full md:w-[40%] text-center flex flex-col items-center justify-center">
+          <div className="w-full text-center flex flex-col items-center justify-center">
 
             <div className="flex flex-col items-center justify-center relative w-full mb-1 mt-1 z-20">
 
@@ -169,7 +142,7 @@ const Collection = ({ onProductClick }) => {
                   onClick={() => document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth' })}
                   className="bg-transparent border-[1.5px] border-[#E6B754] text-[#E6B754] hover:bg-[#E6B754] hover:text-[#2a2a2a] hover:border-transparent px-6 py-2.5 sm:px-8 sm:py-3 rounded-full font-bold text-sm sm:text-base transition-all duration-300 shadow-lg cursor-pointer whitespace-nowrap drop-shadow-[0_0_15px_rgba(230,183,84,0.3)] btn-shine relative overflow-hidden"
                 >
-                  Shop Now
+                  Order Now
                 </button>
 
                 {/* Note Text */}
@@ -182,17 +155,6 @@ const Collection = ({ onProductClick }) => {
             </div>
           </div>
 
-          {/* Right Side Image */}
-          <div className="w-full md:w-[30%] flex justify-center items-center mt-4 md:mt-0 relative z-20 -my-6 md:-my-16 pointer-events-none translate-y-2 md:translate-y-4 lg:translate-y-6">
-            <img src="/delivery-scooter.webp" alt="Delivery Scooter" className="w-56 sm:w-64 md:w-72 lg:w-80 xl:w-96 object-contain drop-shadow-[0_15px_25px_rgba(0,0,0,0.6)] pointer-events-auto translate-x-4 md:translate-x-8 lg:translate-x-12 xl:translate-x-16" />
-            
-            {/* Speed lines effect behind the scooter */}
-            <div className="absolute top-1/2 left-0 w-full h-full pointer-events-none -z-10 -translate-y-1/2">
-               <div className="h-0.5 bg-[#E6B754]/40 w-12 absolute top-[40%] left-[10%] animate-wind-dash-1 rounded-full"></div>
-               <div className="h-1 bg-[#E6B754]/60 w-20 absolute top-[60%] left-[20%] animate-wind-dash-2 rounded-full"></div>
-               <div className="h-0.5 bg-[#E6B754]/30 w-8 absolute top-[75%] left-[5%] animate-wind-dash-3 rounded-full"></div>
-            </div>
-          </div>
 
         </div>
 
