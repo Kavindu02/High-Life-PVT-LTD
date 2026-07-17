@@ -148,7 +148,7 @@ const Collection = ({ onProductClick }) => {
             <div className="flex flex-col items-center justify-center relative w-full mb-1 mt-1 z-20">
 
               {/* Main Title - Like "HEALTY FOOD" */}
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#FAF5EC] tracking-tight leading-tight drop-shadow-2xl mb-1 text-center">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#FAF5EC] tracking-tight leading-tight drop-shadow-2xl mb-1 text-center">
                 Island-Wide
               </h1>
 
@@ -183,7 +183,7 @@ const Collection = ({ onProductClick }) => {
           </div>
 
           {/* Right Side Image */}
-          <div className="w-full md:w-[30%] flex justify-center items-center mt-4 md:mt-0 relative z-20 -my-6 md:-my-16 pointer-events-none">
+          <div className="w-full md:w-[30%] flex justify-center items-center mt-4 md:mt-0 relative z-20 -my-6 md:-my-16 pointer-events-none translate-y-2 md:translate-y-4 lg:translate-y-6">
             <img src="/delivery-scooter.webp" alt="Delivery Scooter" className="w-56 sm:w-64 md:w-72 lg:w-80 xl:w-96 object-contain drop-shadow-[0_15px_25px_rgba(0,0,0,0.6)] pointer-events-auto translate-x-4 md:translate-x-8 lg:translate-x-12 xl:translate-x-16" />
             
             {/* Speed lines effect behind the scooter */}
