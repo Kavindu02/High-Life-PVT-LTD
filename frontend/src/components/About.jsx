@@ -35,13 +35,13 @@ const About = () => {
               Our premium spices are expertly handpicked and processed under strict hygienic conditions. Maintained with uncompromising quality control and guided by careful family supervision, our entirely pure spices offer a richness and quality that simply cannot be replaced.
             </p>
             
-            <a href="#collection" className="mt-4 relative top-0 md:top-12 inline-block w-fit bg-[#2a2a2a] btn-shine text-white text-xs font-bold px-8 py-3 rounded-full hover:bg-[#E6B754] transition tracking-wider shadow-lg border-2 border-white/20">
+            <a href="#collection" className="mt-4 relative top-0 md:top-4 inline-block w-fit bg-[#2a2a2a] btn-shine text-white text-xs font-bold px-8 py-3 rounded-full hover:bg-[#E6B754] transition tracking-wider shadow-lg border-2 border-white/20">
               OUR COLLECTION
             </a>
           </div>
 
           {/* Bottom Icons Area */}
-          <div className="grid grid-cols-2 sm:flex sm:flex-nowrap justify-center lg:justify-end gap-6 sm:gap-8 mt-auto w-full lg:pl-16 text-[#2A2A2A] pt-12 lg:pt-0 lg:translate-x-12">
+          <div className="grid grid-cols-2 sm:flex sm:flex-nowrap justify-center lg:justify-end gap-6 sm:gap-8 mt-auto w-full lg:pl-16 text-[#2A2A2A] pt-12 lg:pt-0 lg:translate-x-12 lg:-translate-y-8">
             
             <div className="flex flex-col items-center">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-14 w-14 mb-4 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
