@@ -250,6 +250,7 @@ const sendOrderConfirmation = async (orderData, orderId) => {
   `;
 
   try {
+    // Send email to the customer
     const info = await transporter.sendMail({
       from: `"High Life (PVT) LTD" <${process.env.EMAIL_USER}>`,
       to: orderData.email,
@@ -257,7 +258,21 @@ const sendOrderConfirmation = async (orderData, orderId) => {
       html: htmlContent,
       attachments: attachments
     });
-    console.log("Email sent successfully:", info.messageId);
+    console.log("Email sent successfully to customer:", info.messageId);
+
+    // Send email to the admin
+    const adminHtmlContent = htmlContent.replace(
+      /<!-- Hero Section -->[\s\S]*?<!-- Order Summary -->/,
+      '<!-- Order Summary -->'
+    );
+    const adminInfo = await transporter.sendMail({
+      from: `"High Life (PVT) LTD" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_USER,
+      subject: `New Order Received - Order #${orderId}`,
+      html: adminHtmlContent,
+      attachments: attachments
+    });
+    console.log("Email sent successfully to admin:", adminInfo.messageId);
   } catch (error) {
     console.error("Error sending email:", error);
   }
