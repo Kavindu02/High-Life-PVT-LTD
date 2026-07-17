@@ -41,7 +41,7 @@ const About = () => {
           </div>
 
           {/* Bottom Icons Area */}
-          <div className="grid grid-cols-2 sm:flex sm:flex-nowrap justify-center lg:justify-end gap-6 sm:gap-8 mt-auto w-full lg:pl-16 text-[#2A2A2A] pt-12 lg:pt-0">
+          <div className="grid grid-cols-2 sm:flex sm:flex-nowrap justify-center lg:justify-end gap-6 sm:gap-8 mt-auto w-full lg:pl-16 text-[#2A2A2A] pt-12 lg:pt-0 lg:translate-x-12">
             
             <div className="flex flex-col items-center">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-14 w-14 mb-4 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
